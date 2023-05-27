@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FineMe</string>
+    <string name="kakao_app_key">49ca99a901ffab79221b40bee9307f8c</string>
 </resources>
