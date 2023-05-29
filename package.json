@@ -5,14 +5,26 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "ios:simulator": "sh ./scripts/ios_simulator.sh",
+    "ios:stg": "ENVFILE=.env.staging react-native run-ios --scheme=FineMe-stg",
+    "ios:prd": "ENVFILE=.env react-native run-ios --scheme=FineMe",
+    "android:stg": "ENVFILE=.env.staging react-native run-android --variant=stagingDebug --appIdSuffix \"dev\"",
+    "android:prd": "ENVFILE=.env react-native run-android --variant=productionDebug --appIdSuffix \"prd\"",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "react-native start --reset-cache",
+    "postinstall": "patch-package",
     "test": "jest"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.18.1",
     "axios": "^1.4.0",
+    "babel-plugin-root-import": "^6.6.0",
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "patch-package": "^7.0.0",
     "react": "18.2.0",
     "react-native": "0.71.7",
+    "react-native-config": "^1.5.1",
     "react-query": "^3.39.3",
     "zustand": "^4.3.8"
   },
@@ -33,6 +45,7 @@
     "metro-react-native-babel-preset": "0.73.9",
     "prettier": "^2.4.1",
     "react-test-renderer": "18.2.0",
+    "reactotron-react-native": "^5.0.3",
     "typescript": "4.8.4"
   },
   "jest": {
