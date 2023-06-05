@@ -23,8 +23,9 @@ end
 
 target 'FineMe' do
   config = use_native_modules!
-  pod 'GoogleUtilities', :modular_headers => true
-  pod 'FirebaseCore', :modular_headers => true
+  use_frameworks! :linkage => :static
+  $RNFirebaseAsStaticFramework = true
+
   # Flags change depending on the env values.
   flags = get_default_flags()
 
