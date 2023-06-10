@@ -10,6 +10,8 @@
     "ios:prd": "ENVFILE=.env react-native run-ios --scheme=FineMe",
     "android:stg": "ENVFILE=.env.staging react-native run-android --variant stagingDebug --appIdSuffix \"dev\"",
     "android:prd": "ENVFILE=.env react-native run-android --variant productionDebug --appIdSuffix \"prd\"",
+    "ios-code-push:stg": "plutil -replace CodePushDeploymentKey -string MEJ4m9k1D5vDJsOnfoz4bMT8TmXwE2CuiUBJK ios/FineMe/Info.plist",
+    "ios-code-push:prd": "plutil -replace CodePushDeploymentKey -string WPXphZTFsCnS2kLpUQmRoBD58zSiK1OzWleTF ios/FineMe/Info.plist",
     "lint": "eslint .",
     "start": "react-native start --reset-cache",
     "postinstall": "patch-package",
@@ -25,6 +27,7 @@
     "patch-package": "^7.0.0",
     "react": "18.2.0",
     "react-native": "0.71.7",
+    "react-native-code-push": "^8.0.2",
     "react-native-config": "^1.5.1",
     "react-query": "^3.39.3",
     "zustand": "^4.3.8"
