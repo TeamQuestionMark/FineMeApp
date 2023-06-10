@@ -1,3 +1,7 @@
+import { s, vs } from '../utils/scale';
+
+import { COLORS } from './colors';
+
 const globalStyles = {
   defaultFlexContainer: {
     flex: 1,
@@ -27,10 +31,28 @@ const globalStyles = {
   alignFlexEnd: {
     alignSelf: 'flex-end',
   },
+  alignFlexStart: {
+    alignSelf: 'flex-start',
+  },
   alignItemsFlexEnd: {
     alignItems: 'flex-end',
   },
-  mobileSwitchScale: { transform: [{ scaleX: 0.8 }, { scaleY: 0.8 }] },
-};
+  defaultBackgroundColor: {
+    backgroundColor: COLORS.white,
+  },
+  defaultPadding: {
+    paddingVertical: vs(16),
+    paddingHorizontal: s(16),
+  },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  sectionTitleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: vs(48),
+  },
+} as const;
 
 export default globalStyles;

@@ -8,13 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* FineMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FineMeTests.m */; };
+		2F852E0146E81F9838BEE66F /* Pods_FineMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB66D37B1B1E57283249F70C /* Pods_FineMe.framework */; };
+		E4E6A73A2A34B83E009F7698 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E6A7392A34B83E009F7698 /* GoogleService-Info.plist */; };
+		F8684DD87C1FB0F8E22B8BA2 /* Pods_FineMe_FineMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA0D84173BDF1DE1BD05EF0 /* Pods_FineMe_FineMeTests.framework */; };
+		0C80B921A6F3F58F76C31292 /* libPods-FineMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5DCACB8F33CDC322A6C60F78 /* libPods-FineMe.a */; };
+		0DA5BA3D80464DB3B6CBDD62 /* TitanOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 303EE3ECA8C1438BB2D40B93 /* TitanOne-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2F852E0146E81F9838BEE66F /* Pods_FineMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB66D37B1B1E57283249F70C /* Pods_FineMe.framework */; };
+		18A6B35622154B92AB3B0130 /* SUIT-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3615AE8C4FE24AC182B8E952 /* SUIT-Regular.ttf */; };
+		22A47B5575884B61AFCAE4A8 /* SUIT-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A201F31E022490CAC9516F7 /* SUIT-Bold.ttf */; };
+		4A3CC701106B44F1941EA7A3 /* SUIT-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E317642F43845768432A77B /* SUIT-Light.ttf */; };
+		4E00B275566C44C8934EC7BA /* SUIT-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EDBBA05767E4421989B0A441 /* SUIT-ExtraBold.ttf */; };
+		7699B88040F8A987B510C191 /* libPods-FineMe-FineMeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-FineMe-FineMeTests.a */; };
+		76BC6E271CEA4E3CB3CE2F04 /* SUIT-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E700B031D31A45948194CA3D /* SUIT-SemiBold.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		E4E6A73A2A34B83E009F7698 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E6A7392A34B83E009F7698 /* GoogleService-Info.plist */; };
-		F8684DD87C1FB0F8E22B8BA2 /* Pods_FineMe_FineMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA0D84173BDF1DE1BD05EF0 /* Pods_FineMe_FineMeTests.framework */; };
+		833D84F90FC2483FAF303B6F /* SUIT-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABD6737BCF9C498883B74EF1 /* SUIT-Heavy.ttf */; };
+		86C255D77AAD4391AE566BF5 /* SUIT-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E5044668DC4A9D87977402 /* SUIT-Medium.ttf */; };
+		CF77B810C5EA42768433AC32 /* SUIT-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 854D9F07D8EB49E3AC3F2F27 /* SUIT-ExtraLight.ttf */; };
+		DC5CF40C2E11480382C01E7C /* SUIT-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E62D944698724CFF98ACF10F /* SUIT-Thin.ttf */; };
+>>>>>>> 5ce1582 (feat: 폰트 추가)
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,15 +50,26 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FineMe/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FineMe/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FineMe/main.m; sourceTree = "<group>"; };
+		19F6CBCC0A4E27FBF8BF4A61 /* libPods-FineMe-FineMeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FineMe-FineMeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E317642F43845768432A77B /* SUIT-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-Light.ttf"; path = "../src/assets/fonts/SUIT-Light.ttf"; sourceTree = "<group>"; };
+		303EE3ECA8C1438BB2D40B93 /* TitanOne-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "TitanOne-Regular.ttf"; path = "../src/assets/fonts/TitanOne-Regular.ttf"; sourceTree = "<group>"; };
+		3615AE8C4FE24AC182B8E952 /* SUIT-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-Regular.ttf"; path = "../src/assets/fonts/SUIT-Regular.ttf"; sourceTree = "<group>"; };
 		3B4392A12AC88292D35C810B /* Pods-FineMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineMe.debug.xcconfig"; path = "Target Support Files/Pods-FineMe/Pods-FineMe.debug.xcconfig"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-FineMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineMe.release.xcconfig"; path = "Target Support Files/Pods-FineMe/Pods-FineMe.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-FineMe-FineMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineMe-FineMeTests.debug.xcconfig"; path = "Target Support Files/Pods-FineMe-FineMeTests/Pods-FineMe-FineMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = FineMe/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		854D9F07D8EB49E3AC3F2F27 /* SUIT-ExtraLight.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-ExtraLight.ttf"; path = "../src/assets/fonts/SUIT-ExtraLight.ttf"; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-FineMe-FineMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineMe-FineMeTests.release.xcconfig"; path = "Target Support Files/Pods-FineMe-FineMeTests/Pods-FineMe-FineMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		8CA0D84173BDF1DE1BD05EF0 /* Pods_FineMe_FineMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FineMe_FineMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB66D37B1B1E57283249F70C /* Pods_FineMe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FineMe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4E6A7392A34B83E009F7698 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8A201F31E022490CAC9516F7 /* SUIT-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-Bold.ttf"; path = "../src/assets/fonts/SUIT-Bold.ttf"; sourceTree = "<group>"; };
+		A2E5044668DC4A9D87977402 /* SUIT-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-Medium.ttf"; path = "../src/assets/fonts/SUIT-Medium.ttf"; sourceTree = "<group>"; };
+		ABD6737BCF9C498883B74EF1 /* SUIT-Heavy.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-Heavy.ttf"; path = "../src/assets/fonts/SUIT-Heavy.ttf"; sourceTree = "<group>"; };
+		E62D944698724CFF98ACF10F /* SUIT-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-Thin.ttf"; path = "../src/assets/fonts/SUIT-Thin.ttf"; sourceTree = "<group>"; };
+		E700B031D31A45948194CA3D /* SUIT-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-SemiBold.ttf"; path = "../src/assets/fonts/SUIT-SemiBold.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		EDBBA05767E4421989B0A441 /* SUIT-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-ExtraBold.ttf"; path = "../src/assets/fonts/SUIT-ExtraBold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +132,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6E20BFE467AE4F7E81946C6E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8A201F31E022490CAC9516F7 /* SUIT-Bold.ttf */,
+				EDBBA05767E4421989B0A441 /* SUIT-ExtraBold.ttf */,
+				854D9F07D8EB49E3AC3F2F27 /* SUIT-ExtraLight.ttf */,
+				ABD6737BCF9C498883B74EF1 /* SUIT-Heavy.ttf */,
+				2E317642F43845768432A77B /* SUIT-Light.ttf */,
+				A2E5044668DC4A9D87977402 /* SUIT-Medium.ttf */,
+				3615AE8C4FE24AC182B8E952 /* SUIT-Regular.ttf */,
+				E700B031D31A45948194CA3D /* SUIT-SemiBold.ttf */,
+				E62D944698724CFF98ACF10F /* SUIT-Thin.ttf */,
+				303EE3ECA8C1438BB2D40B93 /* TitanOne-Regular.ttf */,
+			);
+			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +167,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				6E20BFE467AE4F7E81946C6E /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -249,6 +292,16 @@
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				E4E6A73A2A34B83E009F7698 /* GoogleService-Info.plist in Resources */,
+				22A47B5575884B61AFCAE4A8 /* SUIT-Bold.ttf in Resources */,
+				4E00B275566C44C8934EC7BA /* SUIT-ExtraBold.ttf in Resources */,
+				CF77B810C5EA42768433AC32 /* SUIT-ExtraLight.ttf in Resources */,
+				833D84F90FC2483FAF303B6F /* SUIT-Heavy.ttf in Resources */,
+				4A3CC701106B44F1941EA7A3 /* SUIT-Light.ttf in Resources */,
+				86C255D77AAD4391AE566BF5 /* SUIT-Medium.ttf in Resources */,
+				18A6B35622154B92AB3B0130 /* SUIT-Regular.ttf in Resources */,
+				76BC6E271CEA4E3CB3CE2F04 /* SUIT-SemiBold.ttf in Resources */,
+				DC5CF40C2E11480382C01E7C /* SUIT-Thin.ttf in Resources */,
+				0DA5BA3D80464DB3B6CBDD62 /* TitanOne-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
