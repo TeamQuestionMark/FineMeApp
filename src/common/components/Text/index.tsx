@@ -6,7 +6,6 @@ import { Text as NativeText } from 'react-native';
 
 import type { TextProps } from './type';
 
-
 /**
  * @component
  * 텍스트
@@ -60,7 +59,7 @@ const Text = ({
       getTypography({
         typography,
         fontWeight,
-        isFontTypeEnglish, 
+        isFontTypeEnglish,
       }),
     ]}
     numberOfLines={numberOfLines}

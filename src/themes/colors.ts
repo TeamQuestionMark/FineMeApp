@@ -1,4 +1,4 @@
-import { ValueOf } from "./type";
+import { ValueOf } from './type';
 
 // 임시 컬러
 export const COLORS = {

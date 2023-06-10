@@ -27,8 +27,6 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import Text from './common/components/Text';
 import { TEXT_COLORS } from './themes/colors';
 
-
-
 const queryClient = new QueryClient();
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -54,21 +52,23 @@ function App(): JSX.Element {
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
             }}
           >
-            <Text  
+            <Text
               typography="body1"
               fontWeight="regular"
-              color={TEXT_COLORS.textPrimary} 
-              isFontTypeEnglish={false} >
+              color={TEXT_COLORS.textPrimary}
+              isFontTypeEnglish={false}
+            >
               한글 테스트
             </Text>
-            <Text  
+            <Text
               typography="body1"
               fontWeight="regular"
-              color={TEXT_COLORS.textPrimary} 
-              isFontTypeEnglish={true} >
+              color={TEXT_COLORS.textPrimary}
+              isFontTypeEnglish={true}
+            >
               Test
             </Text>
-          
+
             <LearnMoreLinks />
           </View>
         </ScrollView>
