@@ -118,10 +118,25 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            if (buildProperties['MYAPP_UPLOAD_STORE_FILE']) {
+                storeFile file(buildProperties['MYAPP_UPLOAD_STORE_FILE'])
+                storePassword buildProperties['MYAPP_UPLOAD_STORE_PASSWORD']
+                keyAlias buildProperties['MYAPP_UPLOAD_KEY_ALIAS']
+                keyPassword buildProperties['MYAPP_UPLOAD_KEY_PASSWORD']
+            } else {
+                storeFile file('debug.keystore')
+                storePassword 'android'
+                keyAlias 'androiddebugkey'
+                keyPassword 'android'
+            }
+        }
+        release {
+            if (buildProperties['MYAPP_UPLOAD_STORE_FILE']) {
+                storeFile file(buildProperties['MYAPP_UPLOAD_STORE_FILE'])
+                storePassword buildProperties['MYAPP_UPLOAD_STORE_PASSWORD']
+                keyAlias buildProperties['MYAPP_UPLOAD_KEY_ALIAS']
+                keyPassword buildProperties['MYAPP_UPLOAD_KEY_PASSWORD']
+            }
         }
     }
     buildTypes {
