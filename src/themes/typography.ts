@@ -42,7 +42,6 @@ const getLineHeight = (fontSize: number, lineHeightRatio = 1.5) => fontSize * li
 
 export const getTypography = ({ typography, fontSizeWeight = 1, fontWeight, isFontTypeEnglish = false }: GetTypography) => {
   const scaling = s;
-  console.log(' getFontFamily({fontWeight, isFontTypeEnglish}): ',  getFontFamily({fontWeight, isFontTypeEnglish}));
 
   switch (typography) {
     case 'display1':
