@@ -43,10 +43,6 @@ public class MainApplication extends Application implements ReactApplication {
         protected Boolean isHermesEnabled() {
           return BuildConfig.IS_HERMES_ENABLED;
         }
-      };
-
-  @Override
-  public ReactNativeHost getReactNativeHost() {
         // 2. Override the getJSBundleFile method in order to let
         // the CodePush runtime determine where to get the JS
         // bundle location from on each app start
@@ -54,6 +50,11 @@ public class MainApplication extends Application implements ReactApplication {
         protected String getJSBundleFile() {
             return CodePush.getJSBundleFile();
         }
+  
+  };
+
+  @Override
+  public ReactNativeHost getReactNativeHost() {
 
 
     return mReactNativeHost;

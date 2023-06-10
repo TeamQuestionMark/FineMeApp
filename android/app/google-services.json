@@ -7,20 +7,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:525722211968:android:afa892f8f078560b2df865",
+        "mobilesdk_app_id": "1:525722211968:android:1a4f7c713909c9b52df865",
         "android_client_info": {
           "package_name": "com.fineme"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "525722211968-64t8igt0q0eig1qhfltpqn9ijvqkbhn1.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.fineme",
-            "certificate_hash": "97dc916cf29766545acddd4666ee74fa67cbdb09"
-          }
-        },
         {
           "client_id": "525722211968-jjjqhaf4n2obscb9f1sq1dv0h1tvrpd8.apps.googleusercontent.com",
           "client_type": 3
@@ -42,7 +34,7 @@
               "client_id": "525722211968-m719tloslu6cgvoingmpbslt69vnk3ll.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.fineme"
+                "bundle_id": "com.questionmark.fineme"
               }
             }
           ]
@@ -51,7 +43,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:525722211968:android:af799966b31175152df865",
+        "mobilesdk_app_id": "1:525722211968:android:c810aaaae988707b2df865",
         "android_client_info": {
           "package_name": "com.fineme.dev"
         }
@@ -78,7 +70,7 @@
               "client_id": "525722211968-m719tloslu6cgvoingmpbslt69vnk3ll.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.fineme"
+                "bundle_id": "com.questionmark.fineme"
               }
             }
           ]

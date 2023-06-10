@@ -1,0 +1,43 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  lane :firebase_stg do
+      sh "cd .. && npm run build:android:stg"
+      firebase_app_distribution(
+        android_artifact_type: "APK",
+        android_artifact_path: "app/build/outputs/apk/staging/release/app-staging-release.apk",
+        service_credentials_file: "../firebase_credentials.json",
+        app: "1:525722211968:android:c810aaaae988707b2df865",
+        groups: "testers",
+        release_notes: "Fine Me Android stg",
+    )
+
+  end
+
+  lane :firebase_prd do
+      sh "cd .. && npm run build:android:prd"
+      firebase_app_distribution(
+        android_artifact_type: "APK",
+        android_artifact_path: "app/build/outputs/apk/production/release/app-production-release.apk",
+        service_credentials_file: "../firebase_credentials.json",
+        app: "1:525722211968:android:1a4f7c713909c9b52df865",
+        groups: "testers",
+        release_notes: "Fine Me Android prd",
+    )
+  end
+end

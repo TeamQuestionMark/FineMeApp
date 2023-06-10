@@ -23,7 +23,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CodePushDeploymentKey</key>
-	<string>WPXphZTFsCnS2kLpUQmRoBD58zSiK1OzWleTF</string>
+	<string>MEJ4m9k1D5vDJsOnfoz4bMT8TmXwE2CuiUBJK</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -38,7 +38,20 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SUIT-Bold.ttf</string>
+		<string>SUIT-ExtraBold.ttf</string>
+		<string>SUIT-ExtraLight.ttf</string>
+		<string>SUIT-Heavy.ttf</string>
+		<string>SUIT-Light.ttf</string>
+		<string>SUIT-Medium.ttf</string>
+		<string>SUIT-Regular.ttf</string>
+		<string>SUIT-SemiBold.ttf</string>
+		<string>SUIT-Thin.ttf</string>
+		<string>TitanOne-Regular.ttf</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -53,18 +66,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
-	<array>
-		<string>SUIT-Bold.ttf</string>
-		<string>SUIT-ExtraBold.ttf</string>
-		<string>SUIT-ExtraLight.ttf</string>
-		<string>SUIT-Heavy.ttf</string>
-		<string>SUIT-Light.ttf</string>
-		<string>SUIT-Medium.ttf</string>
-		<string>SUIT-Regular.ttf</string>
-		<string>SUIT-SemiBold.ttf</string>
-		<string>SUIT-Thin.ttf</string>
-		<string>TitanOne-Regular.ttf</string>
-	</array>
 </dict>
 </plist>
