@@ -8,8 +8,8 @@
     "ios:simulator": "sh ./scripts/ios_simulator.sh",
     "ios:stg": "ENVFILE=.env.staging react-native run-ios --scheme=FineMe-stg",
     "ios:prd": "ENVFILE=.env react-native run-ios --scheme=FineMe",
-    "android:stg": "ENVFILE=.env.staging react-native run-android --variant=stagingDebug --appIdSuffix \"dev\"",
-    "android:prd": "ENVFILE=.env react-native run-android --variant=productionDebug --appIdSuffix \"prd\"",
+    "android:stg": "ENVFILE=.env.staging react-native run-android --variant stagingDebug --appIdSuffix \"dev\"",
+    "android:prd": "ENVFILE=.env react-native run-android --variant productionDebug --appIdSuffix \"prd\"",
     "lint": "eslint .",
     "start": "react-native start --reset-cache",
     "postinstall": "patch-package",
@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.18.1",
+    "@react-native-firebase/app": "^18.0.0",
     "axios": "^1.4.0",
     "babel-plugin-root-import": "^6.6.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
