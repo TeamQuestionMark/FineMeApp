@@ -6,7 +6,6 @@ import type {
 
 import { GetTypography } from '@/themes/typography';
 
-
 export interface TextProps
   extends Omit<GetTypography, 'fontSizeWeight'>,
     NativeTextProps,

@@ -15,6 +15,7 @@ import type { TextProps } from './type';
  *   typography="body1"                   // required
  *   fontWeight="medium"                  // required
  *   color={TEXT_COLORS.textPrimary}      // required
+ *   isFontTypeEnglish={false}            // required
  *   isVerticalScale={false}              // optional
  *   textAlign="center"                   // optional
  * >
