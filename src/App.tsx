@@ -1,92 +1,45 @@
-import React from 'react';
-import type { PropsWithChildren } from 'react';
+import React, { Suspense } from 'react';
+import { View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  useColorScheme,
-  View,
-} from 'react-native';
+  NavigationContainer,
+  NavigationContainerRef,
+} from '@react-navigation/native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import Text from './common/components/Text';
-import { TEXT_COLORS } from './themes/colors';
+import { RootStackParamList } from './navigations/types';
+import Spinner from './common/components/Spinner/Spinner';
+import RootStack from './navigations/RootStack';
 
-const queryClient = new QueryClient();
-function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <QueryClientProvider client={queryClient}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
-        />
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={backgroundStyle}
-        >
-          <Header />
-          <View
-            style={{
-              backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            }}
-          >
-            <Text
-              typography="body1"
-              fontWeight="regular"
-              color={TEXT_COLORS.textPrimary}
-              isFontTypeEnglish={false}
-            >
-              한글 테스트
-            </Text>
-            <Text
-              typography="body1"
-              fontWeight="regular"
-              color={TEXT_COLORS.textPrimary}
-              isFontTypeEnglish={true}
-            >
-              Test
-            </Text>
-
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </QueryClientProvider>
-  );
-}
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+      useErrorBoundary: true,
+      cacheTime: 1000,
+      staleTime: 1000,
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+      retry: 0,
+    },
   },
 });
+
+export const navigationRef =
+  React.createRef<NavigationContainerRef<RootStackParamList>>();
+
+function App(): JSX.Element {
+  return (
+    <Suspense fallback={<View />}>
+      <QueryClientProvider client={queryClient}>
+        <SafeAreaProvider>
+          <NavigationContainer ref={navigationRef} fallback={<Spinner />}>
+            <RootStack />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </QueryClientProvider>
+    </Suspense>
+  );
+}
 
 export default App;
