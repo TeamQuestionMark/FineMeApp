@@ -1,0 +1,51 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+    desc "Firebase app distribution"
+    lane :firebase_prd do
+        sh "cd .. && npm run ios-code-push:prd"
+        build_app(workspace: "FineMe.xcworkspace", scheme: "FineMe", export_method: "ad-hoc", clean: true, output_name: "FINE_ME_ADHOC_PRD.ipa")
+        firebase_app_distribution(
+            service_credentials_file: "../firebase_credentials.json",
+            app: "1:525722211968:ios:0cc65becc5ad207f2df865",
+            groups: "testers",
+            release_notes: "fine me prd",
+        )
+    end
+
+    desc "Firebase app distribution"
+    lane :firebase_stg do
+        sh "cd .. && npm run ios-code-push:stg"
+        build_app(workspace: "FineMe.xcworkspace", scheme: "FineMe-stg", export_method: "ad-hoc", clean: true, output_name: "FINE_ME_ADHOC_STG.ipa")
+        firebase_app_distribution(
+            service_credentials_file: "../firebase_credentials.json",
+            app: "1:525722211968:ios:0cc65becc5ad207f2df865",
+            release_notes: "fine me stg",
+            groups: "testers",
+        )
+    end
+
+    lane :beta do
+        sh "cd .. && npm run ios-code-push:prd"
+        build_app(workspace: "FineMe.xcworkspace", scheme: "FineMe", clean: true, output_name: "FINE_ME_DIST.ipa")
+        # upload_to_testflight(
+        #     skip_waiting_for_build_processing: true
+        # )
+    end
+
+end

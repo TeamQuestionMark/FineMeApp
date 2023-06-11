@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:525722211968:android:afa892f8f078560b2df865",
+        "mobilesdk_app_id": "1:525722211968:android:1a4f7c713909c9b52df865",
         "android_client_info": {
-          "package_name": "com.questionmark.fineme"
+          "package_name": "com.fineme"
         }
       },
       "oauth_client": [
@@ -29,6 +29,49 @@
             {
               "client_id": "525722211968-jjjqhaf4n2obscb9f1sq1dv0h1tvrpd8.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "525722211968-m719tloslu6cgvoingmpbslt69vnk3ll.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.questionmark.fineme"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:525722211968:android:c810aaaae988707b2df865",
+        "android_client_info": {
+          "package_name": "com.fineme.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "525722211968-jjjqhaf4n2obscb9f1sq1dv0h1tvrpd8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0bK0m6V0pQSFhkJaLFazET8ynTqF_P68"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "525722211968-jjjqhaf4n2obscb9f1sq1dv0h1tvrpd8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "525722211968-m719tloslu6cgvoingmpbslt69vnk3ll.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.questionmark.fineme"
+              }
             }
           ]
         }
