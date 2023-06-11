@@ -1,6 +1,8 @@
 #import "AppDelegate.h"
 
+#import <Firebase.h>
 #import <React/RCTBundleURLProvider.h>
+#import <CodePush/CodePush.h>
 
 @implementation AppDelegate
 
@@ -11,6 +13,8 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
 
+  [FIRApp configure];
+
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
@@ -19,7 +23,7 @@
 #if DEBUG
   return [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"];
 #else
-  return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+  return [CodePush bundleURL];
 #endif
 }
 

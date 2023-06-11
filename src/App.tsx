@@ -1,38 +1,44 @@
-import React from 'react';
+import React, { Suspense } from 'react';
+import { View } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  useColorScheme,
-} from 'react-native';
+  NavigationContainer,
+  NavigationContainerRef,
+} from '@react-navigation/native';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import KakaoLogin from './screens/KakaoLogin';
+import { RootStackParamList } from './navigations/types';
+import Spinner from './common/components/Spinner/Spinner';
+import RootStack from './navigations/RootStack';
 
-const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      suspense: true,
+      useErrorBoundary: true,
+      cacheTime: 1000,
+      staleTime: 1000,
+      refetchOnWindowFocus: false,
+      refetchOnMount: true,
+      retry: 0,
+    },
+  },
+});
+
+export const navigationRef =
+  React.createRef<NavigationContainerRef<RootStackParamList>>();
+
 function App(): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   return (
-    <QueryClientProvider client={queryClient}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
-        />
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={backgroundStyle}
-        >
-          <KakaoLogin />
-        </ScrollView>
-      </SafeAreaView>
-    </QueryClientProvider>
+    <Suspense fallback={<View />}>
+      <QueryClientProvider client={queryClient}>
+        <SafeAreaProvider>
+          <NavigationContainer ref={navigationRef} fallback={<Spinner />}>
+            <RootStack />
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </QueryClientProvider>
+    </Suspense>
   );
 }
 

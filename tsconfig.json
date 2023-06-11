@@ -5,6 +5,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "~/*": ["./*"]
-    }
+    },
+    "jsx": "preserve",
+    "esModuleInterop": true
   }
 }
