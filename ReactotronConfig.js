@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // First, set some configuration settings on how to connect to the app
 Reactotron.configure({
-  name: 'Payhere Front',
+  name: 'FineMe',
 });
 
 // add every built-in react native feature.  you also have the ability to pass
