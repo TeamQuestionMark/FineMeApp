@@ -5,6 +5,7 @@ project.ext.envConfigFiles = [
 
 apply plugin: "com.android.application"
 apply plugin: "com.google.gms.google-services"
+apply plugin: 'com.google.firebase.appdistribution'
 apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply plugin: "com.facebook.react"
 apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
@@ -86,6 +87,10 @@ def enableProguardInReleaseBuilds = false
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
+def buildPropertiesFile = rootProject.file("local.properties")
+def buildProperties = new Properties()
+buildProperties.load(new FileInputStream(buildPropertiesFile))
+
 /**
  * Private function to get the list of Native Architectures you want to build.
  * This reads the value from reactNativeArchitectures in your gradle.properties
@@ -133,7 +138,7 @@ android {
         }
     }
     signingConfigs {
-        debug {
+        stagingDebug {
             if (buildProperties['MYAPP_UPLOAD_STORE_FILE']) {
                 storeFile file(buildProperties['MYAPP_UPLOAD_STORE_FILE'])
                 storePassword buildProperties['MYAPP_UPLOAD_STORE_PASSWORD']
@@ -152,6 +157,9 @@ android {
                 storePassword buildProperties['MYAPP_UPLOAD_STORE_PASSWORD']
                 keyAlias buildProperties['MYAPP_UPLOAD_KEY_ALIAS']
                 keyPassword buildProperties['MYAPP_UPLOAD_KEY_PASSWORD']
+
+                v1SigningEnabled true
+                v2SigningEnabled true
             }
         }
     }

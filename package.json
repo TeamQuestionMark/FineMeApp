@@ -12,6 +12,9 @@
     "android:prd": "ENVFILE=.env react-native run-android --variant productionDebug --appIdSuffix \"prd\"",
     "ios-code-push:stg": "plutil -replace CodePushDeploymentKey -string MEJ4m9k1D5vDJsOnfoz4bMT8TmXwE2CuiUBJK ios/FineMe/Info.plist",
     "ios-code-push:prd": "plutil -replace CodePushDeploymentKey -string WPXphZTFsCnS2kLpUQmRoBD58zSiK1OzWleTF ios/FineMe/Info.plist",
+    "build:android:stg": "cd android && ENVFILE=.env.staging ./gradlew app:assembleStagingRelease",
+    "build:android:prd": "cd android && ENVFILE=.env ./gradlew app:assembleProductionRelease",
+    "build:android:bundle": "cd android && ENVFILE=.env ./gradlew bundleRelease",
     "lint": "eslint .",
     "start": "react-native start --reset-cache",
     "postinstall": "patch-package",
@@ -20,6 +23,7 @@
   "dependencies": {
     "@react-native-async-storage/async-storage": "^1.18.1",
     "@react-native-firebase/app": "^18.0.0",
+    "@react-native-firebase/app-distribution": "^18.0.0",
     "axios": "^1.4.0",
     "babel-plugin-root-import": "^6.6.0",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
