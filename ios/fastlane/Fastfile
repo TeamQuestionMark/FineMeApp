@@ -18,8 +18,20 @@ default_platform(:ios)
 platform :ios do
     desc "Firebase app distribution"
     lane :firebase_prd do
+        clear_derived_data
         sh "cd .. && npm run ios-code-push:prd"
-        build_app(workspace: "FineMe.xcworkspace", scheme: "FineMe", export_method: "ad-hoc", clean: true, output_name: "FINE_ME_ADHOC_PRD.ipa")
+        build_app(
+            workspace: "FineMe.xcworkspace",
+            scheme: "FineMe",
+            export_method: "ad-hoc",
+            clean: true,
+            output_name: "FINE_ME_ADHOC_PRD.ipa"
+            export_options: {
+                provisioningProfiles: {
+                        "com.questionmark.fineme" => "QUESTIONMARK-FINE-ME-ADHOC"
+                    }
+                }   
+            )
         firebase_app_distribution(
             service_credentials_file: "../firebase_credentials.json",
             app: "1:525722211968:ios:0cc65becc5ad207f2df865",
@@ -30,8 +42,20 @@ platform :ios do
 
     desc "Firebase app distribution"
     lane :firebase_stg do
+        clear_derived_data
         sh "cd .. && npm run ios-code-push:stg"
-        build_app(workspace: "FineMe.xcworkspace", scheme: "FineMe-stg", export_method: "ad-hoc", clean: true, output_name: "FINE_ME_ADHOC_STG.ipa")
+        build_app(
+            workspace: "FineMe.xcworkspace",
+            scheme: "FineMe-stg",
+            export_method: "ad-hoc",
+            clean: true,
+            output_name: "FINE_ME_ADHOC_STG.ipa",
+            export_options: {
+                    provisioningProfiles: {
+                        "com.questionmark.fineme" => "QUESTIONMARK-FINE-ME-ADHOC"
+                    }
+                }   
+            )
         firebase_app_distribution(
             service_credentials_file: "../firebase_credentials.json",
             app: "1:525722211968:ios:0cc65becc5ad207f2df865",
