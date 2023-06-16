@@ -5,8 +5,6 @@ import scaledSheetCreator from './scaledSheet';
 const { width, height } = Dimensions.get('window');
 const [shortDimension, longDimension] = width > height ? [width, height] : [height, width];
 
-export const screenRatio = height / width;
-
 const guidelineBaseWidth = 375;
 const guidelineBaseHeight = 812;
 

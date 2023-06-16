@@ -177,6 +177,7 @@
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
 				6E20BFE467AE4F7E81946C6E /* Resources */,
+				E411AE882A3CA1CB00F03A3F /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -201,6 +202,14 @@
 				C587ABB11792B00657CF0114 /* Pods-FineMe-FineMeTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E411AE882A3CA1CB00F03A3F /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				CCAB94C92B44A610FA67E073 /* Pods_FineMe_FineMeTests.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -576,9 +585,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FineMe/FineMe.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XQ24HP64B3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = XQ24HP64B3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FineMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -596,7 +607,7 @@
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.questionmark.fineme;
 				PRODUCT_NAME = FineMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-DIST";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-ADHOC";
 				SWIFT_OBJC_BRIDGING_HEADER = "FineMe-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -612,9 +623,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = FineMe/FineMe.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XQ24HP64B3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = XQ24HP64B3;
 				INFOPLIST_FILE = FineMe/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -631,7 +644,7 @@
 				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.questionmark.fineme;
 				PRODUCT_NAME = FineMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-DIST";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-ADHOC";
 				SWIFT_OBJC_BRIDGING_HEADER = "FineMe-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

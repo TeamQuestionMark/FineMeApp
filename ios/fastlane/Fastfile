@@ -25,7 +25,7 @@ platform :ios do
             scheme: "FineMe",
             export_method: "ad-hoc",
             clean: true,
-            output_name: "FINE_ME_ADHOC_PRD.ipa"
+            output_name: "FINE_ME_ADHOC_PRD.ipa",
             export_options: {
                 provisioningProfiles: {
                         "com.questionmark.fineme" => "QUESTIONMARK-FINE-ME-ADHOC"
