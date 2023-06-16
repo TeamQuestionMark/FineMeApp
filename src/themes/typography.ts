@@ -1,27 +1,12 @@
 import { s } from '../utils/scale';
 
-export type FontWeight = 'bold' | 'semiBold' | 'medium' | 'regular';
+export type FontWeight = 'bold' | "extraBold" | "Regular";
 
-// TODO: font Weight 정해졌을시 수정
-type Typography =
-  | 'display1'
-  | 'display2'
-  | 'display3'
-  | 'heading1'
-  | 'heading2'
-  | 'heading3'
-  | 'heading4'
-  | 'body1'
-  | 'body2'
-  | 'body3'
-  | 'caption1'
-  | 'caption2'
-  | 'caption3'
-  | 'caption4';
+export type FontSize = "28" | "24" | "20" | "16" | "14" | "13";
 
 export interface GetTypography {
   /** 폰트 타입의 이름 */
-  typography: Typography;
+  fontSize?: FontSize;
 
   /** 폰트 사이즈 스케일 기준 */
   fontSizeWeight?: number;
@@ -51,98 +36,61 @@ const getLineHeight = (fontSize: number, lineHeightRatio = 1.5) =>
   fontSize * lineHeightRatio;
 
 export const getTypography = ({
-  typography,
+  fontSize,
   fontSizeWeight = 1,
   fontWeight,
   isFontTypeEnglish = false,
 }: GetTypography) => {
   const scaling = s;
 
-  switch (typography) {
-    case 'display1':
-      return {
-        fontSize: scaling(48) * fontSizeWeight,
-        fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(48), 1.2),
-      };
-    case 'display2':
-      return {
-        fontSize: scaling(40) * fontSizeWeight,
-        fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(40)),
-      };
-    case 'display3':
-      return {
-        fontSize: scaling(32) * fontSizeWeight,
-        fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(32)),
-      };
-    case 'heading1':
+  switch (fontSize) {
+    case '28':
       return {
         fontSize: scaling(28) * fontSizeWeight,
         fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(28)),
+        lineHeight: getLineHeight(scaling(38), 1),
       };
-    case 'heading2':
+    case '24':
       return {
         fontSize: scaling(24) * fontSizeWeight,
         fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(24)),
+        lineHeight: getLineHeight(scaling(34), 1),
       };
-    case 'heading3':
-      return {
-        fontSize: scaling(22) * fontSizeWeight,
-        fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(22)),
-      };
-    case 'heading4':
+    case '20':
       return {
         fontSize: scaling(20) * fontSizeWeight,
         fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(20)),
+        lineHeight: getLineHeight(scaling(24), 1),
       };
-    case 'body1':
+    case '20':
       return {
         fontSize: scaling(20) * fontSizeWeight,
         fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(20)),
+        lineHeight: getLineHeight(scaling(24), 1),
       };
-    case 'body2':
-      return {
-        fontSize: scaling(18) * fontSizeWeight,
-        fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(18)),
-      };
-    case 'body3':
+    case '16':
       return {
         fontSize: scaling(16) * fontSizeWeight,
         fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(16)),
+        lineHeight: getLineHeight(scaling(24), 1),
       };
-    case 'caption1':
-      return {
-        fontSize: scaling(18) * fontSizeWeight,
-        fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(18)),
-      };
-    case 'caption2':
-      return {
-        fontSize: scaling(16) * fontSizeWeight,
-        fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(16)),
-      };
-    case 'caption3':
+    case '14':
       return {
         fontSize: scaling(14) * fontSizeWeight,
         fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(14)),
+        lineHeight: getLineHeight(scaling(20), 1),
       };
-    case 'caption4':
+    case '13':
+      return {
+        fontSize: scaling(13) * fontSizeWeight,
+        fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
+        lineHeight: getLineHeight(scaling(20), 1),
+      };
     default:
       return {
-        fontSize: scaling(12) * fontSizeWeight,
+        fontSize: scaling(16) * fontSizeWeight,
         fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
-        lineHeight: getLineHeight(scaling(12)),
+        lineHeight: getLineHeight(scaling(16), 1),
       };
   }
 };
