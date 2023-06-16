@@ -10,7 +10,7 @@ import { TextProps } from './type';
  * 텍스트
 
  * @example
- * <Text
+ * <EnglishText
  *   fontSize="16"                        // required
  *   fontWeight="medium"                  // required
  *   color={TEXT_COLORS.textPrimary}      // required
@@ -18,10 +18,10 @@ import { TextProps } from './type';
  *   textAlign="center"                   // optional
  * >
  *   Text
- * </Text>
+ * </EnglishText>
  */
 
-const Text = ({
+const EnglishText = ({
   fontSize,
   fontWeight,
   color = TEXT_COLORS.textPrimary,
@@ -57,7 +57,7 @@ const Text = ({
       getTypography({
         fontSize,
         fontWeight,
-        isFontTypeEnglish: false,
+        isFontTypeEnglish: true,
       }),
     ]}
     numberOfLines={numberOfLines}
@@ -67,4 +67,4 @@ const Text = ({
   </NativeText>
 );
 
-export default Text;
+export default EnglishText;

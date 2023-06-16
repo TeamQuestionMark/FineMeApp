@@ -16,12 +16,7 @@ const styles = ScaledSheet.create({
 const LandingScreen = () => {
   return (
     <View style={styles.container}>
-      <Text
-        typography="body1"
-        fontWeight="medium"
-        color={TEXT_COLORS.textPrimary}
-        isFontTypeEnglish={false}
-      >
+      <Text fontSize="28" fontWeight="Regular" color={TEXT_COLORS.textPrimary}>
         랜딩 페이지
       </Text>
       {isIOS && <AppleLoginButton />}
