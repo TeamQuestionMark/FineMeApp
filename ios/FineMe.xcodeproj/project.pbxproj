@@ -13,6 +13,7 @@
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		18A6B35622154B92AB3B0130 /* SUIT-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3615AE8C4FE24AC182B8E952 /* SUIT-Regular.ttf */; };
+		1E6FAEED2A227D9B009D3332 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FAEEC2A227D9B009D3332 /* SwiftBridge.swift */; };
 		22A47B5575884B61AFCAE4A8 /* SUIT-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8A201F31E022490CAC9516F7 /* SUIT-Bold.ttf */; };
 		2F852E0146E81F9838BEE66F /* Pods_FineMe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB66D37B1B1E57283249F70C /* Pods_FineMe.framework */; };
 		4A3CC701106B44F1941EA7A3 /* SUIT-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E317642F43845768432A77B /* SUIT-Light.ttf */; };
@@ -47,6 +48,8 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FineMe/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FineMe/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FineMe/main.m; sourceTree = "<group>"; };
+		1E6FAEEB2A227D9A009D3332 /* FineMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FineMe-Bridging-Header.h"; sourceTree = "<group>"; };
+		1E6FAEEC2A227D9B009D3332 /* SwiftBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftBridge.swift; sourceTree = "<group>"; };
 		2E317642F43845768432A77B /* SUIT-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-Light.ttf"; path = "../src/assets/fonts/SUIT-Light.ttf"; sourceTree = "<group>"; };
 		303EE3ECA8C1438BB2D40B93 /* TitanOne-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "TitanOne-Regular.ttf"; path = "../src/assets/fonts/TitanOne-Regular.ttf"; sourceTree = "<group>"; };
 		3615AE8C4FE24AC182B8E952 /* SUIT-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-Regular.ttf"; path = "../src/assets/fonts/SUIT-Regular.ttf"; sourceTree = "<group>"; };
@@ -114,6 +117,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				1E6FAEEC2A227D9B009D3332 /* SwiftBridge.swift */,
+				1E6FAEEB2A227D9A009D3332 /* FineMe-Bridging-Header.h */,
 			);
 			name = FineMe;
 			sourceTree = "<group>";
@@ -249,7 +254,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1430;
 					};
 				};
 			};
@@ -480,6 +485,7 @@
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				1E6FAEED2A227D9B009D3332 /* SwiftBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +504,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B7EB9410499542E8C5724F5 /* Pods-FineMe-FineMeTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = XQ24HP64B3;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -516,8 +523,9 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.questionmark.fineme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FineMe.app/FineMe";
 			};
 			name = Debug;
@@ -526,7 +534,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 89C6BE57DB24E9ADA2F236DE /* Pods-FineMe-FineMeTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = XQ24HP64B3;
 				INFOPLIST_FILE = FineMeTests/Info.plist;
@@ -541,8 +552,9 @@
 					"-lc++",
 					"$(inherited)",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.questionmark.fineme;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FineMe.app/FineMe";
 			};
 			name = Release;
@@ -576,6 +588,7 @@
 				PRODUCT_NAME = FineMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-DIST";
+				SWIFT_OBJC_BRIDGING_HEADER = "FineMe-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -610,6 +623,7 @@
 				PRODUCT_NAME = FineMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-DIST";
+				SWIFT_OBJC_BRIDGING_HEADER = "FineMe-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
