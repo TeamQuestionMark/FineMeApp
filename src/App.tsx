@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { RootStackParamList } from './navigations/types';
 import Spinner from './common/components/Spinner/Spinner';
 import RootStack from './navigations/RootStack';
+import useFCM from './utils/fcm/useFCM';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -29,6 +30,7 @@ export const navigationRef =
   React.createRef<NavigationContainerRef<RootStackParamList>>();
 
 function App(): JSX.Element {
+  useFCM();
   return (
     <Suspense fallback={<View />}>
       <QueryClientProvider client={queryClient}>
