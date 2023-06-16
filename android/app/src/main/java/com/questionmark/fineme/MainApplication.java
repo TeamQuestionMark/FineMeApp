@@ -1,4 +1,4 @@
-package com.fineme;
+package com.questionmark.fineme;
 
 import android.app.Application;
 import com.facebook.react.PackageList;

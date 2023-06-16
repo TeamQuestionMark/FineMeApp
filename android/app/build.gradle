@@ -107,9 +107,9 @@ android {
 
     compileSdkVersion rootProject.ext.compileSdkVersion
 
-    namespace "com.fineme"
+    namespace "com.questionmark.fineme"
     defaultConfig {
-        applicationId "com.fineme"
+        applicationId "com.questionmark.fineme"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

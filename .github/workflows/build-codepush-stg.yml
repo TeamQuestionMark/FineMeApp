@@ -1,0 +1,48 @@
+name: Code Push STG Deploy CI
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Platform'
+        required: true
+        default: 'ios'
+      version:
+        description: 'Target Version'
+        required: true
+        default: 'ex: 1.5.2'
+      rollout:
+        description: '단계적 배포 퍼센트'
+        required: true
+        default: '1 ~ 100'
+      
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+        
+    steps:
+      - name: Checkout source code.
+        uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Appcenter Setting
+        run: npm install -g appcenter-cli
+      
+      - name: Appcenter Auth
+        run: appcenter login --token ${{ secrets.APPCENTER_ACCESS_TOKEN }}
+
+      - name: Install Dependencies
+        run: npm install
+        env:
+          CI: true
+
+      - name: Build & Deploy
+        run: appcenter codepush release-react -a beside.questionmark-gmail.com/fine-me-${{ github.event.inputs.platform }} -d Staging --disable-duplicate-release-error --rollout ${{ github.event.inputs.rollout }} -t ${{ github.event.inputs.version }}

@@ -1,4 +1,4 @@
-package com.fineme;
+package com.questionmark.fineme;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
