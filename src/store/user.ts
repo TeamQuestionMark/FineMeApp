@@ -13,6 +13,6 @@ export const useUserStore = create<UserStore>()(
 			accessToken: "",
 			grantType: "",
 		},
-		setToken: () => set(state => ({token : state.token})),
+		setToken: (token: Token) => set(() => ({token : token})),
 	}))
 );
