@@ -1,19 +1,18 @@
+import { Token } from '@/api/shared/type';
 import {create } from  'zustand';
 import { devtools } from 'zustand/middleware';
 
 interface UserStore  {
-	user: {
-		userName: string;
-	};
-	setUser: () => void;
-	removeUser:  () => void;
+	token: Token;
 }
 
-export const useStore = create<UserStore>()(
+export const useUserStore = create<UserStore>()(
 	devtools(set => ({
-	  user: { userName: "" },
-	  // "set" now receives as the third parameter, the name of an action that will be shown in Flipper
-	  setUser: () => set(state => ({ user: {...state.user} }), false, 'increasePopulation'),
-	  removeUser: () => set({ user: { userName: ""} }, false, 'removeUser')
+		token: {
+			refreshToken: "",
+			accessToken: "",
+			grantType: "",
+		},
+		setToken: () => set(state => ({token : state.token})),
 	}))
 );
