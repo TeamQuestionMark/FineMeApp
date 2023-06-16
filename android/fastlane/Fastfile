@@ -22,7 +22,7 @@ platform :android do
         android_artifact_type: "APK",
         android_artifact_path: "app/build/outputs/apk/staging/release/app-staging-release.apk",
         service_credentials_file: "../firebase_credentials.json",
-        app: "1:525722211968:android:c810aaaae988707b2df865",
+        app: "1:525722211968:android:b8ca8704fdc88c4a2df865",
         groups: "testers",
         release_notes: "Fine Me Android stg",
     )
@@ -35,7 +35,7 @@ platform :android do
         android_artifact_type: "APK",
         android_artifact_path: "app/build/outputs/apk/production/release/app-production-release.apk",
         service_credentials_file: "../firebase_credentials.json",
-        app: "1:525722211968:android:1a4f7c713909c9b52df865",
+        app: "1:525722211968:android:bb1fc1a3778924552df865",
         groups: "testers",
         release_notes: "Fine Me Android prd",
     )

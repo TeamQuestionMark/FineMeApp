@@ -447,6 +447,8 @@ PODS:
     - React-jsi (= 0.71.7)
     - React-logger (= 0.71.7)
     - React-perflogger (= 0.71.7)
+  - RNAppleAuthentication (2.2.2):
+    - React-Core
   - RNCAsyncStorage (1.18.2):
     - React-Core
   - RNFBApp (18.0.0):
@@ -461,7 +463,7 @@ PODS:
     - FirebaseCoreExtension (= 10.10.0)
     - React-Core
     - RNFBApp
-  - RNScreens (3.20.0):
+  - RNScreens (3.21.0):
     - React-Core
     - React-RCTImage
   - SSZipArchive (2.2.3)
@@ -507,6 +509,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "RNAppleAuthentication (from `../node_modules/@invertase/react-native-apple-authentication`)"
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNFBApp (from `../node_modules/@react-native-firebase/app`)"
   - "RNFBAppDistribution (from `../node_modules/@react-native-firebase/app-distribution`)"
@@ -612,6 +615,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  RNAppleAuthentication:
+    :path: "../node_modules/@invertase/react-native-apple-authentication"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNFBApp:
@@ -682,14 +687,15 @@ SPEC CHECKSUMS:
   React-RCTVibration: 08f132cad9896458776f37c112e71d60aef1c6ae
   React-runtimeexecutor: c5c89f8f543842dd864b63ded1b0bbb9c9445328
   ReactCommon: 5307873a227ee34ddd3e7f2ec1086ebbfccc7618
+  RNAppleAuthentication: 0571c08da8c327ae2afc0261b48b4a515b0286a6
   RNCAsyncStorage: ddc4ee162bfd41b0d2c68bf2d95acd81dd7f1f93
   RNFBApp: 10aa0ab560e30186c39a9756846945cac6499ea7
   RNFBAppDistribution: b44149d745a304a738101b37a2287a582b117f5f
   RNFBMessaging: a0cf20be8f41d89af98f5611d5db432c59371f68
-  RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
+  RNScreens: d037903436160a4b039d32606668350d2a808806
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
   Yoga: d56980c8914db0b51692f55533409e844b66133c
 
 PODFILE CHECKSUM: a91e40d53de6ff5576aa4ed6fde996e8441a996d
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.11.3

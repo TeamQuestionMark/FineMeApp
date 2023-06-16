@@ -3,8 +3,9 @@ import { View } from 'react-native';
 
 import Text from '@/common/components/Text';
 import { TEXT_COLORS } from '@/themes/colors';
-import globalStyles from '@/themes/globalStyles';
 import { ScaledSheet } from '@/utils/scale';
+import { AppleLoginButton } from '@/features/Landing/Components';
+import { isIOS } from '@/utils/device';
 
 const styles = ScaledSheet.create({
   container: {
@@ -23,6 +24,7 @@ const LandingScreen = () => {
       >
         랜딩 페이지
       </Text>
+      {isIOS && <AppleLoginButton />}
     </View>
   );
 };
