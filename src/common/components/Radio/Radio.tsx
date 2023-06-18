@@ -37,7 +37,7 @@ const Radio = ({ disabled = false, isClicked, onPress }: Radio) => {
         return RadioDeselectedEnabled;
       }
     }
-  }, []);
+  }, [disabled, isClicked]);
 
   return (
     <TouchableOpacity onPress={onPress} disabled={disabled} activeOpacity={0.8}>
