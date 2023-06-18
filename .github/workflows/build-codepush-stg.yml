@@ -15,7 +15,6 @@ on:
         description: '단계적 배포 퍼센트'
         required: true
         default: '1 ~ 100'
-      
 
 jobs:
   build:
@@ -24,7 +23,7 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
-        
+
     steps:
       - name: Checkout source code.
         uses: actions/checkout@v2
@@ -35,7 +34,7 @@ jobs:
 
       - name: Appcenter Setting
         run: npm install -g appcenter-cli
-      
+
       - name: Appcenter Auth
         run: appcenter login --token ${{ secrets.APPCENTER_ACCESS_TOKEN }}
 
@@ -45,4 +44,4 @@ jobs:
           CI: true
 
       - name: Build & Deploy
-        run: appcenter codepush release-react -a beside.questionmark-gmail.com/fine-me-${{ github.event.inputs.platform }} -d Staging --disable-duplicate-release-error --rollout ${{ github.event.inputs.rollout }} -t ${{ github.event.inputs.version }}
+        run: appcenter codepush release-react -a beside.questionmark-gmail.com/fine-me-${{ github.event.inputs.platform }} --disable-duplicate-release-error --rollout ${{ github.event.inputs.rollout }} -t ${{ github.event.inputs.version }}
