@@ -10,6 +10,7 @@ import { Radio } from '@/common/components/Radio';
 import Switch from '@/common/components/Switch/Switch';
 import Chip from '@/common/components/Chip/Chip';
 import ChipGroup from '@/common/components/Chip/ChipGroup';
+import OXButtonGroup from '@/common/components/OXButtonGroup/OXButtonGroup';
 
 const styles = ScaledSheet.create({
   container: {
@@ -44,15 +45,17 @@ const LandingScreen = () => {
       </Text>
       <ChipGroup>
         {Object.entries(chipInputs).map(([label, isChecked]) => (
-          <Chip
-            onPress={handlePressChip}
-            isChecked={isChecked}
-          >
+          <Chip onPress={handlePressChip} isChecked={isChecked}>
             {label}
           </Chip>
         ))}
       </ChipGroup>
-
+      <OXButtonGroup
+        onChange={value => {
+          console.log('🔸 → LandingScreen → value:', value);
+          return;
+        }}
+      />
       <Radio
         onPress={() => setIsClicked(prev => !prev)}
         isClicked={isClicked}
