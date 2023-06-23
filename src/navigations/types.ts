@@ -7,11 +7,29 @@ export type LandingStackParamList = {
   Login: undefined;
 };
 
-export type HomeStackParamList = {
-  Home: undefined;
+export type MyPageParamList = {
+  MyPage: undefined;
 };
 
-export type RootStackParamList = LandingStackParamList & HomeStackParamList;
+export type StageParamList = {
+  Stage: undefined;
+};
+
+export type CharacterParamList = {
+  Character: undefined;
+};
+
+export type TabStackParamsList = {
+  MyPageTab: undefined;
+  StageTab: undefined;
+  CharacterTab: undefined;
+};
+
+export type RootStackParamList = TabStackParamsList &
+  LandingStackParamList &
+  MyPageParamList &
+  StageParamList &
+  CharacterParamList;
 
 export type ScreenList<StackParamList extends ParamListBase> = {
   name: keyof StackParamList;
@@ -19,3 +37,7 @@ export type ScreenList<StackParamList extends ParamListBase> = {
     props: NativeStackScreenProps<StackParamList, keyof StackParamList>,
   ) => JSX.Element;
 }[];
+
+export type TabRouteProps = {
+  name: keyof RootStackParamList;
+}

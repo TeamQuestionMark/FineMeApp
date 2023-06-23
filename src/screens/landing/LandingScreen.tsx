@@ -18,7 +18,6 @@ const styles = ScaledSheet.create({
 const LandingScreen = () => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
-  console.log('isClicked: ', isClicked);
   return (
     <View style={styles.container}>
       <Text fontSize="28" fontWeight="Regular" color={TEXT_COLORS.textPrimary}>
