@@ -68,6 +68,7 @@
 		C587ABB11792B00657CF0114 /* Pods-FineMe-FineMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineMe-FineMeTests.release.xcconfig"; path = "Target Support Files/Pods-FineMe-FineMeTests/Pods-FineMe-FineMeTests.release.xcconfig"; sourceTree = "<group>"; };
 		CCAB94C92B44A610FA67E073 /* Pods_FineMe_FineMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FineMe_FineMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E38F29E525E7D017BFEA3BD2 /* Pods-FineMe-FineMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineMe-FineMeTests.debug.xcconfig"; path = "Target Support Files/Pods-FineMe-FineMeTests/Pods-FineMe-FineMeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E41FC97E2A358F3F0044F456 /* FineMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FineMe.entitlements; path = FineMe/FineMe.entitlements; sourceTree = "<group>"; };
 		E4E6A7392A34B83E009F7698 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E62D944698724CFF98ACF10F /* SUIT-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-Thin.ttf"; path = "../src/assets/fonts/SUIT-Thin.ttf"; sourceTree = "<group>"; };
 		E700B031D31A45948194CA3D /* SUIT-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-SemiBold.ttf"; path = "../src/assets/fonts/SUIT-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -118,6 +119,7 @@
 			children = (
 				1EA7947A2A2DD4760019B4F8 /* FineMe.entitlements */,
 				1E556B952A2D1C76000501C4 /* GoogleService-Info.plist */,
+				E41FC97E2A358F3F0044F456 /* FineMe.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -208,6 +210,14 @@
 				C587ABB11792B00657CF0114 /* Pods-FineMe-FineMeTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E411AE882A3CA1CB00F03A3F /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				CCAB94C92B44A610FA67E073 /* Pods_FineMe_FineMeTests.framework */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -590,11 +600,12 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = XQ24HP64B3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FineMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -626,11 +637,12 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = XQ24HP64B3;
 				INFOPLIST_FILE = FineMe/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -696,7 +708,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -714,6 +726,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				PRODUCT_NAME = FineMe;
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -761,7 +774,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -778,6 +791,7 @@
 					"-DFOLLY_MOBILE=1",
 					"-DFOLLY_USE_LIBCPP=1",
 				);
+				PRODUCT_NAME = FineMe;
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

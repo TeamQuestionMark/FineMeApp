@@ -3,8 +3,7 @@ import { getTypography } from '@/themes/typography';
 import React from 'react';
 
 import { Text as NativeText } from 'react-native';
-
-import type { TextProps } from './type';
+import { TextProps } from './type';
 
 /**
  * @component
@@ -12,10 +11,9 @@ import type { TextProps } from './type';
 
  * @example
  * <Text
- *   typography="body1"                   // required
+ *   fontSize="16"                        // required
  *   fontWeight="medium"                  // required
  *   color={TEXT_COLORS.textPrimary}      // required
- *   isFontTypeEnglish={false}            // required
  *   isVerticalScale={false}              // optional
  *   textAlign="center"                   // optional
  * >
@@ -24,7 +22,7 @@ import type { TextProps } from './type';
  */
 
 const Text = ({
-  typography,
+  fontSize,
   fontWeight,
   color = TEXT_COLORS.textPrimary,
   numberOfLines,
@@ -39,7 +37,6 @@ const Text = ({
   textTransform,
   flexShrink,
   children,
-  isFontTypeEnglish = false,
   ...props
 }: React.PropsWithChildren<TextProps>) => (
   <NativeText
@@ -58,9 +55,9 @@ const Text = ({
         flexShrink,
       },
       getTypography({
-        typography,
+        fontSize,
         fontWeight,
-        isFontTypeEnglish,
+        isFontTypeEnglish: false,
       }),
     ]}
     numberOfLines={numberOfLines}

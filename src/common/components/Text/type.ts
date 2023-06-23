@@ -1,13 +1,14 @@
+import { FontSize, FontWeight } from '@/themes/typography';
 import type {
   TextProps as NativeTextProps,
   TextStyle,
   FlexStyle,
 } from 'react-native';
 
-import { GetTypography } from '@/themes/typography';
-
-export interface TextProps
-  extends Omit<GetTypography, 'fontSizeWeight'>,
-    NativeTextProps,
-    Omit<TextStyle, 'fontWeight'>,
-    Pick<FlexStyle, 'flexShrink'> {}
+export interface TextProps extends NativeTextProps, 
+    Omit<TextStyle, 'fontWeight'>, 
+    Omit<TextStyle, "fontSize">,
+    Pick<FlexStyle, 'flexShrink'> {
+      fontWeight: FontWeight;
+      fontSize: FontSize;
+    }  
