@@ -8,6 +8,7 @@ import { AppleLoginButton } from '@/features/Landing/Components';
 import { isIOS } from '@/utils/device';
 import { Radio } from '@/common/components/Radio';
 import Switch from '@/common/components/Switch/Switch';
+import Chip from '@/common/components/Chip/Chip';
 
 const styles = ScaledSheet.create({
   container: {
@@ -24,6 +25,13 @@ const LandingScreen = () => {
       <Text fontSize="28" fontWeight="Regular" color={TEXT_COLORS.textPrimary}>
         랜딩 페이지
       </Text>
+      <Chip onPress={() => setIsClicked(prev => !prev)} isChecked={isClicked}>
+        아메리카노
+      </Chip>
+      <Chip onPress={() => setIsClicked(prev => !prev)} isChecked={isClicked}>
+        아메리카노
+      </Chip>
+
       <Radio
         onPress={() => setIsClicked(prev => !prev)}
         isClicked={isClicked}
