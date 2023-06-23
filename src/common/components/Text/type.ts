@@ -6,9 +6,8 @@ import type {
 } from 'react-native';
 
 export interface TextProps extends NativeTextProps, 
-    Omit<TextStyle, 'fontWeight'>, 
-    Omit<TextStyle, "fontSize">,
+    Omit<TextStyle, 'fontWeight' | 'fontSize'>, 
     Pick<FlexStyle, 'flexShrink'> {
-      fontWeight: FontWeight;
+      fontWeight?: FontWeight;
       fontSize: FontSize;
     }  
