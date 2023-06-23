@@ -9,6 +9,7 @@ import { isIOS } from '@/utils/device';
 import { Radio } from '@/common/components/Radio';
 import Switch from '@/common/components/Switch/Switch';
 import Chip from '@/common/components/Chip/Chip';
+import ChipGroup from '@/common/components/Chip/ChipGroup';
 
 const styles = ScaledSheet.create({
   container: {
@@ -16,8 +17,24 @@ const styles = ScaledSheet.create({
   },
 });
 
+const CHIP_INPUTS = {
+  아메리카노: false,
+  이어폰: false,
+  포스트잇: false,
+  달력: false,
+  사원증: false,
+};
+
 const LandingScreen = () => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [chipInputs, setChipInputs] = useState(CHIP_INPUTS);
+
+  const handlePressChip = (value: string) => {
+    setChipInputs(prev => ({
+      ...prev,
+      [value]: !prev[value as keyof typeof CHIP_INPUTS],
+    }));
+  };
 
   console.log('isClicked: ', isClicked);
   return (
@@ -25,12 +42,16 @@ const LandingScreen = () => {
       <Text fontSize="28" fontWeight="Regular" color={TEXT_COLORS.textPrimary}>
         랜딩 페이지
       </Text>
-      <Chip onPress={() => setIsClicked(prev => !prev)} isChecked={isClicked}>
-        아메리카노
-      </Chip>
-      <Chip onPress={() => setIsClicked(prev => !prev)} isChecked={isClicked}>
-        아메리카노
-      </Chip>
+      <ChipGroup>
+        {Object.entries(chipInputs).map(([label, isChecked]) => (
+          <Chip
+            onPress={handlePressChip}
+            isChecked={isChecked}
+          >
+            {label}
+          </Chip>
+        ))}
+      </ChipGroup>
 
       <Radio
         onPress={() => setIsClicked(prev => !prev)}
