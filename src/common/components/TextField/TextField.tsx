@@ -2,6 +2,7 @@ import { COLORS, TEXT_COLORS } from '@/themes/colors';
 import React, {
   Dispatch,
   SetStateAction,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useRef,
@@ -90,41 +91,49 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
       if (!isValid) setStatus('error');
     }, [isValid]);
 
-    const handleChangeText = async (text: string) => {
-      validate(text).then(isValid => isValid && setStatus('active'));
-      onInput(text);
-    };
+    /** validator prop이 있을 경우 onChangeText, onBlur, onFocus 시 유효성 검증 및 status 업데이트 */
+    const validate = useCallback(
+      async (text?: string) => {
+        const target = text || textInputProps.value;
+        if (validator && target) {
+          const isValid = await validator.validate(target);
+          setIsValid(isValid);
+          return isValid;
+        }
+        setIsValid(true);
+        return true;
+      },
+      [textInputProps.value],
+    );
 
-    /** validator prop이 있을 경우 onChangeText, onBlur, onFocus 시 유효성 검증 및 status 업데이트 */ 
-    const validate = async (text?: string) => {
-      const target = text || textInputProps.value;
-      if (validator && target) {
-        const isValid = await validator.validate(target);
-        setIsValid(isValid);
-        return isValid;
-      }
-      setIsValid(true);
-      return true;
-    };
-
-    const handleBlur = async (
-      e: NativeSyntheticEvent<TextInputFocusEventData>,
-    ) => {
-      const text = e.nativeEvent.text;
-      validate(text).then(isValid => isValid && setStatus('default'));
-    };
-
-    const handleFocus = async (
-      e: NativeSyntheticEvent<TextInputFocusEventData>,
-    ) => {
-      if (touched) {
-        const text = e.nativeEvent.text;
+    const handleChangeText = useCallback(
+      async (text: string) => {
         validate(text).then(isValid => isValid && setStatus('active'));
-      } else {
-        setStatus('active');
-        setTouched(true);
-      }
-    };
+        onInput(text);
+      },
+      [validate, isValid],
+    );
+
+    const handleBlur = useCallback(
+      async (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+        const text = e.nativeEvent.text;
+        validate(text).then(isValid => isValid && setStatus('default'));
+      },
+      [validate],
+    );
+
+    const handleFocus = useCallback(
+      async (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+        if (touched) {
+          const text = e.nativeEvent.text;
+          validate(text).then(isValid => isValid && setStatus('active'));
+        } else {
+          setStatus('active');
+          setTouched(true);
+        }
+      },
+      [validate, touched],
+    );
 
     return (
       <View style={styles.row}>
