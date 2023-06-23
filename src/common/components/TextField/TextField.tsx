@@ -1,4 +1,4 @@
-import { COLORS } from '@/themes/colors';
+import { COLORS, TEXT_COLORS } from '@/themes/colors';
 import React, {
   Dispatch,
   SetStateAction,
@@ -135,7 +135,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
         )}
         <TextInput
           aria-label={label}
-          placeholderTextColor={COLORS.gray400}
+          placeholderTextColor={TEXT_COLORS.textPlaceholder}
           ref={inputRef}
           style={[styles.input, styles[status]]}
           onChangeText={handleChangeText}

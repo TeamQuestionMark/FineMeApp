@@ -23,7 +23,7 @@ import { TextProps } from './type';
 
 const EnglishText = ({
   fontSize,
-  fontWeight,
+  fontWeight = 'Regular',
   color = TEXT_COLORS.textPrimary,
   numberOfLines,
   letterSpacing,
