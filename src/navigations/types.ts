@@ -37,3 +37,7 @@ export type ScreenList<StackParamList extends ParamListBase> = {
     props: NativeStackScreenProps<StackParamList, keyof StackParamList>,
   ) => JSX.Element;
 }[];
+
+export type TabRouteProps = {
+  name: keyof RootStackParamList;
+}

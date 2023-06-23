@@ -1,11 +1,8 @@
 import React from 'react';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RootStackParamList } from './types';
 import { map } from 'lodash';
 import { STAGE_STACK_SCREEN_LIST } from '@/screens/constants';
-
-const Stack = createNativeStackNavigator<RootStackParamList>();
+import { Stack } from './RootStack';
 
 const StageStack = () => {
   return (

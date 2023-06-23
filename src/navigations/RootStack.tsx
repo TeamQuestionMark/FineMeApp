@@ -1,12 +1,18 @@
 import React, { Suspense, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import LandingStack from './LandingStack';
-import Spinner from '@/common/components/Spinner/Spinner';
 import CodePush from 'react-native-code-push';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import globalStyles from '@/themes/globalStyles';
 import { setDefaultInterceptors } from '@/api/shared/interceptors';
 import { mainAxios } from '@/api/shared/axios';
+import { RootStackParamList } from './types';
+import LandingStack from './LandingStack';
+import Spinner from '@/common/components/Spinner/Spinner';
+import TabNavigation from './TabNavigation';
+
+export const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
   useEffect(() => {
@@ -21,7 +27,8 @@ const RootStack = () => {
       ]}
     >
       <Suspense fallback={<Spinner />}>
-        <LandingStack />
+        {/* <LandingStack /> */}
+        <TabNavigation />
       </Suspense>
     </SafeAreaView>
   );

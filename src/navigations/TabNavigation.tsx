@@ -11,7 +11,10 @@ const Tab = createBottomTabNavigator<RootStackParamList>();
 
 const TabNavigation = () => {
   return (
-    <Tab.Navigator tabBar={props => <TabBar {...props} />}>
+    <Tab.Navigator
+      screenOptions={{ headerShown: false }}
+      tabBar={props => <TabBar {...props} />}
+    >
       <Tab.Screen name={BOTTOM_TAB.STAGE_TAB} component={StageStack} />
       <Tab.Screen name={BOTTOM_TAB.CHARACTER_TAB} component={CharacterStack} />
       <Tab.Screen name={BOTTOM_TAB.MY_PAGE_TAB} component={MyPageStack} />
