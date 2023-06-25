@@ -9,6 +9,18 @@ import SwitchDeselectedEnabled from '@/assets/icons/Switch/icon-switch-deselecte
 import SwitchSelectedDisabled from '@/assets/icons/Switch/icon-switch-selected-disabled.png';
 import SwitchSelectedEnabled from '@/assets/icons/Switch/icon-switch-selected-enabled.png';
 
+/**
+ * @component
+ * 스위치
+
+ * @example
+ * <Switch
+ *   disabled={false}                               // optional
+ *   isClicked={false}                              // optional
+ *   onPress={() => {}}                             // optional
+ * />
+ */
+
 interface Switch {
   disabled?: boolean;
   isClicked: boolean;

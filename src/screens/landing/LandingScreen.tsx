@@ -13,6 +13,7 @@ import ChipGroup from '@/common/components/Chip/ChipGroup';
 import OXButtonGroup from '@/common/components/OXButtonGroup/OXButtonGroup';
 import TextField from '@/common/components/TextField/TextField';
 import Validator from '@/utils/Validator';
+import CheckBox from '@/common/components/CheckBox/CheckBox';
 
 const styles = ScaledSheet.create({
   container: {
@@ -69,6 +70,24 @@ const LandingScreen = () => {
           console.log('🔸 → LandingScreen → value:', value);
           return;
         }}
+      />
+      <CheckBox
+        onPress={() => setIsClicked(prev => !prev)}
+        isClicked={isClicked}
+      />
+      <CheckBox
+        onPress={() => setIsClicked(prev => !prev)}
+        isClicked={!isClicked}
+      />
+      <CheckBox
+        onPress={() => setIsClicked(prev => !prev)}
+        isClicked={isClicked}
+        disabled
+      />
+      <CheckBox
+        onPress={() => setIsClicked(prev => !prev)}
+        isClicked={!isClicked}
+        disabled
       />
       <Radio
         onPress={() => setIsClicked(prev => !prev)}

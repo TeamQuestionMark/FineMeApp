@@ -15,9 +15,14 @@ import TabNavigation from './TabNavigation';
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
+  // 임시 상수
+  const isUserLogin = false;
+
   useEffect(() => {
     setDefaultInterceptors(mainAxios);
   }, []);
+
+  const renderScreen = isUserLogin ? <TabNavigation /> : <LandingStack />;
 
   return (
     <SafeAreaView
@@ -26,10 +31,7 @@ const RootStack = () => {
         globalStyles.defaultBackgroundColor,
       ]}
     >
-      <Suspense fallback={<Spinner />}>
-        <LandingStack />
-        {/* <TabNavigation /> */}
-      </Suspense>
+      <Suspense fallback={<Spinner />}>{renderScreen}</Suspense>
     </SafeAreaView>
   );
 };
