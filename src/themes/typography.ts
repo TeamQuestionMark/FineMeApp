@@ -2,7 +2,7 @@ import { s } from '../utils/scale';
 
 export type FontWeight = 'bold' | "extraBold" | "Regular";
 
-export type FontSize = "28" | "24" | "20" | "16" | "14" | "13";
+export type FontSize = "28" | "24" | "20" | "16" | "14" | "13" | "12" ;
 
 export interface GetTypography {
   /** 폰트 타입의 이름 */
@@ -86,6 +86,12 @@ export const getTypography = ({
         fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
         lineHeight: getLineHeight(scaling(20), 1),
       };
+    case '12':
+        return {
+          fontSize: scaling(12) * fontSizeWeight,
+          fontFamily: getFontFamily({ fontWeight, isFontTypeEnglish }),
+          lineHeight: getLineHeight(scaling(18), 1),
+        };
     default:
       return {
         fontSize: scaling(16) * fontSizeWeight,
