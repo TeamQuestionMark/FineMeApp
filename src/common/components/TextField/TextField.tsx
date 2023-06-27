@@ -94,16 +94,17 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
     /** validator prop이 있을 경우 onChangeText, onBlur, onFocus 시 유효성 검증 및 status 업데이트 */
     const validate = useCallback(
       async (text?: string) => {
-        const target = text || textInputProps.value;
-        if (validator && target) {
+        const target = text !== undefined ? text : textInputProps.value;
+        if (validator && target !== undefined) {
           const isValid = await validator.validate(target);
           setIsValid(isValid);
+          !isValid && setStatus("error")
           return isValid;
         }
         setIsValid(true);
         return true;
       },
-      [textInputProps.value],
+      [textInputProps.value, validator],
     );
 
     const handleChangeText = useCallback(
@@ -111,7 +112,7 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
         validate(text).then(isValid => isValid && setStatus('active'));
         onInput(text);
       },
-      [validate, isValid],
+      [validate, onInput],
     );
 
     const handleBlur = useCallback(
