@@ -1,15 +1,16 @@
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 import { PropsWithChildren } from 'react';
+import { ScaledSheet } from '@/utils/scale';
 
 interface ChipGroupProps extends PropsWithChildren {
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    columnGap: 10,
-    rowGap: 10,
+    columnGap: '10@s',
+    rowGap: '10@vs',
   }
 });
 

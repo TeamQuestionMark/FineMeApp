@@ -1,12 +1,12 @@
 import { COLORS } from '@/themes/colors';
 import {
   GestureResponderEvent,
-  StyleSheet,
   TouchableOpacity,
 } from 'react-native';
 import { TextProps } from '../Text/type';
 import Text from '../Text';
 import { PropsWithChildren, useCallback } from 'react';
+import { ScaledSheet } from '@/utils/scale';
 
 interface ChipProps extends PropsWithChildren {
   isChecked: boolean;
@@ -14,14 +14,13 @@ interface ChipProps extends PropsWithChildren {
   onPress: (value: string, e?: GestureResponderEvent) => void;
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   base: {
-    borderRadius: 36,
-    borderWidth: 2,
-    borderStyle: 'solid',
+    borderRadius: '36@s',
+    borderWidth: '2@s',
     borderColor: COLORS.gray300,
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingHorizontal: '16@s',
+    paddingVertical: '8@vs',
     backgroundColor: COLORS.gray50,
     alignSelf: 'flex-start',
   },

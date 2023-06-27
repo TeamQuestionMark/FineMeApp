@@ -476,7 +476,7 @@ PODS:
     - FirebaseCoreExtension (= 10.10.0)
     - React-Core
     - RNFBApp
-  - RNScreens (3.20.0):
+  - RNScreens (3.21.0):
     - React-Core
     - React-RCTImage
   - RNSVG (13.9.0):
@@ -724,7 +724,7 @@ SPEC CHECKSUMS:
   RNFBApp: 10aa0ab560e30186c39a9756846945cac6499ea7
   RNFBAppDistribution: b44149d745a304a738101b37a2287a582b117f5f
   RNFBMessaging: a0cf20be8f41d89af98f5611d5db432c59371f68
-  RNScreens: 218801c16a2782546d30bd2026bb625c0302d70f
+  RNScreens: d037903436160a4b039d32606668350d2a808806
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d

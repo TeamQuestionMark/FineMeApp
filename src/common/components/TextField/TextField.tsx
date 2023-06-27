@@ -10,7 +10,6 @@ import React, {
 } from 'react';
 import {
   NativeSyntheticEvent,
-  StyleSheet,
   TextInput,
   TextInputAndroidProps,
   TextInputFocusEventData,
@@ -20,21 +19,22 @@ import {
 } from 'react-native';
 import Validator from '../../../utils/Validator';
 import Text from '../Text';
+import { ScaledSheet } from '@/utils/scale';
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    columnGap: 10,
+    columnGap: '10@s',
     width: '100%',
   },
   input: {
     width: '100%',
-    height: 48,
-    paddingVertical: 14,
-    paddingHorizontal: 16,
-    borderRadius: 10,
-    borderWidth: 2,
+    height: '48@vs',
+    paddingVertical: '14@vs',
+    paddingHorizontal: '16@s',
+    borderRadius: '10@s',
+    borderWidth: '2@s',
     backgroundColor: COLORS.white,
   },
   default: {

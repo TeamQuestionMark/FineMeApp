@@ -1,29 +1,29 @@
 import { COLORS } from '@/themes/colors';
 import {
-  StyleSheet,
   TouchableOpacity,
   View,
 } from 'react-native';
 import { useCallback, useState } from 'react';
 import IconOX from '@/assets/icons/OXButton/IconOX';
+import { ScaledSheet } from '@/utils/scale';
 
 interface OXButtonGroupProps {
   onChange: (value: boolean) => void;
 }
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    columnGap: 10,
+    columnGap: '10@s',
   },
   button: {
-    borderRadius: 10,
-    borderWidth: 1,
+    borderRadius: '10@s',
+    borderWidth: '1@s',
     borderStyle: 'solid',
     borderColor: COLORS.gray200,
     backgroundColor: COLORS.gray50,
-    height: 52,
+    height: '52@vs',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center'
