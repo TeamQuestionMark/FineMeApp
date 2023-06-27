@@ -212,14 +212,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		E411AE882A3CA1CB00F03A3F /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				CCAB94C92B44A610FA67E073 /* Pods_FineMe_FineMeTests.framework */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */

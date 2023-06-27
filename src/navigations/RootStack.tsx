@@ -27,8 +27,8 @@ const RootStack = () => {
       ]}
     >
       <Suspense fallback={<Spinner />}>
-        {/* <LandingStack /> */}
-        <TabNavigation />
+        <LandingStack />
+        {/* <TabNavigation /> */}
       </Suspense>
     </SafeAreaView>
   );

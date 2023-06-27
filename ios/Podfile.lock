@@ -479,6 +479,8 @@ PODS:
   - RNScreens (3.21.0):
     - React-Core
     - React-RCTImage
+  - RNSVG (13.9.0):
+    - React-Core
   - SDWebImage (5.11.1):
     - SDWebImage/Core (= 5.11.1)
   - SDWebImage/Core (5.11.1)
@@ -535,6 +537,7 @@ DEPENDENCIES:
   - "RNFBAppDistribution (from `../node_modules/@react-native-firebase/app-distribution`)"
   - "RNFBMessaging (from `../node_modules/@react-native-firebase/messaging`)"
   - RNScreens (from `../node_modules/react-native-screens`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -652,6 +655,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-firebase/messaging"
   RNScreens:
     :path: "../node_modules/react-native-screens"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
@@ -720,6 +725,7 @@ SPEC CHECKSUMS:
   RNFBAppDistribution: b44149d745a304a738101b37a2287a582b117f5f
   RNFBMessaging: a0cf20be8f41d89af98f5611d5db432c59371f68
   RNScreens: d037903436160a4b039d32606668350d2a808806
+  RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
   SDWebImageWebPCoder: 908b83b6adda48effe7667cd2b7f78c897e5111d
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
@@ -727,4 +733,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: a91e40d53de6ff5576aa4ed6fde996e8441a996d
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.1
