@@ -3,3 +3,10 @@ export interface Token {
   refreshToken: string;
   grantType: string;
 };
+
+
+export interface ResponseData<T> {
+  code: number,
+  data: T,
+  message: string
+}
