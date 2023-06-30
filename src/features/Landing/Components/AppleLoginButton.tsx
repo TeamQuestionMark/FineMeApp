@@ -11,7 +11,7 @@ import { ScaledSheet } from '@/utils/scale';
 const styles = ScaledSheet.create({
   appleButton: {
     width: '100%',
-    height: '100@vs',
+    height: '50@vs',
   },
 });
 
@@ -44,6 +44,7 @@ const AppleLoginButton = () => {
       <AppleButton
         buttonStyle={AppleButton.Style.BLACK}
         buttonType={AppleButton.Type.SIGN_IN}
+        cornerRadius={5}
         style={styles.appleButton}
         onPress={() => onAppleButtonPress()}
       />
