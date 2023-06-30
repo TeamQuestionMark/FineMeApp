@@ -603,8 +603,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.questionmark.fineme;
+				PRODUCT_BUNDLE_IDENTIFIER = com.questionmark.fineme;
 				PRODUCT_NAME = FineMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-DIST";
@@ -640,8 +639,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				"PRODUCT_BUNDLE_IDENTIFIER[sdk=iphoneos*]" = com.questionmark.fineme;
+				PRODUCT_BUNDLE_IDENTIFIER = com.questionmark.fineme;
 				PRODUCT_NAME = FineMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-DIST";
