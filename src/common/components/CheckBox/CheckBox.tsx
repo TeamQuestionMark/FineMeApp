@@ -4,24 +4,24 @@ import { TouchableOpacity } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 import { ScaledSheet } from '@/utils/scale';
-import RadioDeselectedDisabled from '@/assets/icons/Radio/icon-radio-deselected-disabled.png';
-import RadioDeselectedEnabled from '@/assets/icons/Radio/icon-radio-deselected-enabled.png';
-import RadioSelectedDisabled from '@/assets/icons/Radio/icon-radio-selected-disabled.png';
-import RadioSelectedEnabled from '@/assets/icons/Radio/icon-radio-selected-enabled.png';
+import CheckBoxDeselectedDisabled from '@/assets/icons/CheckBox/icon-checkbox-deselected-disabled.png';
+import CheckBoxDeselectedEnabled from '@/assets/icons/CheckBox/icon-checkbox-deselected-enabled.png';
+import CheckBoxSelectedDisabled from '@/assets/icons/CheckBox/icon-checkbox-selected-disabled.png';
+import CheckBoxSelectedEnabled from '@/assets/icons/CheckBox/icon-checkbox-selected-enabled.png';
 
 /**
  * @component
- * 라디오 버튼
+ * 체크박스
 
  * @example
- * <Radio
+ * <CheckBox
  *   disabled={false}                               // optional
  *   isClicked={false}                              // optional
  *   onPress={() => {}}                             // optional
  * />
  */
 
-interface Radio {
+interface CheckBox {
   disabled?: boolean;
   isClicked: boolean;
   onPress: () => void;
@@ -34,19 +34,19 @@ const styles = ScaledSheet.create({
   },
 });
 
-const Radio = ({ disabled = false, isClicked, onPress }: Radio) => {
+const CheckBox = ({ disabled = false, isClicked, onPress }: CheckBox) => {
   const radioImage = useMemo(() => {
     if (disabled) {
       if (isClicked) {
-        return RadioSelectedDisabled;
+        return CheckBoxSelectedDisabled;
       } else {
-        return RadioDeselectedDisabled;
+        return CheckBoxDeselectedDisabled;
       }
     } else {
       if (isClicked) {
-        return RadioSelectedEnabled;
+        return CheckBoxSelectedEnabled;
       } else {
-        return RadioDeselectedEnabled;
+        return CheckBoxDeselectedEnabled;
       }
     }
   }, [disabled, isClicked]);
@@ -58,4 +58,4 @@ const Radio = ({ disabled = false, isClicked, onPress }: Radio) => {
   );
 };
 
-export default Radio;
+export default CheckBox;
