@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { View } from 'react-native';
 
-import Text from '@/common/components/Text';
-import { TEXT_COLORS } from '@/themes/colors';
 import { ScaledSheet } from '@/utils/scale';
 import { AppleLoginButton } from '@/features/Landing/Components';
 import { isIOS } from '@/utils/device';
@@ -13,6 +11,7 @@ import ChipGroup from '@/common/components/Chip/ChipGroup';
 import OXButtonGroup from '@/common/components/OXButtonGroup/OXButtonGroup';
 import TextField from '@/common/components/TextField/TextField';
 import Validator from '@/utils/Validator';
+import Logo from '@/common/components/Logo/Logo';
 import CheckBox from '@/common/components/CheckBox/CheckBox';
 
 const styles = ScaledSheet.create({
@@ -44,9 +43,8 @@ const LandingScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text fontSize="28" fontWeight="Regular" color={TEXT_COLORS.textPrimary}>
-        랜딩 페이지
-      </Text>
+      <Logo size="large" />
+      <Logo size="small" />
       <TextField
         label="이름"
         onInput={setText}
