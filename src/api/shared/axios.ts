@@ -1,4 +1,4 @@
-import { BASE_URL } from "@/utils/constants";
+import { BASE_URL } from "@/constants/config";
 import axios from "axios";
 
 export const mainAxios = axios.create({
