@@ -14,6 +14,8 @@ import OXButtonGroup from '@/common/components/OXButtonGroup/OXButtonGroup';
 import TextField from '@/common/components/TextField/TextField';
 import Validator from '@/utils/Validator';
 import CheckBox from '@/common/components/CheckBox/CheckBox';
+import { Accordion } from '@/common/components/Accordion';
+import { Menu } from '@/common/components/Menu';
 
 const styles = ScaledSheet.create({
   container: {
@@ -47,6 +49,8 @@ const LandingScreen = () => {
       <Text fontSize="28" fontWeight="Regular" color={TEXT_COLORS.textPrimary}>
         랜딩 페이지
       </Text>
+      <Accordion title="테스트" description="테스트" />
+      <Menu title="메뉴이동" onPress={() => {}} />
       <TextField
         label="이름"
         onInput={setText}
