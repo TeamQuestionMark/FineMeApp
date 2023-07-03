@@ -21,8 +21,8 @@ export const postTokenReIssue = (params: Token) =>
 
 export const postSocialToken = async (social: Social, socialToken: string) => {
   return await mainAxios.post<ResponseData<Token>>(
-    `/api/v1/auth/${social}`,
-    { socialToken },
+    `/api/v1/auth/${social}?socialToken=${socialToken}`,
+    undefined,
     { validateStatus: (status) => status < 500 },
   );
 };

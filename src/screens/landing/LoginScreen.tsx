@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Text from '@/common/components/Text';
 import Logo from '@/common/components/Logo/Logo';
@@ -37,9 +37,12 @@ const LoginScreen = () => {
       ]);
       if (type === SOCIAL_LOGIN_RESPONSE.FIRST_LOGIN_SUCCESS) {
         // TODO: 추가 정보 기입 페이지로 이동
+      } else {
+        // TODO: 홈 페이지로 이동
       }
+      Alert.alert('로그인 성공')
     } catch (e) {
-      console.error('🔸 → handleLoginSuccess → e:', e);
+      console.error('AsyncStorage Error:', e);
     }
   };
 
