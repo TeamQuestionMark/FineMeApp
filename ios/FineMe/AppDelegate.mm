@@ -4,6 +4,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <CodePush/CodePush.h>
 #import "RNFBMessagingModule.h"
+#import "RNSplashScreen.h"
 
 @implementation AppDelegate
 
@@ -14,6 +15,9 @@
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
   self.initialProps = [RNFBMessagingModule addCustomPropsToUserProps:nil withLaunchOptions:launchOptions];
+  
+  [RNSplashScreen show];
+  
   if ([FIRApp defaultApp] == nil) {
     [FIRApp configure];
   }
