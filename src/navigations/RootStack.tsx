@@ -20,6 +20,7 @@ const RootStack = () => {
 
   useEffect(() => {
     getUser()
+      .then(() => setIsUserLogin(true))
       .catch(reset)
       .finally(() => setIsSuccess(true));
   }, [getUser, reset]);
@@ -34,7 +35,7 @@ const RootStack = () => {
       {!isSuccess && <Spinner />}
       {isSuccess && (
         <Suspense fallback={<Spinner />}>
-          {user ? <TabNavigation /> : <LandingStack />}
+          {isUserLogin && user?.age && user.gender ? <TabNavigation /> : <LandingStack />}
         </Suspense>
       )}
     </SafeAreaView>

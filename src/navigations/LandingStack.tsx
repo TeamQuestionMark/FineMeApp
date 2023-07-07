@@ -14,8 +14,7 @@ const LandingStack = () => {
 
   return (
     <Stack.Navigator
-      // initialRouteName={isUpdateAvailable ? 'Update' : 'Login'}
-      initialRouteName={'EditProfile'}
+      initialRouteName={isUpdateAvailable ? 'Update' : 'Login'}
     >
       {map(LANDING_STACK_SCREEN_LIST, screen => (
         <Stack.Screen
