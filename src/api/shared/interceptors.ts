@@ -2,8 +2,7 @@ import { AxiosError, AxiosInstance } from "axios";
 
 import { Token } from "./type";
 import { includes } from "lodash";
-import { useUserStore } from "@/store/user";
-import { setHeaderAuthorization } from "./header";
+import { getTokenFromAsyncStorage, setHeaderAuthorization, setTokenToAsyncStorage } from "./header";
 import { postTokenReIssue } from "../Login/api";
 
 let isRefreshing = false;
@@ -23,7 +22,7 @@ const processQueue = (error: Error | null, token: Token | null = null) => {
 
 export const setDefaultInterceptors = (axios: AxiosInstance) => {
   axios.interceptors.request.use(
-    (config) => {
+    async (config) => {
       const newConfig = { ...config };
       if (config.params) {
         newConfig.params = config.params;
@@ -31,6 +30,12 @@ export const setDefaultInterceptors = (axios: AxiosInstance) => {
       if (config.data) {
         newConfig.data = config.data;
       }
+
+      const token = await getTokenFromAsyncStorage()
+      if(token) {
+        newConfig.headers.setAuthorization(`Bearer ${token.accessToken}`)
+      }
+      
       return newConfig;
     },
     (error) => Promise.reject(error),
@@ -62,29 +67,29 @@ export const setDefaultInterceptors = (axios: AxiosInstance) => {
         originalRequest._retry = true;
         isRefreshing = true;
 
-        const { token } = useUserStore.getState();
+        const token = await getTokenFromAsyncStorage()
+        setHeaderAuthorization(axios, token);
 
         try {
-          setHeaderAuthorization(axios, token?.accessToken);
-          
-          const response = await postTokenReIssue(token);
-          const newAccessToken = response?.data?.accessToken;
-
-          if (newAccessToken) {
-            useUserStore.setState({ token: response?.data });
-            setHeaderAuthorization(axios ,newAccessToken);
-            originalRequest.headers.authorization = `Bearer ${newAccessToken}`;
-            processQueue(null, response?.data?.data);
-            return await axios(originalRequest);
+          if(token) {
+            const response = await postTokenReIssue(token);
+            const newToken = response?.data?.data;
+            if (newToken) {
+              setTokenToAsyncStorage(newToken)
+              setHeaderAuthorization(axios, newToken);
+              originalRequest.headers.authorization = `Bearer ${newToken.accessToken}`;
+              processQueue(null, newToken);
+              return await axios(originalRequest);
+            }
           }
-          return await Promise.reject(new Error(`unable to refresh access token: ${response}`));
+          return Promise.reject(new Error(`unable to refresh access token`));
         } catch (reIssueError) {
           if (reIssueError instanceof AxiosError) {
             // 센트리 에러 부여
             processQueue(reIssueError, null);
           }
           //TOTO: response 값에 따라 변경
-          return await Promise.reject(error.response);
+          return Promise.reject(error.response);
         } finally {
           isRefreshing = false;
         }

@@ -17,7 +17,7 @@ export const statusToResponseType = (status: number) => {
   }
 }
 export const postTokenReIssue = (params: Token) =>
-  mainAxios.post('/api/v1/auth/reissue', { params });
+  mainAxios.post<ResponseData<Token>>('/api/v1/auth/reissue', { params });
 
 export const postSocialToken = async (social: Social, socialToken: string) => {
   return await mainAxios.post<ResponseData<Token>>(
