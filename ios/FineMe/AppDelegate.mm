@@ -16,12 +16,14 @@
   self.initialProps = @{};
   self.initialProps = [RNFBMessagingModule addCustomPropsToUserProps:nil withLaunchOptions:launchOptions];
   
-  [RNSplashScreen show];
-  
   if ([FIRApp defaultApp] == nil) {
     [FIRApp configure];
   }
-  return [super application:application didFinishLaunchingWithOptions:launchOptions];
+  
+  [super application:application didFinishLaunchingWithOptions:launchOptions];
+  [RNSplashScreen show];
+  
+  return YES;
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

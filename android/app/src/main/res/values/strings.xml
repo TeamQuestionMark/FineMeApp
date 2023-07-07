@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FineMe</string>
+    <string name="app_name">파인미</string>
     <string name="kakao_app_key">49ca99a901ffab79221b40bee9307f8c</string>
     <string moduleConfig="true" name="CodePushDeploymentKey">@string/CODE_PUSH_ID_ANDROID</string>
 </resources>
