@@ -18,6 +18,7 @@ import { Accordion } from '@/common/components/Accordion';
 import { Menu } from '@/common/components/Menu';
 import { Button } from '@/common/components/Button';
 import { ConfirmModal } from '@/common/components/Modal';
+import { Tabs } from '@/common/components/Tab';
 
 const styles = ScaledSheet.create({
   container: {
@@ -55,6 +56,20 @@ const LandingScreen = () => {
       <Text fontSize="28" fontWeight="Regular" color={TEXT_COLORS.textPrimary}>
         랜딩 페이지
       </Text>
+      <Tabs
+        tabList={[
+          { name: '첫번째', value: 'first' },
+          { name: '두번째', value: 'second' },
+        ]}
+      />
+      <Tabs
+        tabList={[
+          { name: '첫번째', value: 'first' },
+          { name: '두번째', value: 'second' },
+          { name: '세번째', value: 'third' },
+        ]}
+        initialTab={{ name: '세번째', value: 'third' }}
+      />
       <Button
         title="첫번째 모달"
         onPress={() => setIsVisibleFirstModal(prev => !prev)}
