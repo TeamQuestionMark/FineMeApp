@@ -12,7 +12,7 @@ import { Divider } from '../Divider';
 
 /**
  * @component
- * 아코디언
+ * 메뉴
 
  * @example
  * <Menu

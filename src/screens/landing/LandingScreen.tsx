@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 import Text from '@/common/components/Text';
 import { TEXT_COLORS } from '@/themes/colors';
@@ -18,6 +18,7 @@ import { Accordion } from '@/common/components/Accordion';
 import { Menu } from '@/common/components/Menu';
 import { Button } from '@/common/components/Button';
 import { ConfirmModal } from '@/common/components/Modal';
+import Header from '@/common/components/Header/Header';
 
 const styles = ScaledSheet.create({
   container: {
@@ -51,7 +52,21 @@ const LandingScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+      <Header title="첫번째" />
+      <Header title="두번쨰" onPressLeadingIcon={() => {}} />
+      <Header
+        title="세번째"
+        onPressLeadingIcon={() => {}}
+        trailIcon="Close"
+        onPressTrailingIcon={() => {}}
+      />
+      <Header
+        title="네번째"
+        onPressLeadingIcon={() => {}}
+        trailIcon="Share"
+        onPressTrailingIcon={() => {}}
+      />
       <Text fontSize="28" fontWeight="Regular" color={TEXT_COLORS.textPrimary}>
         랜딩 페이지
       </Text>
@@ -181,7 +196,7 @@ const LandingScreen = () => {
         disabled
       />
       {isIOS && <AppleLoginButton />}
-    </View>
+    </ScrollView>
   );
 };
 
