@@ -1,4 +1,4 @@
-import { COLOR_TOKENS } from '@/themes/colors';
+import { COLORS } from '@/themes/colors';
 import { s } from '@/utils/scale';
 import React from 'react';
 
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
 const Spinner = () => (
   <View style={styles.container}>
-    <ActivityIndicator size={s(48)} color={COLOR_TOKENS.primary} />
+    <ActivityIndicator size={s(48)} color={COLORS.brandColor300} />
   </View>
 );
 

@@ -1,28 +1,28 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import CodePush from 'react-native-code-push';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import globalStyles from '@/themes/globalStyles';
-import { setDefaultInterceptors } from '@/api/shared/interceptors';
-import { mainAxios } from '@/api/shared/axios';
 import { RootStackParamList } from './types';
 import LandingStack from './LandingStack';
 import Spinner from '@/common/components/Spinner/Spinner';
 import TabNavigation from './TabNavigation';
+import { useUserStore } from '@/store/user';
 
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
-  // 임시 상수
-  const isUserLogin = false;
+  const { getUser, user, reset } = useUserStore();
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isUserLogin, setIsUserLogin] = useState(false);
 
   useEffect(() => {
-    setDefaultInterceptors(mainAxios);
-  }, []);
-
-  const renderScreen = isUserLogin ? <TabNavigation /> : <LandingStack />;
+    getUser()
+      .catch(reset)
+      .finally(() => setIsSuccess(true));
+  }, [getUser, reset]);
 
   return (
     <SafeAreaView
@@ -31,7 +31,12 @@ const RootStack = () => {
         globalStyles.defaultBackgroundColor,
       ]}
     >
-      <Suspense fallback={<Spinner />}>{renderScreen}</Suspense>
+      {!isSuccess && <Spinner />}
+      {isSuccess && (
+        <Suspense fallback={<Spinner />}>
+          {user ? <TabNavigation /> : <LandingStack />}
+        </Suspense>
+      )}
     </SafeAreaView>
   );
 };

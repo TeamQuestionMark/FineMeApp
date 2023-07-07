@@ -1,7 +1,8 @@
 import { mainAxios } from "../shared/axios";
+import { ResponseData } from "../shared/type";
+import { UserProfile } from "./types";
 
 
-  //{"age": 0, "gender": null, "id": null, "nickname": null, "role": "USER", "socialId": null, "socialType": "APPLE", "username": "g2yrwkbtyg@privaterelay.appleid.com"}
 export const getProfile = () =>
-  mainAxios.get('/api/v1/user/profile');
+  mainAxios.get<ResponseData<UserProfile>>('/api/v1/user/profile');
 
