@@ -24,7 +24,33 @@ const styles = ScaledSheet.create({
     height: '50@vs',
     borderRadius: 6,
     borderWidth: 2,
+    ...globalStyles.justifyCenter,
+    ...globalStyles.alignCenter,
   },
+
+  solid: {
+    borderColor: COLORS.black,
+    backgroundColor: COLORS.brandColor400
+  },
+  'solid:pressed': {
+    backgroundColor: COLORS.brandColor600
+  },
+  'solid:disabled': {
+    borderColor: COLORS.gray300,
+    backgroundColor: COLORS.gray100
+  },
+
+  outlined: {
+    borderColor: COLORS.brandColor700,
+    backgroundColor: COLORS.white,
+  },
+  'outlined:pressed': {
+    backgroundColor: COLORS.brandColor50,
+  },
+  'outlined:disabled': {
+    borderColor: COLORS.gray300,
+    backgroundColor: COLORS.gray50
+  }
 });
 
 interface ButtonProps {
@@ -45,34 +71,16 @@ const Button = ({
   style
 }: ButtonProps) => {
   const isSolid = variant === 'solid';
-
-  const disabledSolidBackgroundColor = disabled
-    ? COLORS.gray100
-    : COLORS.brandColor600;
-  const disabledOutlinedBackgroundColor = disabled
-    ? COLORS.gray50
-    : COLORS.brandColor50;
-
+  
   return (
     <Pressable
       style={({ pressed }) => [
-        globalStyles.justifyCenter,
-        globalStyles.alignCenter,
         styles.container,
         { width: typeof width === 'string' ? width : s(width) },
-        isSolid
-          ? {
-              borderColor: disabled ? COLORS.gray300 : COLORS.black,
-              backgroundColor: pressed
-                ? disabledSolidBackgroundColor
-                : COLORS.brandColor400,
-            }
-          : {
-              borderColor: disabled ? COLORS.gray300 : COLORS.brandColor700,
-              backgroundColor: pressed
-                ? disabledOutlinedBackgroundColor
-                : COLORS.white,
-            },
+        styles[variant],
+        pressed && styles[`${variant}:pressed`],
+        disabled && styles[`${variant}:disabled`],
+        style
       ]}
       onPress={onPress}
       disabled={disabled}
