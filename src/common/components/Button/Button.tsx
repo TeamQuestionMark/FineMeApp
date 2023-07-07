@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable } from 'react-native';
+import { Pressable, StyleProp, ViewStyle } from 'react-native';
 import { COLORS } from '@/themes/colors';
 import { ScaledSheet, s } from '@/utils/scale';
 import globalStyles from '@/themes/globalStyles';
@@ -33,6 +33,7 @@ interface ButtonProps {
   variant?: 'outlined' | 'solid';
   width: number | string;
   disabled?: boolean;
+  style?: StyleProp<ViewStyle>
 }
 
 const Button = ({
@@ -41,6 +42,7 @@ const Button = ({
   variant = 'solid',
   width,
   disabled = false,
+  style
 }: ButtonProps) => {
   const isSolid = variant === 'solid';
 
