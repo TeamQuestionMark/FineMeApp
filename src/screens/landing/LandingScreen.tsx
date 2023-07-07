@@ -13,6 +13,10 @@ import TextField from '@/common/components/TextField/TextField';
 import Validator from '@/utils/Validator';
 import Logo from '@/common/components/Logo/Logo';
 import CheckBox from '@/common/components/CheckBox/CheckBox';
+import { Accordion } from '@/common/components/Accordion';
+import { Menu } from '@/common/components/Menu';
+import { Button } from '@/common/components/Button';
+import { ConfirmModal } from '@/common/components/Modal';
 
 const styles = ScaledSheet.create({
   container: {
@@ -32,6 +36,10 @@ const validator = new Validator().required().max(5);
 const LandingScreen = () => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [chipInputs, setChipInputs] = useState(CHIP_INPUTS);
+  const [isVisibleFirstModal, setIsVisibleFirstModal] =
+    useState<boolean>(false);
+  const [isVisibleSecondModal, setIsVisibleSecondModal] =
+    useState<boolean>(false);
   const [text, setText] = useState('');
 
   const handlePressChip = (value: string) => {
@@ -45,6 +53,53 @@ const LandingScreen = () => {
     <View style={styles.container}>
       <Logo size="large" />
       <Logo size="small" />
+      <Button
+        title="첫번째 모달"
+        onPress={() => setIsVisibleFirstModal(prev => !prev)}
+        variant="solid"
+        width="100%"
+      />
+      <Button
+        title="두번째 모달"
+        onPress={() => setIsVisibleSecondModal(prev => !prev)}
+        variant="outlined"
+        width="100%"
+      />
+      <ConfirmModal
+        title="첫번째 모달"
+        description="첫번째"
+        isVisible={isVisibleFirstModal}
+        firstButton={
+          <Button
+            title="확인"
+            onPress={() => setIsVisibleFirstModal(false)}
+            width="100%"
+          />
+        }
+      />
+      <ConfirmModal
+        title="두번째 모달"
+        description="두번째"
+        isVisible={isVisibleSecondModal}
+        firstButton={
+          <Button
+            title="확인"
+            variant="outlined"
+            onPress={() => setIsVisibleSecondModal(false)}
+            width={127}
+          />
+        }
+        secondButton={
+          <Button
+            title="확인"
+            variant="solid"
+            onPress={() => setIsVisibleSecondModal(false)}
+            width={127}
+          />
+        }
+      />
+      <Accordion title="테스트" description="테스트" />
+      <Menu title="메뉴이동" onPress={() => {}} />
       <TextField
         label="이름"
         onInput={setText}

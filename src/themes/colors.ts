@@ -27,7 +27,8 @@ export const COLORS = {
   active30: "#DBEBFF",
   active100: "#2385FF",
   white: "#ffffff",
-  black: "#000000"
+  black: "#000000",
+  description: "#767676"
 } as const;
 
 
