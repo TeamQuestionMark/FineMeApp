@@ -1,6 +1,7 @@
 import { postSocialToken, statusToResponseType } from '@/api/Login/api';
 import { SOCIAL_LOGIN_RESPONSE } from '@/api/Login/types';
 import { getProfile } from '@/api/User/api';
+import { UserProfile } from '@/api/User/types';
 import { Token } from '@/api/shared/type';
 import STORAGE_KEY from '@/constants/storageKey';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -9,10 +10,10 @@ import { createJSONStorage, devtools, persist } from 'zustand/middleware';
 
 interface UserStore {
   token: Token | null;
-  user: {} | null;
+  user: UserProfile | null;
   reset: () => void;
   socialLogin: (social: 'kakao' | 'apple', socialToken: string) => Promise<SOCIAL_LOGIN_RESPONSE>;
-  getUser: () => Promise<any>
+  getUser: () => Promise<UserProfile | null>
 }
 
 const initialStore = {

@@ -1,6 +1,6 @@
 /**
  * 
- * @returns YYYY-MM-DD
+ * @returns YYYY / MM / DD
  */
 export const formatDate = (datetime: Date) => {
   const yearStr = String(datetime.getFullYear())
@@ -11,5 +11,5 @@ export const formatDate = (datetime: Date) => {
   const day = datetime.getDate()
   const dayStr = day < 10 ? '0' + day : day
 
-  return `${yearStr}.${monthStr}.${dayStr}`
+  return `${yearStr} / ${monthStr} / ${dayStr}`
 }

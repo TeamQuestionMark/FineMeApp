@@ -1,3 +1,5 @@
+import { putProfile } from '@/api/User/api';
+import { Gender } from '@/api/User/types';
 import { Button } from '@/common/components/Button';
 import Chip from '@/common/components/Chip/Chip';
 import ChipGroup from '@/common/components/Chip/ChipGroup';
@@ -8,7 +10,7 @@ import { ScaledSheet } from '@/utils/scale';
 import { useState } from 'react';
 import { View } from 'react-native';
 
-const GENDER_OPTIONS = [
+const GENDER_OPTIONS: {label: string, value: Gender}[] = [
   {
     label: '남성',
     value: 'male',
@@ -43,7 +45,12 @@ const styles = ScaledSheet.create({
 const EditProfileScreen = () => {
   const [gender, setGender] = useState<string>();
   const [birth, setBirth] = useState<Date>();
-  const handleSubmit = () => {};
+  const handleSubmit = async () => {
+    if (gender && birth) {
+      const data = await putProfile({gender: gender as Gender, birth: birth.toJSON()})
+      console.log(data)
+    }
+  };
 
   return (
     <View style={[globalStyles.defaultPadding, { height: '100%' }]}>
