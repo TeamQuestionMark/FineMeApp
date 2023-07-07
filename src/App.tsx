@@ -10,7 +10,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { RootStackParamList } from './navigations/types';
 import Spinner from './common/components/Spinner/Spinner';
 import RootStack from './navigations/RootStack';
-import useFCM from './utils/fcm/useFCM';
+import useFCM from './hooks/useFCM';
 
 export const queryClient = new QueryClient({
   defaultOptions: {

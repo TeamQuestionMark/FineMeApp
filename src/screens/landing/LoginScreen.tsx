@@ -11,7 +11,8 @@ import STORAGE_KEY from '@/constants/storageKey';
 import { useUserStore } from '@/store/user';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '@/navigations/types';
-import {StackNavigationProp} from '@react-navigation/stack';
+import { StackNavigationProp } from '@react-navigation/stack';
+import useFCM from '@/hooks/useFCM';
 
 const styles = ScaledSheet.create({
   titleWrapper: {
@@ -28,11 +29,20 @@ const styles = ScaledSheet.create({
 });
 const LoginScreen = () => {
   const { socialLogin, token, getUser } = useUserStore();
-  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>()
-  const handleSocialLoginSuccess = async (social: 'apple' | 'kakao', socialToken: string) => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
+  const { registerFcmToken } = useFCM();
+  const handleSocialLoginSuccess = async (
+    social: 'apple' | 'kakao',
+    socialToken: string,
+  ) => {
     const responseType = await socialLogin(social, socialToken);
-    if (responseType === SOCIAL_LOGIN_RESPONSE.FIRST_LOGIN_SUCCESS || responseType === SOCIAL_LOGIN_RESPONSE.SUCCESS) {
-      const user = await getUser()
+    if (
+      responseType === SOCIAL_LOGIN_RESPONSE.FIRST_LOGIN_SUCCESS ||
+      responseType === SOCIAL_LOGIN_RESPONSE.SUCCESS
+    ) {
+      const user = await getUser();
+      registerFcmToken();
+
       if (user && user.age && user.gender) {
         // TODO: 홈 페이지로 이동
         Alert.alert('로그인 성공');
@@ -56,8 +66,8 @@ const LoginScreen = () => {
           marginBottom={11}
           onPress={async () => {
             //TODO: 테스트 코드 추후 삭제
-            console.info(token)
-            console.info(await AsyncStorage.getItem(STORAGE_KEY.token))
+            console.info(token);
+            console.info(await AsyncStorage.getItem(STORAGE_KEY.token));
           }}
         >
           괜찮은 나를 확인하세요!
@@ -65,8 +75,12 @@ const LoginScreen = () => {
         <Logo size="large" />
       </View>
       <View style={styles.buttonGroup}>
-        <KakaoLoginButton onLoginSuccess={(token) => handleSocialLoginSuccess('kakao', token)} />
-        <AppleLoginButton onLoginSuccess={(token) => handleSocialLoginSuccess('apple', token)} />
+        <KakaoLoginButton
+          onLoginSuccess={token => handleSocialLoginSuccess('kakao', token)}
+        />
+        <AppleLoginButton
+          onLoginSuccess={token => handleSocialLoginSuccess('apple', token)}
+        />
       </View>
     </View>
   );
