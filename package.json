@@ -15,7 +15,7 @@
     "build:android:stg": "cd android && ENVFILE=.env.staging ./gradlew app:assembleStagingRelease",
     "build:android:prd": "cd android && ENVFILE=.env ./gradlew app:assembleProductionRelease",
     "build:android:bundle": "cd android && ENVFILE=.env ./gradlew bundleRelease",
-    "lint": "eslint .",
+    "lint": "eslint --fix .",
     "start": "react-native start --reset-cache",
     "postinstall": "patch-package",
     "test": "jest"
