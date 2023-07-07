@@ -6,9 +6,13 @@ export const deleteToken = () => {
 };
 
 export const putToken = (token: string) => {
-  putFCMToken({}).then((data) => {
-    console.log('Succeed to PUT FCM token')
-  }).catch(() => {
-    console.error('Failed to PUT FCM token')
+  putFCMToken({
+    fcmId: token,
   })
+    .then(data => {
+      console.log('Succeed to PUT FCM token', data);
+    })
+    .catch(() => {
+      console.error('Failed to PUT FCM token');
+    });
 };

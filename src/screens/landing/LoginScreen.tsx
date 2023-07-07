@@ -13,6 +13,7 @@ import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '@/navigations/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import useFCM from '@/hooks/useFCM';
+import { isIOS } from '@/utils/device';
 
 const styles = ScaledSheet.create({
   titleWrapper: {
@@ -78,9 +79,9 @@ const LoginScreen = () => {
         <KakaoLoginButton
           onLoginSuccess={token => handleSocialLoginSuccess('kakao', token)}
         />
-        <AppleLoginButton
+        {isIOS && <AppleLoginButton
           onLoginSuccess={token => handleSocialLoginSuccess('apple', token)}
-        />
+        />}
       </View>
     </View>
   );

@@ -17,7 +17,9 @@ export const putProfile = async (payload: PutProfilePayload) => {
   return data;
 };
 
-type PutFCMTokenPayload = {};
+type PutFCMTokenPayload = {
+  fcmId: string
+};
 export const putFCMToken = async (payload: PutFCMTokenPayload) => {
   const { data } = await mainAxios.put<ResponseData<unknown>>(
     '/api/v1/user/profile/fcm-id',
