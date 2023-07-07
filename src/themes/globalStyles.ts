@@ -2,6 +2,7 @@ import { s, vs } from '../utils/scale';
 
 import { COLORS } from './colors';
 
+export const GLOBAL_HORIZONTAL_PADDING = s(20)
 const globalStyles = {
   defaultFlexContainer: {
     flex: 1,
@@ -42,7 +43,7 @@ const globalStyles = {
   },
   defaultPadding: {
     paddingVertical: vs(16),
-    paddingHorizontal: s(16),
+    paddingHorizontal: GLOBAL_HORIZONTAL_PADDING,
   },
   center: {
     justifyContent: 'center',
