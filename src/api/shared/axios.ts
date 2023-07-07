@@ -8,4 +8,4 @@ export const mainAxios = axios.create({
     'x-ncp-apigw-api-key': API_KEY
   }
 });
-setDefaultInterceptors(mainAxios)
+setDefaultInterceptors(mainAxios);

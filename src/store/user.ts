@@ -12,14 +12,17 @@ interface UserStore {
   token: Token | null;
   user: UserProfile | null;
   reset: () => void;
-  socialLogin: (social: 'kakao' | 'apple', socialToken: string) => Promise<SOCIAL_LOGIN_RESPONSE>;
-  getUser: () => Promise<UserProfile | null>
+  socialLogin: (
+    social: 'kakao' | 'apple',
+    socialToken: string,
+  ) => Promise<SOCIAL_LOGIN_RESPONSE>;
+  getUser: () => Promise<UserProfile | null>;
 }
 
 const initialStore = {
   token: null,
-  user: null
-}
+  user: null,
+};
 
 export const useUserStore = create<UserStore>()(
   devtools(
@@ -28,19 +31,19 @@ export const useUserStore = create<UserStore>()(
         token: null,
         user: null,
         reset: () => {
-          set(initialStore)
-        }, 
+          set(initialStore);
+        },
         getUser: async () => {
           try {
-            const {status, data} = await getProfile()
+            const { status, data } = await getProfile();
             console.log('🔸 → getUser: → data:', data);
-            const user = data.data
-            set((prev) => ({...prev, user}))
-            return user
-          } catch(e) {
+            const user = data.data;
+            set(prev => ({ ...prev, user }));
+            return user;
+          } catch (e) {
             console.log('🔸 → getUser: → e:', e);
-            set({token: null, user: null})
-            return null
+            set({ token: null, user: null });
+            return null;
           }
         },
         socialLogin: async (social: 'kakao' | 'apple', socialToken: string) => {

@@ -178,7 +178,7 @@ const LandingScreen = () => {
         isClicked={!isClicked}
         disabled
       />
-      {isIOS && <AppleLoginButton />}
+      {isIOS && <AppleLoginButton onLoginSuccess={() => null} />}
     </View>
   );
 };

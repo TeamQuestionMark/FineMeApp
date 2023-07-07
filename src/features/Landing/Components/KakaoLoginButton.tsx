@@ -7,7 +7,7 @@ import kakaoButtonImage from '@/assets/icons/KakaoLoginButton/kakao_login_large_
 import { ScaledSheet } from '@/utils/scale';
 
 interface KakaoLoginButtonProps {
-  onLoginSuccess: (socialToken: string) => void
+  onLoginSuccess: (socialToken: string) => void;
 }
 
 const styles = ScaledSheet.create({
@@ -25,8 +25,8 @@ const KakaoLoginButton = ({ onLoginSuccess }: KakaoLoginButtonProps) => {
   const handlePress = async () => {
     try {
       const token = await login();
-      onLoginSuccess(token.accessToken)
-    } catch(e) {
+      onLoginSuccess(token.accessToken);
+    } catch (e) {
       console.error('🔸 → handlePress → e:', e);
       Alert.alert('카카오 로그인 실패', '다시 시도해주세요.');
     }

@@ -10,7 +10,7 @@ import { ScaledSheet } from '@/utils/scale';
 import { useState } from 'react';
 import { View } from 'react-native';
 
-const GENDER_OPTIONS: {label: string, value: Gender}[] = [
+const GENDER_OPTIONS: { label: string; value: Gender }[] = [
   {
     label: '남성',
     value: 'male',
@@ -47,8 +47,11 @@ const EditProfileScreen = () => {
   const [birth, setBirth] = useState<Date>();
   const handleSubmit = async () => {
     if (gender && birth) {
-      const data = await putProfile({gender: gender as Gender, birth: birth.toJSON()})
-      console.log(data)
+      const data = await putProfile({
+        gender: gender as Gender,
+        birth: birth.toJSON(),
+      });
+      console.log(data);
     }
   };
 

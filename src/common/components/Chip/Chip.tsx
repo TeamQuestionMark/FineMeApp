@@ -1,8 +1,5 @@
 import { COLORS } from '@/themes/colors';
-import {
-  GestureResponderEvent,
-  TouchableOpacity,
-} from 'react-native';
+import { GestureResponderEvent, TouchableOpacity } from 'react-native';
 import { TextProps } from '../Text/type';
 import Text from '../Text';
 import { PropsWithChildren, useCallback } from 'react';
