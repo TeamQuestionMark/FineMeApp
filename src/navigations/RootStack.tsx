@@ -17,7 +17,7 @@ export const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
   // 임시 상수
-  const isUserLogin = false;
+  const isUserLogin = true;
 
   useEffect(() => {
     setDefaultInterceptors(mainAxios);
