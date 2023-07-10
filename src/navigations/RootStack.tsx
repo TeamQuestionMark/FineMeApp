@@ -11,6 +11,7 @@ import { RootStackParamList } from './types';
 import LandingStack from './LandingStack';
 import Spinner from '@/common/components/Spinner/Spinner';
 import TabNavigation from './TabNavigation';
+import SplashScreen from 'react-native-splash-screen';
 
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -20,6 +21,12 @@ const RootStack = () => {
 
   useEffect(() => {
     setDefaultInterceptors(mainAxios);
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 2000);
   }, []);
 
   const renderScreen = isUserLogin ? <TabNavigation /> : <LandingStack />;
