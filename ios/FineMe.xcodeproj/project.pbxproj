@@ -10,7 +10,7 @@
 		00E356F31AD99517003FC87E /* FineMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FineMeTests.m */; };
 		0DA5BA3D80464DB3B6CBDD62 /* TitanOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 303EE3ECA8C1438BB2D40B93 /* TitanOne-Regular.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
-		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		13B07FBF1A68108700A75B9A /* image.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* image.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		18A6B35622154B92AB3B0130 /* SUIT-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3615AE8C4FE24AC182B8E952 /* SUIT-Regular.ttf */; };
 		1E6FAEED2A227D9B009D3332 /* SwiftBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E6FAEEC2A227D9B009D3332 /* SwiftBridge.swift */; };
@@ -25,6 +25,7 @@
 		86C255D77AAD4391AE566BF5 /* SUIT-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A2E5044668DC4A9D87977402 /* SUIT-Medium.ttf */; };
 		CF77B810C5EA42768433AC32 /* SUIT-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 854D9F07D8EB49E3AC3F2F27 /* SUIT-ExtraLight.ttf */; };
 		DC5CF40C2E11480382C01E7C /* SUIT-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E62D944698724CFF98ACF10F /* SUIT-Thin.ttf */; };
+		E4AD33842A5C761300E311F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E4AD33862A5C761300E311F1 /* InfoPlist.strings */; };
 		E4E6A73A2A34B83E009F7698 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E4E6A7392A34B83E009F7698 /* GoogleService-Info.plist */; };
 		F8684DD87C1FB0F8E22B8BA2 /* Pods_FineMe_FineMeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA0D84173BDF1DE1BD05EF0 /* Pods_FineMe_FineMeTests.framework */; };
 /* End PBXBuildFile section */
@@ -47,7 +48,7 @@
 		13B07F961A680F5B00A75B9A /* FineMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FineMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = FineMe/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = FineMe/AppDelegate.mm; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = FineMe/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* image.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = image.xcassets; path = FineMe/image.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = FineMe/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = FineMe/main.m; sourceTree = "<group>"; };
 		1E556B952A2D1C76000501C4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "FineMe/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -69,6 +70,8 @@
 		CCAB94C92B44A610FA67E073 /* Pods_FineMe_FineMeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FineMe_FineMeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E38F29E525E7D017BFEA3BD2 /* Pods-FineMe-FineMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FineMe-FineMeTests.debug.xcconfig"; path = "Target Support Files/Pods-FineMe-FineMeTests/Pods-FineMe-FineMeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E41FC97E2A358F3F0044F456 /* FineMe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = FineMe.entitlements; path = FineMe/FineMe.entitlements; sourceTree = "<group>"; };
+		E4AD33852A5C761300E311F1 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E4AD33872A5C761900E311F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E4E6A7392A34B83E009F7698 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E62D944698724CFF98ACF10F /* SUIT-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-Thin.ttf"; path = "../src/assets/fonts/SUIT-Thin.ttf"; sourceTree = "<group>"; };
 		E700B031D31A45948194CA3D /* SUIT-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SUIT-SemiBold.ttf"; path = "../src/assets/fonts/SUIT-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -122,7 +125,7 @@
 				E41FC97E2A358F3F0044F456 /* FineMe.entitlements */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
-				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB51A68108700A75B9A /* image.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -177,6 +180,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E4AD33862A5C761300E311F1 /* InfoPlist.strings */,
 				E4E6A7392A34B83E009F7698 /* GoogleService-Info.plist */,
 				13B07FAE1A68108700A75B9A /* FineMe */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -265,7 +269,8 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1410;
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
@@ -283,6 +288,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ko,
 			);
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
@@ -308,7 +314,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
-				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				E4AD33842A5C761300E311F1 /* InfoPlist.strings in Resources */,
+				13B07FBF1A68108700A75B9A /* image.xcassets in Resources */,
 				E4E6A73A2A34B83E009F7698 /* GoogleService-Info.plist in Resources */,
 				22A47B5575884B61AFCAE4A8 /* SUIT-Bold.ttf in Resources */,
 				4E00B275566C44C8934EC7BA /* SUIT-ExtraBold.ttf in Resources */,
@@ -516,6 +523,19 @@
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E4AD33862A5C761300E311F1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E4AD33852A5C761300E311F1 /* ko */,
+				E4AD33872A5C761900E311F1 /* en */,
+			);
+			name = InfoPlist.strings;
+			path = FineMe;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
@@ -784,6 +804,7 @@
 				PRODUCT_NAME = FineMe;
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

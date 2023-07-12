@@ -10,19 +10,25 @@ import LandingStack from './LandingStack';
 import Spinner from '@/common/components/Spinner/Spinner';
 import TabNavigation from './TabNavigation';
 import { useUserStore } from '@/store/user';
+import SplashScreen from 'react-native-splash-screen';
 
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
   const { getUser, user, reset } = useUserStore();
   const [isSuccess, setIsSuccess] = useState(false);
-  const [isUserLogin, setIsUserLogin] = useState(false);
 
   useEffect(() => {
     getUser()
       .catch(reset)
       .finally(() => setIsSuccess(true));
   }, [getUser, reset]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 2000);
+  }, []);
 
   return (
     <SafeAreaView
