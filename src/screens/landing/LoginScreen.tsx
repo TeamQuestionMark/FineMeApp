@@ -12,7 +12,6 @@ import { useUserStore } from '@/store/user';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '@/navigations/types';
 import { StackNavigationProp } from '@react-navigation/stack';
-import useFCM from '@/hooks/useFCM';
 import { isIOS } from '@/utils/device';
 
 const styles = ScaledSheet.create({
@@ -31,7 +30,6 @@ const styles = ScaledSheet.create({
 const LoginScreen = () => {
   const { socialLogin, token, getUser } = useUserStore();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
-  const { registerFcmToken } = useFCM();
   const handleSocialLoginSuccess = async (
     social: 'apple' | 'kakao',
     socialToken: string,
@@ -42,7 +40,6 @@ const LoginScreen = () => {
       responseType === SOCIAL_LOGIN_RESPONSE.SUCCESS
     ) {
       const user = await getUser();
-      registerFcmToken();
 
       if (user && user.age && user.gender) {
         // TODO: 홈 페이지로 이동

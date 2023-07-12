@@ -11,6 +11,7 @@ import Spinner from '@/common/components/Spinner/Spinner';
 import TabNavigation from './TabNavigation';
 import { useUserStore } from '@/store/user';
 import SplashScreen from 'react-native-splash-screen';
+import { registerFcmToken } from '@/utils/fcm/requests';
 
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -25,6 +26,10 @@ const RootStack = () => {
       .catch(reset)
       .finally(() => setIsSuccess(true));
   }, [getUser, reset]);
+
+  useEffect(() => {
+    if (user) registerFcmToken();
+  }, [user]);
 
   useEffect(() => {
     setTimeout(() => {

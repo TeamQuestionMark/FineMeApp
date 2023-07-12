@@ -1,19 +1,21 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import messaging from '@react-native-firebase/messaging';
 import { registerForegroundFCMHandler } from '../utils/fcm/messageHandlers';
-import { putToken } from '../utils/fcm/requests';
 import { requestPermission } from '../utils/fcm/requestPermission';
+import { putFCMToken } from '@/api/User/api';
 
-export default function useFCM() {
+export default function useFcmHandler() {
   const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
     // 알림 권한 요청 및 권한 확인
-    requestPermission().then(enabled => {
-      setEnabled(enabled);
+    requestPermission().then(isFcmEnabled => {
+      setEnabled(isFcmEnabled);
     });
     // Listen to whether the token changes
-    return messaging().onTokenRefresh(putToken);
+    return messaging().onTokenRefresh(token =>
+      putFCMToken({ fcmId: token }).catch(() => null),
+    );
   }, []);
 
   useEffect(() => {
@@ -25,9 +27,5 @@ export default function useFCM() {
     return unsubscribe;
   }, [enabled]);
 
-  const registerFcmToken = useCallback(() => {
-    if (enabled) messaging().getToken().then(putToken);
-  }, [enabled]);
-
-  return { isFcmEnabled: enabled, registerFcmToken };
+  return { isFcmEnabled: enabled };
 }
