@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView } from 'react-native';
 
-import Text from '@/common/components/Text';
-import { TEXT_COLORS } from '@/themes/colors';
 import { ScaledSheet } from '@/utils/scale';
 import { AppleLoginButton } from '@/features/Landing/Components';
 import { isIOS } from '@/utils/device';
@@ -68,9 +66,6 @@ const LandingScreen = () => {
         trailIcon="Share"
         onPressTrailingIcon={() => {}}
       />
-      <Text fontSize="28" fontWeight="Regular" color={TEXT_COLORS.textPrimary}>
-        랜딩 페이지
-      </Text>
       <Tabs
         tabList={[
           { name: '첫번째', value: 'first' },

@@ -41,7 +41,7 @@ const OXButtonGroup = ({ onChange }: OXButtonGroupProps) => {
       setCheckedValue(value)
       onChange(value === 'o')
     },
-    [checkedValue],
+    [onChange],
   );
 
   return (
@@ -49,7 +49,7 @@ const OXButtonGroup = ({ onChange }: OXButtonGroupProps) => {
       <TouchableOpacity
         style={[styles.button, checkedValue === 'o' && styles.checked]}
         onPress={() => handlePress('o')}
-        >
+      >
           <IconOX ox='o' checked={checkedValue === 'o'}/>
       </TouchableOpacity>
       <TouchableOpacity
