@@ -35,13 +35,14 @@ const LoginScreen = () => {
     socialToken: string,
   ) => {
     const responseType = await socialLogin(social, socialToken);
+    console.log('🔸 → LoginScreen → socialToken:', socialToken);
     if (
       responseType === SOCIAL_LOGIN_RESPONSE.FIRST_LOGIN_SUCCESS ||
       responseType === SOCIAL_LOGIN_RESPONSE.SUCCESS
     ) {
       const user = await getUser();
 
-      if (user && user.age && user.gender) {
+      if (user && user.birth && user.gender) {
         // TODO: 홈 페이지로 이동
         Alert.alert('로그인 성공');
       } else {

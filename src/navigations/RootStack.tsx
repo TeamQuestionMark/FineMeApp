@@ -47,7 +47,7 @@ const RootStack = () => {
       {!isSuccess && <Spinner />}
       {isSuccess && (
         <Suspense fallback={<Spinner />}>
-          {isUserLogin && user?.age && user.gender ? (
+          {isUserLogin && user?.birth && user.gender ? (
             <TabNavigation />
           ) : (
             <LandingStack />
