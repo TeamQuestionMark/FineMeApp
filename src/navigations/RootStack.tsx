@@ -10,6 +10,7 @@ import LandingStack from './LandingStack';
 import Spinner from '@/common/components/Spinner/Spinner';
 import TabNavigation from './TabNavigation';
 import { useUserStore } from '@/store/user';
+import SplashScreen from 'react-native-splash-screen';
 
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -25,6 +26,12 @@ const RootStack = () => {
       .finally(() => setIsSuccess(true));
   }, [getUser, reset]);
 
+  useEffect(() => {
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 2000);
+  }, []);
+
   return (
     <SafeAreaView
       style={[
@@ -35,7 +42,11 @@ const RootStack = () => {
       {!isSuccess && <Spinner />}
       {isSuccess && (
         <Suspense fallback={<Spinner />}>
-          {isUserLogin && user?.age && user.gender ? <TabNavigation /> : <LandingStack />}
+          {isUserLogin && user?.age && user.gender ? (
+            <TabNavigation />
+          ) : (
+            <LandingStack />
+          )}
         </Suspense>
       )}
     </SafeAreaView>

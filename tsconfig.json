@@ -8,6 +8,7 @@
     },
     "jsx": "preserve",
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "typeRoots": ["src/types", "./node_modules/@types"]
   },
   "include": ["src/types/*", "src/**/*.ts", "src/**/*.tsx"],

@@ -11,6 +11,8 @@ import { RootStackParamList } from './navigations/types';
 import Spinner from './common/components/Spinner/Spinner';
 import RootStack from './navigations/RootStack';
 import useFCM from './hooks/useFCM';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import globalStyles from './themes/globalStyles';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,11 +36,13 @@ function App(): JSX.Element {
   return (
     <Suspense fallback={<View />}>
       <QueryClientProvider client={queryClient}>
-        <SafeAreaProvider>
-          <NavigationContainer ref={navigationRef} fallback={<Spinner />}>
-            <RootStack />
-          </NavigationContainer>
-        </SafeAreaProvider>
+        <GestureHandlerRootView style={globalStyles.defaultFlexContainer}>
+          <SafeAreaProvider>
+            <NavigationContainer ref={navigationRef} fallback={<Spinner />}>
+              <RootStack />
+            </NavigationContainer>
+          </SafeAreaProvider>
+        </GestureHandlerRootView>
       </QueryClientProvider>
     </Suspense>
   );

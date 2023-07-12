@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import { ScaledSheet } from '@/utils/scale';
 import { AppleLoginButton } from '@/features/Landing/Components';
@@ -17,6 +17,8 @@ import { Accordion } from '@/common/components/Accordion';
 import { Menu } from '@/common/components/Menu';
 import { Button } from '@/common/components/Button';
 import { ConfirmModal } from '@/common/components/Modal';
+import { Tabs } from '@/common/components/Tab';
+import Header from '@/common/components/Header/Header';
 
 const styles = ScaledSheet.create({
   container: {
@@ -50,9 +52,35 @@ const LandingScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Logo size="large" />
-      <Logo size="small" />
+    <ScrollView style={styles.container}>
+      <Header title="첫번째" />
+      <Header title="두번쨰" onPressLeadingIcon={() => {}} />
+      <Header
+        title="세번째"
+        onPressLeadingIcon={() => {}}
+        trailIcon="Close"
+        onPressTrailingIcon={() => {}}
+      />
+      <Header
+        title="네번째"
+        onPressLeadingIcon={() => {}}
+        trailIcon="Share"
+        onPressTrailingIcon={() => {}}
+      />
+      <Tabs
+        tabList={[
+          { name: '첫번째', value: 'first' },
+          { name: '두번째', value: 'second' },
+        ]}
+      />
+      <Tabs
+        tabList={[
+          { name: '첫번째', value: 'first' },
+          { name: '두번째', value: 'second' },
+          { name: '세번째', value: 'third' },
+        ]}
+        initialTab={{ name: '세번째', value: 'third' }}
+      />
       <Button
         title="첫번째 모달"
         onPress={() => setIsVisibleFirstModal(prev => !prev)}
@@ -179,7 +207,7 @@ const LandingScreen = () => {
         disabled
       />
       {isIOS && <AppleLoginButton onLoginSuccess={() => null} />}
-    </View>
+    </ScrollView>
   );
 };
 

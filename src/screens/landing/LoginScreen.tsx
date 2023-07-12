@@ -79,9 +79,11 @@ const LoginScreen = () => {
         <KakaoLoginButton
           onLoginSuccess={token => handleSocialLoginSuccess('kakao', token)}
         />
-        {isIOS && <AppleLoginButton
-          onLoginSuccess={token => handleSocialLoginSuccess('apple', token)}
-        />}
+        {isIOS && (
+          <AppleLoginButton
+            onLoginSuccess={token => handleSocialLoginSuccess('apple', token)}
+          />
+        )}
       </View>
     </View>
   );
