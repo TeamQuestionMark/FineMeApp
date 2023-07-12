@@ -3,7 +3,7 @@ export enum SOCIAL_LOGIN_RESPONSE {
   SUCCESS,
   INVALID_TOKEN,
   FAILED,
-  UNKNOWN_ERROR
+  UNKNOWN_ERROR,
 }
 
-export type Social = 'kakao' | 'apple'
+export type Social = 'kakao' | 'apple';

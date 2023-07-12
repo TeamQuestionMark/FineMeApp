@@ -2,6 +2,6 @@
 //{"gender": "female", "socialType": "KAKAO", "username": "gkdud7873@naver.com"}
 
 export interface UserProfile {
-  username: string
-  socialType: 'KAKAO' | 'APPLE'
+  username: string;
+  socialType: 'KAKAO' | 'APPLE';
 }
