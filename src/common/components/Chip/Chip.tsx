@@ -1,8 +1,5 @@
 import { COLORS } from '@/themes/colors';
-import {
-  GestureResponderEvent,
-  TouchableOpacity,
-} from 'react-native';
+import { GestureResponderEvent, TouchableOpacity } from 'react-native';
 import { TextProps } from '../Text/type';
 import Text from '../Text';
 import { PropsWithChildren, useCallback } from 'react';
@@ -10,6 +7,7 @@ import { ScaledSheet } from '@/utils/scale';
 
 interface ChipProps extends PropsWithChildren {
   isChecked: boolean;
+  value?: string;
   children: string;
   onPress: (value: string, e?: GestureResponderEvent) => void;
 }
@@ -43,10 +41,10 @@ const textProps: Record<'base' | 'checked', TextProps> = {
   },
 };
 
-const Chip = ({ onPress, isChecked, children }: ChipProps) => {
+const Chip = ({ onPress, isChecked, children, value }: ChipProps) => {
   const handlePress = useCallback(
     (e: GestureResponderEvent) => {
-      onPress(children, e);
+      onPress(value || children, e);
     },
     [children],
   );

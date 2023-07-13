@@ -5,6 +5,7 @@ export type LandingStackParamList = {
   Landing: undefined;
   Update: undefined;
   Login: undefined;
+  EditProfile: undefined
 };
 
 export type MyPageParamList = {

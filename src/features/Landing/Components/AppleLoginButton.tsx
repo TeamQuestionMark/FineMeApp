@@ -9,7 +9,7 @@ import globalStyles from '@/themes/globalStyles';
 import { ScaledSheet } from '@/utils/scale';
 
 interface AppleLoginButtonProps {
-  onLoginSuccess: (socialToken: string) => void
+  onLoginSuccess: (socialToken: string) => void;
 }
 
 const styles = ScaledSheet.create({
@@ -19,7 +19,7 @@ const styles = ScaledSheet.create({
   },
 });
 
-const AppleLoginButton = ({onLoginSuccess}:AppleLoginButtonProps) => {
+const AppleLoginButton = ({ onLoginSuccess }: AppleLoginButtonProps) => {
   const login = async () => {
     const responseObject = await appleAuth.performRequest({
       requestedOperation: appleAuth.Operation.LOGIN,
@@ -28,17 +28,16 @@ const AppleLoginButton = ({onLoginSuccess}:AppleLoginButtonProps) => {
     const credentialState = await appleAuth.getCredentialStateForUser(
       responseObject.user,
     );
-    return {credentialState, token: responseObject.identityToken}
-  }
+    return { credentialState, token: responseObject.identityToken };
+  };
 
   const handlePress = async () => {
     try {
-      const {credentialState, token} = await login()
+      const { credentialState, token } = await login();
       if (credentialState === appleAuth.State.AUTHORIZED && token) {
-        onLoginSuccess(token)
-      }
-      else {
-        throw (`Apple credential state is not AUTHORIZED: state ${credentialState}`)
+        onLoginSuccess(token);
+      } else {
+        throw `Apple credential state is not AUTHORIZED: state ${credentialState}`;
       }
     } catch (error) {
       console.error('onAppleButtonPress:', error);

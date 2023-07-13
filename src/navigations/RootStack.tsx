@@ -11,18 +11,25 @@ import Spinner from '@/common/components/Spinner/Spinner';
 import TabNavigation from './TabNavigation';
 import { useUserStore } from '@/store/user';
 import SplashScreen from 'react-native-splash-screen';
+import { registerFcmToken } from '@/utils/fcm/requests';
 
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
   const { getUser, user, reset } = useUserStore();
   const [isSuccess, setIsSuccess] = useState(false);
+  const [isUserLogin, setIsUserLogin] = useState(false);
 
   useEffect(() => {
     getUser()
+      .then(() => setIsUserLogin(true))
       .catch(reset)
       .finally(() => setIsSuccess(true));
   }, [getUser, reset]);
+
+  useEffect(() => {
+    if (user) registerFcmToken();
+  }, [user]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -40,7 +47,11 @@ const RootStack = () => {
       {!isSuccess && <Spinner />}
       {isSuccess && (
         <Suspense fallback={<Spinner />}>
-          {user ? <TabNavigation /> : <LandingStack />}
+          {isUserLogin && user?.birth && user.gender ? (
+            <TabNavigation />
+          ) : (
+            <LandingStack />
+          )}
         </Suspense>
       )}
     </SafeAreaView>

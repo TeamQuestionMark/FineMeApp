@@ -11,6 +11,7 @@ import ChipGroup from '@/common/components/Chip/ChipGroup';
 import OXButtonGroup from '@/common/components/OXButtonGroup/OXButtonGroup';
 import TextField from '@/common/components/TextField/TextField';
 import Validator from '@/utils/Validator';
+import Logo from '@/common/components/Logo/Logo';
 import CheckBox from '@/common/components/CheckBox/CheckBox';
 import { Accordion } from '@/common/components/Accordion';
 import { Menu } from '@/common/components/Menu';
@@ -205,7 +206,7 @@ const LandingScreen = () => {
         isClicked={!isClicked}
         disabled
       />
-      {isIOS && <AppleLoginButton />}
+      {isIOS && <AppleLoginButton onLoginSuccess={() => null} />}
     </ScrollView>
   );
 };

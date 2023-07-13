@@ -10,9 +10,9 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { RootStackParamList } from './navigations/types';
 import Spinner from './common/components/Spinner/Spinner';
 import RootStack from './navigations/RootStack';
-import useFCM from './utils/fcm/useFCM';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import globalStyles from './themes/globalStyles';
+import useFcmHandler from './hooks/useFcmHandler';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -32,7 +32,7 @@ export const navigationRef =
   React.createRef<NavigationContainerRef<RootStackParamList>>();
 
 function App(): JSX.Element {
-  useFCM();
+  useFcmHandler();
   return (
     <Suspense fallback={<View />}>
       <QueryClientProvider client={queryClient}>

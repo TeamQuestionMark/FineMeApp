@@ -8,10 +8,10 @@ export const setTokenToAsyncStorage = async (token: Token) => {
   let newItem: Object;
   if (item) {
     const prev = JSON.parse(item) as any;
-    if(prev && prev.state) {
+    if (prev && prev.state) {
       newItem = { ...prev, state: { ...prev.state, token } };
       AsyncStorage.setItem(STORAGE_KEY.token, JSON.stringify(newItem));
-      return
+      return;
     }
   }
 

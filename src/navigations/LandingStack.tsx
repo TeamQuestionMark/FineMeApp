@@ -1,11 +1,9 @@
 import React from 'react';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { map } from 'lodash';
 
 import { LANDING_STACK_SCREEN_LIST } from '@/screens/constants';
 
-import { RootStackParamList } from './types';
 import { Stack } from './RootStack';
 
 const LandingStack = () => {
@@ -13,10 +11,7 @@ const LandingStack = () => {
   const isUpdateAvailable = false;
 
   return (
-    <Stack.Navigator
-      // initialRouteName={isUpdateAvailable ? 'Update' : 'Login'}
-      initialRouteName={'Login'}
-    >
+    <Stack.Navigator initialRouteName={isUpdateAvailable ? 'Update' : 'Login'}>
       {map(LANDING_STACK_SCREEN_LIST, screen => (
         <Stack.Screen
           key={screen.name}

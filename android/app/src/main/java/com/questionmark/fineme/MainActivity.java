@@ -5,6 +5,8 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.defaults.DefaultNewArchitectureEntryPoint;
 import com.facebook.react.defaults.DefaultReactActivityDelegate;
 import android.os.Bundle;
+import android.util.Log;
+import com.kakao.sdk.common.util.Utility;
 import org.devio.rn.splashscreen.SplashScreen;
 
 public class MainActivity extends ReactActivity {
@@ -17,6 +19,9 @@ public class MainActivity extends ReactActivity {
   protected void onCreate(Bundle savedInstanceState) {
     SplashScreen.show(this);  // here
     super.onCreate(null);
+    String keyHash = Utility.INSTANCE.getKeyHash(this);
+    Log.d("KEY_HASH", keyHash);
+
   }
 
   @Override

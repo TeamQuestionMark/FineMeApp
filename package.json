@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
-    "ios": "react-native run-ios",
+    "ios": "ENVFILE=.env react-native run-ios --scheme=FineMe",
     "ios:simulator": "sh ./scripts/ios_simulator.sh",
     "ios:stg": "ENVFILE=.env.staging react-native run-ios --scheme=FineMe-stg",
     "ios:prd": "ENVFILE=.env react-native run-ios --scheme=FineMe",
@@ -15,7 +15,7 @@
     "build:android:stg": "cd android && ENVFILE=.env.staging ./gradlew app:assembleStagingRelease",
     "build:android:prd": "cd android && ENVFILE=.env ./gradlew app:assembleProductionRelease",
     "build:android:bundle": "cd android && ENVFILE=.env ./gradlew bundleRelease",
-    "lint": "eslint .",
+    "lint": "eslint --fix .",
     "start": "react-native start --reset-cache",
     "postinstall": "patch-package",
     "test": "jest"
@@ -30,6 +30,7 @@
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",
+    "@react-navigation/stack": "^6.3.17",
     "@types/lodash": "^4.14.195",
     "axios": "^1.4.0",
     "babel-plugin-root-import": "^6.6.0",
@@ -42,6 +43,7 @@
     "react-native": "0.71.7",
     "react-native-code-push": "^8.0.2",
     "react-native-config": "^1.5.1",
+    "react-native-date-picker": "^4.2.13",
     "react-native-fast-image": "^8.6.3",
     "react-native-gesture-handler": "^2.12.0",
     "react-native-modal": "^13.0.1",
