@@ -11,10 +11,11 @@ import globalStyles from '@/themes/globalStyles';
 import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
 import { Divider } from '@/common/components/Divider';
-import { Shadow } from 'react-native-shadow-2';
 import { StageMainCardProps } from './type';
-import { isIOS } from '@/utils/device';
 import { CustomShadow } from '@/common/components/Shadow';
+import { useNavigation } from '@react-navigation/native';
+import { StageParamList } from '@/navigations/types';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 const styles = ScaledSheet.create({
   container: {
@@ -42,6 +43,7 @@ const styles = ScaledSheet.create({
 });
 
 const StageMainCard = ({ type }: StageMainCardProps) => {
+  const navigation = useNavigation<StackNavigationProp<StageParamList>>();
   const contentsObj = useMemo(() => {
     switch (type) {
       case 'work':
@@ -72,7 +74,9 @@ const StageMainCard = ({ type }: StageMainCardProps) => {
   }, [type]);
 
   // TOTO: 이동 시키기
-  const onPressNavigateToSample = () => {};
+  const onPressNavigateToSample = () => {
+    navigation.navigate('StagePreview', { stageType: type });
+  };
 
   const onPressShareButton = () => {};
 
