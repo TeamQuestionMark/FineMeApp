@@ -5,6 +5,7 @@ import Chip from '@/common/components/Chip/Chip';
 import ChipGroup from '@/common/components/Chip/ChipGroup';
 import Text from '@/common/components/Text';
 import DateInputField from '@/features/Landing/Components/DateInputField';
+import { useUserStore } from '@/store/user';
 import globalStyles, { GLOBAL_HORIZONTAL_PADDING } from '@/themes/globalStyles';
 import { ScaledSheet } from '@/utils/scale';
 import { useState } from 'react';
@@ -45,13 +46,14 @@ const styles = ScaledSheet.create({
 const EditProfileScreen = () => {
   const [gender, setGender] = useState<string>();
   const [birth, setBirth] = useState<Date>();
+  const { getUser } = useUserStore();
   const handleSubmit = async () => {
     if (gender && birth) {
-      const data = await putProfile({
+      await putProfile({
         gender: gender as Gender,
-        birth: birth.toJSON(),
+        birth,
       });
-      console.log(data);
+      getUser();
     }
   };
 
