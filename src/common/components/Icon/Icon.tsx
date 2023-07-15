@@ -21,6 +21,7 @@ import { TouchableOpacity } from 'react-native';
 interface IconProps extends IconStyleProps {
   icon: keyof typeof Icons;
   isPressable?: boolean;
+  isLongPressable?: boolean;
   onPressIcon?: () => void;
 }
 
@@ -29,9 +30,18 @@ const Icon = ({
   size,
   color = COLORS.black,
   isPressable = false,
+  isLongPressable = false,
   onPressIcon,
 }: IconProps) => {
   const IconComponent = Icons[icon];
+
+  if (isLongPressable) {
+    return (
+      <TouchableOpacity onLongPress={onPressIcon} activeOpacity={0.7}>
+        <IconComponent size={s(size)} color={color} />
+      </TouchableOpacity>
+    );
+  }
 
   return isPressable ? (
     <TouchableOpacity onPress={onPressIcon} activeOpacity={0.7}>

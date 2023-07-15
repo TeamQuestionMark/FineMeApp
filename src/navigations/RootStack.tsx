@@ -12,6 +12,8 @@ import TabNavigation from './TabNavigation';
 import { useUserStore } from '@/store/user';
 import SplashScreen from 'react-native-splash-screen';
 import { registerFcmToken } from '@/utils/fcm/requests';
+import { useToastStore } from '@/store/toast';
+import { SnackBar } from '@/common/components/SnackBar';
 
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,6 +21,15 @@ const RootStack = () => {
   const { getUser, user, reset } = useUserStore();
   const [isSuccess, setIsSuccess] = useState(false);
   const [isUserLogin, setIsUserLogin] = useState(false);
+
+  const { toastMessage, isToastVisible, onCloseSnackbar } = useToastStore(
+    state => ({
+      toastMessage: state.message,
+      isToastVisible: state.isVisible,
+      onCloseSnackbar: state.close,
+      setToast: state.setToast,
+    }),
+  );
 
   useEffect(() => {
     getUser()
@@ -53,6 +64,9 @@ const RootStack = () => {
             <LandingStack />
           )}
         </Suspense>
+      )}
+      {isToastVisible && (
+        <SnackBar message={toastMessage} onClose={onCloseSnackbar} />
       )}
     </SafeAreaView>
   );

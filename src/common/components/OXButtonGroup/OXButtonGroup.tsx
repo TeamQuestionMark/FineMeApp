@@ -1,8 +1,5 @@
 import { COLORS } from '@/themes/colors';
-import {
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { useCallback, useState } from 'react';
 import IconOX from '@/assets/icons/OXButton/IconOX';
 import { ScaledSheet } from '@/utils/scale';
@@ -26,22 +23,22 @@ const styles = ScaledSheet.create({
     height: '52@vs',
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   checked: {
     borderColor: COLORS.brandColor500,
     backgroundColor: COLORS.brandColor300,
-  }
+  },
 });
 
 const OXButtonGroup = ({ onChange }: OXButtonGroupProps) => {
   const [checkedValue, setCheckedValue] = useState<'o' | 'x'>();
   const handlePress = useCallback(
-    (value: 'o'|'x') => {
-      setCheckedValue(value)
-      onChange(value === 'o')
+    (value: 'o' | 'x') => {
+      setCheckedValue(value);
+      onChange(value === 'o');
     },
-    [onChange],
+    [checkedValue, onChange],
   );
 
   return (
@@ -50,13 +47,13 @@ const OXButtonGroup = ({ onChange }: OXButtonGroupProps) => {
         style={[styles.button, checkedValue === 'o' && styles.checked]}
         onPress={() => handlePress('o')}
       >
-          <IconOX ox='o' checked={checkedValue === 'o'}/>
+        <IconOX ox="o" checked={checkedValue === 'o'} />
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, checkedValue === 'x' && styles.checked]}
         onPress={() => handlePress('x')}
-        >
-          <IconOX ox='x' checked={checkedValue === 'x'}/>
+      >
+        <IconOX ox="x" checked={checkedValue === 'x'} />
       </TouchableOpacity>
     </View>
   );

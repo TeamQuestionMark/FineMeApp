@@ -2,16 +2,24 @@ import React, { ReactNode } from 'react';
 import { Shadow } from 'react-native-shadow-2';
 import { COLORS } from '@/themes/colors';
 
-const CustomShadow = ({ children }: { children: ReactNode }) => {
+const CustomShadow = ({
+  children,
+  borderRadius = 20,
+  shadowColor = COLORS.black,
+}: {
+  children: ReactNode;
+  borderRadius?: number;
+  shadowColor?: string;
+}) => {
   return (
     <Shadow
       distance={1}
-      startColor={COLORS.black}
-      endColor={COLORS.black}
+      startColor={shadowColor}
+      endColor={shadowColor}
       paintInside={true}
       safeRender
       offset={[4, 4]}
-      style={{ borderRadius: 20 }}
+      style={{ borderRadius: borderRadius }}
       sides={{
         bottom: true,
         end: true,
