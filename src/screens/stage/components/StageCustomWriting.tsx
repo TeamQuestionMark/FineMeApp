@@ -1,22 +1,20 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useForm, Controller } from 'react-hook-form';
-import {
-  NestableDraggableFlatList,
-  NestableScrollContainer,
-  RenderItem,
-  RenderItemParams,
-} from 'react-native-draggable-flatlist';
+
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { gestureHandlerRootHOC } from 'react-native-gesture-handler';
 
 import Header from '@/common/components/Header/Header';
 import { NavigationProps } from '@/navigations/types';
 import globalStyles from '@/themes/globalStyles';
 import TextField from '@/common/components/TextField/TextField';
 import { ScaledSheet } from '@/utils/scale';
-import { CustomStageQuestionState, CustomStageTitleForm } from '../type';
+import {
+  CustomStageQuestionState,
+  CustomStageQuestionType,
+  CustomStageTitleForm,
+} from '../type';
 import { Divider } from '@/common/components/Divider';
 import { COLORS } from '@/themes/colors';
 import { Button } from '@/common/components/Button';
@@ -24,7 +22,7 @@ import CustomQuestionMaker from './StageCustomWriting/CustomQuestionMaker';
 import { useToastStore } from '@/store/toast';
 import { ConfirmModal } from '@/common/components/Modal';
 import CustomQuestionCard from './StageCustomWriting/CustomQuestionCard';
-import { map } from 'lodash';
+import { find, map } from 'lodash';
 
 const styles = ScaledSheet.create({
   paddingContainer: {
@@ -41,15 +39,55 @@ const StageCustomWriting = () => {
 
   const setToast = useToastStore(state => state.setToast);
 
-  // const flatListKeyExtractor = useCallback(
-  //   (item: CustomStageQuestionState) => item.externalKey,
-  //   [],
-  // );
   const [isVisibleCloseConfirmModal, setIsVisibleCloseConfirmModal] =
+    useState<boolean>(false);
+  const [isVisibleCompleteConfirmModal, setIsVisibleCompleteConfirmModal] =
     useState<boolean>(false);
   const [customQuestions, setCustomQuestions] = useState<
     CustomStageQuestionState[]
   >([]);
+
+  const hasEmptyQuestionTitle = useMemo(
+    () =>
+      find(customQuestions, customQuestion => !customQuestion?.questionTitle),
+    [customQuestions],
+  );
+
+  const hasEmptyMultiChoiceOptionEmpty = useMemo(
+    () =>
+      find(customQuestions, customQuestion => {
+        const hasInnerOptionContentsEmpty = find(
+          customQuestion?.multipleChoiceList,
+          listItem =>
+            (customQuestion.questionType === CustomStageQuestionType.RADIO ||
+              customQuestion.questionType ===
+                CustomStageQuestionType.CHECK_BOX) &&
+            !listItem.content,
+        );
+        if (hasInnerOptionContentsEmpty) {
+          return customQuestion;
+        }
+      }),
+    [customQuestions],
+  );
+
+  const hasEmptyMultiChoiceOptionOverFifty = useMemo(
+    () =>
+      find(customQuestions, customQuestion => {
+        const hasInnerOptionContentsFifty = find(
+          customQuestion?.multipleChoiceList,
+          listItem =>
+            (customQuestion.questionType === CustomStageQuestionType.RADIO ||
+              customQuestion.questionType ===
+                CustomStageQuestionType.CHECK_BOX) &&
+            listItem.content.length > 50,
+        );
+        if (hasInnerOptionContentsFifty) {
+          return customQuestion;
+        }
+      }),
+    [customQuestions],
+  );
 
   const { control, handleSubmit } = useForm<CustomStageTitleForm>({
     defaultValues: {
@@ -67,9 +105,43 @@ const StageCustomWriting = () => {
     navigation.goBack();
   };
 
-  const onPressSubmitButton = (data: CustomStageTitleForm) => {
-    setToast('테스트');
+  const onPressSavaButton = () => {
+    //TODO: 저장 로직
+    navigation.goBack();
   };
+
+  const onPressSubmitButton = useCallback(
+    (data: CustomStageTitleForm) => {
+      if (!data.category || !data.title) {
+        setToast('제목과 카테고리를 모두 입력해주세요.');
+        return;
+      }
+      if (data.category.length > 8 || data.title.length > 8) {
+        setToast('내용은 최대 8글자까지만 입력 가능합니다.');
+        return;
+      }
+      if (hasEmptyQuestionTitle || customQuestions.length === 0) {
+        setToast('작성중인 질문을 완료해주세요.');
+        return;
+      }
+      if (hasEmptyMultiChoiceOptionEmpty) {
+        setToast('옵션 내용을 입력해주세요.');
+        return;
+      }
+      if (hasEmptyMultiChoiceOptionOverFifty) {
+        setToast('옵션 내용은 최대 50글자까지만 입력 가능합니다.');
+        return;
+      }
+
+      setIsVisibleCompleteConfirmModal(true);
+    },
+    [
+      customQuestions,
+      hasEmptyQuestionTitle,
+      hasEmptyMultiChoiceOptionEmpty,
+      hasEmptyMultiChoiceOptionOverFifty,
+    ],
+  );
 
   const renderCard = useMemo(
     () =>
@@ -80,7 +152,8 @@ const StageCustomWriting = () => {
               questionType={customQuestion?.questionType}
               externalKey={customQuestion?.externalKey}
               questionTitle={customQuestion?.questionTitle}
-              subjectiveAnswer={customQuestion?.subjectiveAnswer}
+              answerText={customQuestion?.answerText}
+              multipleChoiceList={customQuestion?.multipleChoiceList}
               order={index + 1}
               customQuestions={customQuestions}
               setCustomQuestions={setCustomQuestions}
@@ -92,47 +165,9 @@ const StageCustomWriting = () => {
     [customQuestions],
   );
 
-  // const renderItem = gestureHandlerRootHOC(
-  //   ({ item, drag, getIndex }: RenderItemParams<CustomStageQuestionState>) => {
-  //     return (
-  //       <View key={item?.externalKey}>
-  //         <CustomQuestionCard
-  //           questionType={item?.questionType}
-  //           externalKey={item?.externalKey}
-  //           questionTitle={item?.questionTitle}
-  //           order={(getIndex() || 0) + 1}
-  //           cardDrag={drag}
-  //           customQuestions={customQuestions}
-  //           setCustomQuestions={setCustomQuestions}
-  //         />
-  //         <Divider vertical={10} />
-  //       </View>
-  //     );
-  //   },
-  // );
-
-  // const DragList = gestureHandlerRootHOC(() => (
-  //   <View
-  //     style={[customQuestions.length > 0 && styles.questionPaddingContainer]}
-  //   >
-  //     <NestableScrollContainer>
-  //       <NestableDraggableFlatList
-  //         ref={flatListRef}
-  //         data={customQuestions}
-  //         renderItem={renderItem as RenderItem<CustomStageQuestionState>}
-  //         keyExtractor={flatListKeyExtractor}
-  //         removeClippedSubviews={false}
-  //         onDragEnd={({ data }) => {
-  //           setCustomQuestions(data);
-  //         }}
-  //       />
-  //     </NestableScrollContainer>
-  //   </View>
-  // ));
-
   return (
     <View style={[globalStyles.defaultFlexContainer]}>
-      <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView enableResetScrollToCoords={false}>
         <Header
           title="커스텀 스테이지"
           trailIcon="Close"
@@ -172,7 +207,6 @@ const StageCustomWriting = () => {
           horizontal="100%"
           backgroundColor={COLORS.gray50}
         />
-        {/* <DragList /> */}
         <View
           style={[
             customQuestions.length > 0 && styles.questionPaddingContainer,
@@ -191,6 +225,7 @@ const StageCustomWriting = () => {
             width="100%"
           />
         </View>
+        <Divider vertical={71} />
       </KeyboardAwareScrollView>
       <ConfirmModal
         title="정말 나가시겠습니까?"
@@ -211,6 +246,27 @@ const StageCustomWriting = () => {
             title="아니오"
             variant="solid"
             onPress={() => setIsVisibleCloseConfirmModal(false)}
+            width={127}
+          />
+        }
+      />
+      <ConfirmModal
+        title="저장하시겠습니까?"
+        description="저장한 스테이지는 수정이 불가합니다."
+        isVisible={isVisibleCompleteConfirmModal}
+        firstButton={
+          <Button
+            title="취소"
+            variant="outlined"
+            onPress={() => setIsVisibleCompleteConfirmModal(false)}
+            width={127}
+          />
+        }
+        secondButton={
+          <Button
+            title="저장"
+            variant="solid"
+            onPress={onPressSavaButton}
             width={127}
           />
         }

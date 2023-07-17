@@ -29,7 +29,7 @@ const styles = ScaledSheet.create({
     padding: 2,
   },
   input: {
-    height: '104@vs',
+    height: '93@vs',
     paddingHorizontal: 0,
     paddingVertical: 0,
     borderRadius: 4,

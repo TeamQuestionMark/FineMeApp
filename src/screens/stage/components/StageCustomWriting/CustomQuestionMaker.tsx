@@ -1,13 +1,9 @@
 import React, { Dispatch, SetStateAction, useMemo, useState } from 'react';
 import { TouchableOpacity, View, Pressable } from 'react-native';
+import { v4 as uuidv4 } from 'uuid';
+
 import { ScaledSheet, s, vs } from '@/utils/scale';
-import {
-  CustomStageFormData,
-  CustomStageQuestion,
-  CustomStageQuestionState,
-  CustomStageQuestionType,
-} from '../../type';
-import { Control, Controller } from 'react-hook-form';
+import { CustomStageQuestionState, CustomStageQuestionType } from '../../type';
 import globalStyles from '@/themes/globalStyles';
 import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
@@ -29,6 +25,8 @@ const CustomQuestionMaker = ({
   customQuestions: CustomStageQuestionState[];
   setCustomQuestions: Dispatch<SetStateAction<CustomStageQuestionState[]>>;
 }) => {
+  const uuid = uuidv4();
+
   const [questionType, setQuestionType] = useState<
     CustomStageQuestionType | undefined
   >();
@@ -45,8 +43,14 @@ const CustomQuestionMaker = ({
         questionType: questionType as CustomStageQuestionType,
         questionTitle: '',
         answerChoice: '',
-        subjectiveAnswer: '',
-        externalKey: `${questionType}-${customQuestions.length}`,
+        answerText: '',
+        multipleChoiceList: [
+          {
+            content: '',
+            choiceExternalKey: `${uuid}-1`,
+          },
+        ],
+        externalKey: uuid,
       },
     ]);
     setQuestionType(undefined);
@@ -57,7 +61,7 @@ const CustomQuestionMaker = ({
 
     const buttonName = (() => {
       switch (selectedType) {
-        case CustomStageQuestionType.MULTIPLE_CHOICE_ANSWER:
+        case CustomStageQuestionType.RADIO:
           return '객관식';
         case CustomStageQuestionType.OX_ANSWER:
           return 'O / X';
@@ -113,7 +117,7 @@ const CustomQuestionMaker = ({
         ]}
       >
         {renderTypeSelectButton(CustomStageQuestionType.SUBJECTIVE_ANSWER)}
-        {renderTypeSelectButton(CustomStageQuestionType.MULTIPLE_CHOICE_ANSWER)}
+        {renderTypeSelectButton(CustomStageQuestionType.RADIO)}
         {renderTypeSelectButton(CustomStageQuestionType.OX_ANSWER)}
       </View>
       <Divider vertical={50} />

@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from 'react';
 import { View } from 'react-native';
+import { filter, map } from 'lodash';
 
 import { COLORS } from '@/themes/colors';
 import { ScaledSheet } from '@/utils/scale';
@@ -8,13 +9,14 @@ import globalStyles from '@/themes/globalStyles';
 import Text from '@/common/components/Text';
 import { Divider } from '@/common/components/Divider';
 import { InputMessageField, TextField } from '@/common/components/TextField';
-import { map } from 'lodash';
 import {
   CustomStageQuestion,
   CustomStageQuestionType,
   MultipleChoiceProp,
 } from '../../type';
 import OXButtonGroup from '@/common/components/OXButtonGroup/OXButtonGroup';
+import Icon from '@/common/components/Icon/Icon';
+import CustomQuestionMultipleChoice from './CustomQuestionMultipleChoice';
 
 const styles = ScaledSheet.create({
   container: {
@@ -31,10 +33,11 @@ const styles = ScaledSheet.create({
 const CustomQuestionCard = ({
   questionType,
   questionTitle,
-  subjectiveAnswer,
+  answerText,
   order,
   customQuestions,
   setCustomQuestions,
+  multipleChoiceList,
   externalKey,
 }: CustomQuestionCardProps) => {
   const getModifiedValue = useCallback(
@@ -64,12 +67,9 @@ const CustomQuestionCard = ({
     [customQuestions, setCustomQuestions],
   );
 
-  const onChangeSubjectiveAnswer = useCallback(
+  const onChangeanswerText = useCallback(
     (text: string) => {
-      const modifiedCustomQuestions = getModifiedValue(
-        'subjectiveAnswer',
-        text,
-      );
+      const modifiedCustomQuestions = getModifiedValue('answerText', text);
       setCustomQuestions(modifiedCustomQuestions);
     },
     [customQuestions, setCustomQuestions],
@@ -83,14 +83,43 @@ const CustomQuestionCard = ({
     [customQuestions, setCustomQuestions],
   );
 
+  const onPressDeleteCard = useCallback(() => {
+    const modifiedCustomQuestions = filter(
+      customQuestions,
+      customQuestion => customQuestion?.externalKey !== externalKey,
+    );
+
+    setCustomQuestions(modifiedCustomQuestions);
+  }, [customQuestions, setCustomQuestions]);
+
   const renderContents = useMemo(() => {
     switch (questionType) {
       case CustomStageQuestionType.SUBJECTIVE_ANSWER:
         return (
           <InputMessageField
-            value={subjectiveAnswer || ''}
+            value={answerText || ''}
             placeholder="1~100자까지 작성할 수 있습니다."
-            onInput={onChangeSubjectiveAnswer}
+            onInput={onChangeanswerText}
+          />
+        );
+      case CustomStageQuestionType.RADIO:
+        return (
+          <CustomQuestionMultipleChoice
+            questionType={questionType}
+            multipleChoiceList={multipleChoiceList}
+            externalKey={externalKey}
+            customQuestions={customQuestions}
+            setCustomQuestions={setCustomQuestions}
+          />
+        );
+      case CustomStageQuestionType.CHECK_BOX:
+        return (
+          <CustomQuestionMultipleChoice
+            questionType={questionType}
+            multipleChoiceList={multipleChoiceList}
+            externalKey={externalKey}
+            customQuestions={customQuestions}
+            setCustomQuestions={setCustomQuestions}
           />
         );
       case CustomStageQuestionType.OX_ANSWER:
@@ -114,6 +143,16 @@ const CustomQuestionCard = ({
           <Text fontSize="16" fontWeight="bold" color={COLORS.gray900}>
             {`질문 ${order || 0}`}
           </Text>
+        </View>
+        <View style={globalStyles.rowAlignCenterContainer}>
+          <Icon
+            icon="Close"
+            size={17}
+            color={COLORS.gray400}
+            isPressable
+            onPressIcon={onPressDeleteCard}
+          />
+          <Divider horizontal={14} />
         </View>
       </View>
       <Divider vertical={8} />
