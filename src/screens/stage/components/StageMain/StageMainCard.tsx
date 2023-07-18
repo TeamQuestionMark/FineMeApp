@@ -17,6 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StageParamList } from '@/navigations/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { STAGE_ID_MAP } from '@/constants/stage';
+import shareStage from '@/utils/shareStage';
 
 const styles = ScaledSheet.create({
   container: {
@@ -81,7 +82,9 @@ const StageMainCard = ({ type }: StageMainCardProps) => {
     });
   };
 
-  const onPressShareButton = () => {};
+  const onPressShareButton = () => {
+    shareStage(STAGE_ID_MAP[type]);
+  };
 
   return (
     <View style={[globalStyles.rowAlignCenterContainer]}>
