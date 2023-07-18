@@ -2,6 +2,7 @@ import { COLORS, TEXT_COLORS } from '@/themes/colors';
 import React, {
   Dispatch,
   SetStateAction,
+  forwardRef,
   useCallback,
   useEffect,
   useImperativeHandle,
@@ -20,6 +21,9 @@ import {
 import Validator from '../../../utils/Validator';
 import Text from '../Text';
 import { ScaledSheet } from '@/utils/scale';
+import globalStyles from '@/themes/globalStyles';
+import { Divider } from '../Divider';
+import { getTypography } from '@/themes/typography';
 
 const styles = ScaledSheet.create({
   row: {
@@ -74,6 +78,12 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
     const [status, setStatus] = useState<InputStatus>('default');
     const [touched, setTouched] = useState(false);
     const [isValid, setIsValid] = useState<boolean>(true);
+
+    const inputFontStyle = getTypography({
+      fontSize: '14',
+      fontWeight: 'Regular',
+      isFontTypeEnglish: false,
+    });
 
     useImperativeHandle(ref, () => ({
       ...inputRef.current,
@@ -139,22 +149,23 @@ const TextField = React.forwardRef<TextFieldRef, TextFieldProps>(
     return (
       <View style={styles.row}>
         {label && (
-          <Text marginBottom={6} fontSize="16" fontWeight="bold">
-            {label}
-          </Text>
+          <View style={globalStyles.rowAlignCenterContainer}>
+            <Divider horizontal={14} />
+            <Text marginBottom={6} fontSize="16" fontWeight="bold">
+              {label}
+            </Text>
+          </View>
         )}
         <TextInput
           aria-label={label}
           placeholderTextColor={TEXT_COLORS.textPlaceholder}
           ref={inputRef}
-          style={[styles.input, styles[status]]}
+          style={[styles.input, styles[status], inputFontStyle]}
           onChangeText={handleChangeText}
           onFocus={handleFocus}
           onBlur={handleBlur}
           {...textInputProps}
-        >
-          <Text fontSize="14" />
-        </TextInput>
+        />
       </View>
     );
   },

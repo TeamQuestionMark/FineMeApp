@@ -14,8 +14,11 @@ import {
   UpdateScreen,
 } from './landing';
 import { MyPageScreen } from './myPage';
-import { StageScreen } from './stage';
-import StagePreviewScreen from './stage/StagePreviewScreen';
+import {
+  StageCustomWritingScreen,
+  StageScreen,
+  StagePreviewScreen,
+} from './stage';
 
 export const LANDING_STACK_SCREEN_LIST: ScreenList<LandingStackParamList> = [
   {
@@ -51,6 +54,10 @@ export const STAGE_STACK_SCREEN_LIST: ScreenList<StageParamList> = [
   {
     name: 'StagePreview',
     component: StagePreviewScreen,
+  },
+  {
+    name: 'StageCustomWriting',
+    component: StageCustomWritingScreen,
   },
 ];
 

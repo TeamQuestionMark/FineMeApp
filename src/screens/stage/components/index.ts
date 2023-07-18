@@ -1,3 +1,4 @@
 import StageMain from "./StageMain";
+import StageCustomWriting from "./StageCustomWriting";
 
-export {StageMain}
+export {StageMain, StageCustomWriting}

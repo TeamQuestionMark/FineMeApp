@@ -6,7 +6,8 @@ import { ScaledSheet, vs } from '@/utils/scale';
 import Tooltip from '@/assets/images/description/image_add_item_description.png';
 import ButtonImage from '@/assets/icons/Add/icon_circle_add.png';
 import globalStyles from '@/themes/globalStyles';
-import { useFocusEffect, useIsFocused } from '@react-navigation/native';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import { NavigationProps } from '@/navigations/types';
 
 const styles = ScaledSheet.create({
   container: {
@@ -25,10 +26,13 @@ const styles = ScaledSheet.create({
 
 const StageMainAddButton = () => {
   const isFocused = useIsFocused();
+  const navigation = useNavigation<NavigationProps>();
+
   const [isTooltipVisible, setIsTooltipVisible] = useState<boolean>(true);
 
-  // TODO: 이동
-  const onPressAddButton = () => {};
+  const onPressAddButton = () => {
+    navigation.navigate('StageCustomWriting');
+  };
 
   useEffect(() => {
     if (isFocused) {
