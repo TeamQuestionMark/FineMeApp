@@ -1,6 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ParamListBase } from '@react-navigation/native';
-import { StageMainCardProps } from '@/screens/stage/components/StageMain/type';
 
 export type LandingStackParamList = {
   Landing: undefined;
@@ -15,7 +14,7 @@ export type MyPageParamList = {
 
 export type StageParamList = {
   Stage: undefined;
-  StagePreview: { stageType: StageMainCardProps['type'] };
+  StagePreview: { stageId: number; stageName: string };
 };
 
 export type CharacterParamList = {

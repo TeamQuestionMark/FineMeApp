@@ -74,9 +74,11 @@ const StageMainCard = ({ type }: StageMainCardProps) => {
     }
   }, [type]);
 
-  // TOTO: 이동 시키기
   const onPressNavigateToSample = () => {
-    navigation.navigate('StagePreview', { stageType: type });
+    navigation.navigate('StagePreview', {
+      stageId: STAGE_ID_MAP[type],
+      stageName: type,
+    });
   };
 
   const onPressShareButton = () => {};

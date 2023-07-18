@@ -6,10 +6,13 @@ import Header from '@/common/components/Header/Header';
 import { RouteProp, useRoute } from '@react-navigation/native';
 import { StageParamList } from '@/navigations/types';
 import { WebView } from 'react-native-webview';
-import { FINEME_WEB_URL } from '@/constants/config';
+import shareStage from '@/utils/shareStage';
+import { STAGE_PREVIEW_URL } from '@/constants/stage';
 
 const StagePreviewScreen = () => {
   const route = useRoute<RouteProp<StageParamList, 'StagePreview'>>();
+  const { stageId, stageName } = route.params;
+
   return (
     <View
       style={[
@@ -17,10 +20,14 @@ const StagePreviewScreen = () => {
         globalStyles.defaultBackgroundColor,
       ]}
     >
-      <Header title="회사" trailIcon="Share" />
+      <Header
+        title={stageName}
+        trailIcon="Share"
+        onPressTrailingIcon={() => shareStage(stageId)}
+      />
       <WebView
         source={{
-          uri: FINEME_WEB_URL + `/stage/preview?type=${route.params.stageType}`,
+          uri: STAGE_PREVIEW_URL(stageId),
         }}
       />
     </View>
