@@ -17,10 +17,8 @@ import useFcmHandler from './hooks/useFcmHandler';
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      suspense: true,
       useErrorBoundary: true,
-      cacheTime: 1000,
-      staleTime: 1000,
+      staleTime: Infinity,
       refetchOnWindowFocus: false,
       refetchOnMount: true,
       retry: 0,

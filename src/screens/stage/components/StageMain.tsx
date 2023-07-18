@@ -9,7 +9,7 @@ import { ScaledSheet } from '@/utils/scale';
 import StageMainSelector from './StageMain/StageMainSelector';
 import StageMainCustomSection from './StageMain/StageMainCustomSection';
 import StageMainAddButton from './StageMain/StageMainAddButton';
-import globalStyles from '@/themes/globalStyles';
+import { useUserStore } from '@/store/user';
 
 const styles = ScaledSheet.create({
   padding: {
@@ -18,8 +18,7 @@ const styles = ScaledSheet.create({
 });
 
 const StageMain = () => {
-  //TODO: 이름 수정
-  const userName = '휘파람부는 파이니';
+  const { user } = useUserStore();
 
   return (
     <View>
@@ -28,9 +27,11 @@ const StageMain = () => {
         <StageMainHeader />
         <Divider vertical={25} />
         <View style={styles.padding}>
-          <Text fontSize="24" fontWeight="extraBold" color={COLORS.black}>
-            {`${userName}님`}
-          </Text>
+          {user?.nickname && (
+            <Text fontSize="24" fontWeight="extraBold" color={COLORS.black}>
+              {`${user.nickname}님`}
+            </Text>
+          )}
           <Text fontSize="24" fontWeight="extraBold" color={COLORS.black}>
             찾아보세요, 괜찮은 당신을
           </Text>

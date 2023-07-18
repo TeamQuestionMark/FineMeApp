@@ -13,7 +13,7 @@ import {
   LoginScreen,
   UpdateScreen,
 } from './landing';
-import { MyPageScreen } from './myPage';
+import { MyPageScreen, NotificationScreen } from './myPage';
 import {
   StageCustomWritingScreen,
   StageScreen,
@@ -44,6 +44,10 @@ export const MY_PAGE_STACK_SCREEN_LIST: ScreenList<MyPageParamList> = [
     name: 'MyPage',
     component: MyPageScreen,
   },
+  {
+    name: 'Notification',
+    component: NotificationScreen,
+  },
 ];
 
 export const STAGE_STACK_SCREEN_LIST: ScreenList<StageParamList> = [
@@ -58,6 +62,10 @@ export const STAGE_STACK_SCREEN_LIST: ScreenList<StageParamList> = [
   {
     name: 'StageCustomWriting',
     component: StageCustomWritingScreen,
+  },
+  {
+    name: 'Notification',
+    component: NotificationScreen,
   },
 ];
 

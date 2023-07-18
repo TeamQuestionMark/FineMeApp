@@ -17,12 +17,14 @@ export type LandingStackParamList = {
 
 export type MyPageParamList = {
   MyPage: undefined;
+  Notification: undefined;
 };
 
 export type StageParamList = {
   Stage: undefined;
   StagePreview: { stageId: number; stageName: string };
   StageCustomWriting: undefined;
+  Notification: undefined;
 };
 
 export type CharacterParamList = {
