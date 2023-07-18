@@ -14,3 +14,10 @@ export const getNotificationList = async () => {
 
   return response.data.data;
 };
+
+export const readNotification = async (target: 'all' | number) => {
+  const id = target === 'all' ? 0 : target;
+  return await mainAxios.put<ResponseData<NotificationListData>>(
+    `/api/v1/notification/${id}`,
+  );
+};
