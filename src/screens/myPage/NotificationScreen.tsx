@@ -1,5 +1,5 @@
-import React from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react';
+import { ScrollView, View } from 'react-native';
 
 import { COLORS } from '@/themes/colors';
 import Header from '@/common/components/Header/Header';
@@ -7,6 +7,9 @@ import { useNavigation } from '@react-navigation/native';
 import { Notification } from '@/api/Notification/types';
 import NotificationBox from './components/NotificationBox';
 import { ScaledSheet } from '@/utils/scale';
+import Switch from '@/common/components/Switch/Switch';
+import Text from '@/common/components/Text';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const dummyNotificationLists: Notification[] = [
   {
@@ -53,33 +56,68 @@ const dummyNotificationLists: Notification[] = [
 
 const styles = ScaledSheet.create({
   container: {
+    flex: 1,
+    flexDirection: 'column',
     paddingHorizontal: '20@s',
+    backgroundColor: COLORS.white,
   },
   scrollView: {
     paddingBottom: '200@vs',
+    marginTop: '30@vs',
   },
   noti: {
     marginBottom: '20@vs',
+  },
+  notiHeader: {
+    marginTop: '15@vs',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  notiSwitch: {
+    flexDirection: 'row',
+  },
+  readAllButton: {
+    borderRadius: 30,
+    borderWidth: 1,
+    borderColor: COLORS.gray200,
+    paddingVertical: '8@vs',
+    paddingHorizontal: '14@s',
   },
 });
 
 const NotificationScreen = () => {
   const navigation = useNavigation();
-  return (
-    <View style={{ backgroundColor: COLORS.white }}>
-      <Header title="응답 알림" onPressLeadingIcon={navigation.goBack} />
+  const [notiOn, setNotiOn] = useState(false);
 
-      <View style={styles.container}>
-        <ScrollView contentContainerStyle={styles.scrollView}>
-          {dummyNotificationLists.map(notification => (
-            <NotificationBox
-              style={styles.noti}
-              key={notification.id}
-              notification={notification}
-            />
-          ))}
-        </ScrollView>
+  const toggleNoti = () => {
+    setNotiOn(!notiOn);
+  };
+
+  const readAll = () => {};
+  return (
+    <View style={styles.container}>
+      <Header title="응답 알림" onPressLeadingIcon={navigation.goBack} />
+      <View style={styles.notiHeader}>
+        <View style={styles.notiSwitch}>
+          <Switch isClicked={notiOn} onPress={toggleNoti} />
+          <Text fontSize="13" marginLeft={8}>
+            알림 {notiOn ? '끄기' : '켜기'}
+          </Text>
+        </View>
+        <TouchableOpacity style={styles.readAllButton} onPress={readAll}>
+          <Text fontSize="13">모두 읽음으로 표시</Text>
+        </TouchableOpacity>
       </View>
+      <ScrollView style={styles.scrollView}>
+        {dummyNotificationLists.map(notification => (
+          <NotificationBox
+            style={styles.noti}
+            key={notification.id}
+            notification={notification}
+          />
+        ))}
+      </ScrollView>
     </View>
   );
 };

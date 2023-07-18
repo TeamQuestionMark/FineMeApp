@@ -3,7 +3,7 @@ import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
 import { getLocalMDHm } from '@/utils/date';
 import { ScaledSheet } from '@/utils/scale';
-import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
+import { StyleProp, ViewStyle } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface NotificationBoxProps {
