@@ -11,10 +11,13 @@ import globalStyles from '@/themes/globalStyles';
 import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
 import { Divider } from '@/common/components/Divider';
-import { Shadow } from 'react-native-shadow-2';
 import { StageMainCardProps } from './type';
-import { isIOS } from '@/utils/device';
 import { CustomShadow } from '@/common/components/Shadow';
+import { useNavigation } from '@react-navigation/native';
+import { StageParamList } from '@/navigations/types';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { STAGE_ID_MAP } from '@/constants/stage';
+import shareStage from '@/utils/shareStage';
 
 const styles = ScaledSheet.create({
   container: {
@@ -42,21 +45,22 @@ const styles = ScaledSheet.create({
 });
 
 const StageMainCard = ({ type }: StageMainCardProps) => {
+  const navigation = useNavigation<StackNavigationProp<StageParamList>>();
   const contentsObj = useMemo(() => {
     switch (type) {
-      case 'work':
+      case '회사':
         return {
           title: '회사에서 일하는',
           url: '',
           image: work,
         };
-      case 'cafe':
+      case '카페':
         return {
           title: '카페에서 일하는',
           url: '',
           image: cafe,
         };
-      case 'home':
+      case '집':
         return {
           title: '집에서 일하는',
           url: '',
@@ -71,10 +75,16 @@ const StageMainCard = ({ type }: StageMainCardProps) => {
     }
   }, [type]);
 
-  // TOTO: 이동 시키기
-  const onPressNavigateToSample = () => {};
+  const onPressNavigateToSample = () => {
+    navigation.navigate('StagePreview', {
+      stageId: STAGE_ID_MAP[type],
+      stageName: type,
+    });
+  };
 
-  const onPressShareButton = () => {};
+  const onPressShareButton = () => {
+    shareStage(STAGE_ID_MAP[type]);
+  };
 
   return (
     <View style={[globalStyles.rowAlignCenterContainer]}>

@@ -1,12 +1,18 @@
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack';
-import { CompositeNavigationProp, ParamListBase } from '@react-navigation/native';
+import {
+  NativeStackNavigationProp,
+  NativeStackScreenProps,
+} from '@react-navigation/native-stack';
+import {
+  CompositeNavigationProp,
+  ParamListBase,
+} from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 
 export type LandingStackParamList = {
   Landing: undefined;
   Update: undefined;
   Login: undefined;
-  EditProfile: undefined
+  EditProfile: undefined;
 };
 
 export type MyPageParamList = {
@@ -15,6 +21,7 @@ export type MyPageParamList = {
 
 export type StageParamList = {
   Stage: undefined;
+  StagePreview: { stageId: number; stageName: string };
   StageCustomWriting: undefined;
 };
 
@@ -43,7 +50,7 @@ export type ScreenList<StackParamList extends ParamListBase> = {
 
 export type TabRouteProps = {
   name: keyof RootStackParamList;
-}
+};
 
 export type NavigationProps = CompositeNavigationProp<
   BottomTabNavigationProp<TabStackParamsList>,
