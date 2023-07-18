@@ -1,3 +1,4 @@
+import useReadNotification from '@/api/Notification/hooks/useReadNotification';
 import { Notification } from '@/api/Notification/types';
 import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
@@ -9,6 +10,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 interface NotificationBoxProps {
   notification: Notification;
   style?: StyleProp<ViewStyle>;
+  onPress?: () => void;
 }
 
 const styles = ScaledSheet.create({
@@ -30,6 +32,7 @@ const styles = ScaledSheet.create({
 const NotificationBox: React.FC<NotificationBoxProps> = ({
   notification,
   style,
+  onPress,
 }) => {
   return (
     <TouchableOpacity
@@ -38,6 +41,7 @@ const NotificationBox: React.FC<NotificationBoxProps> = ({
         notification.readYn === 'Y' && styles.read,
         style,
       ]}
+      onPress={onPress}
     >
       <Text fontSize="16">{notification.title}</Text>
       <Text fontSize="16" marginBottom={4}>

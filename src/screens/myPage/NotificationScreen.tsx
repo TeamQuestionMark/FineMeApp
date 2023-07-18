@@ -15,6 +15,8 @@ import Spinner from '@/common/components/Spinner/Spinner';
 import globalStyles from '@/themes/globalStyles';
 import { Linking } from 'react-native';
 import { requestPermission } from '@/utils/fcm/requestPermission';
+import { readNotification } from '@/api/Notification/api';
+import useReadNotification from '@/api/Notification/hooks/useReadNotification';
 
 const dummyNotificationLists: Notification[] = [
   {
@@ -88,6 +90,7 @@ const NotificationScreen = () => {
   const navigation = useNavigation();
   const [notiOn, setNotiOn] = useState<boolean | 'loading'>('loading');
   const query = useNotifications();
+  const { mutateAsync: readNoti } = useReadNotification();
 
   useEffect(() => {
     function updateNotiOn() {
@@ -104,7 +107,16 @@ const NotificationScreen = () => {
     Linking.openSettings();
   };
 
-  const readAll = () => {};
+  const readAll = () => {
+    readNoti({ target: 'all' }).catch(console.error);
+  };
+
+  const handlePressNoti = (notification: Notification) => {
+    if (notification.readYn === 'N') {
+      readNoti({ target: notification.id }).catch(console.error);
+    }
+    // TODO: 마이페이지 결과로 이동
+  };
 
   if (!query.data || notiOn === 'loading')
     return (
@@ -139,6 +151,7 @@ const NotificationScreen = () => {
               style={styles.noti}
               key={notification.id}
               notification={notification}
+              onPress={() => handlePressNoti(notification)}
             />
           ))}
         </ScrollView>
