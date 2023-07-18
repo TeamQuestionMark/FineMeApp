@@ -21,7 +21,7 @@ const styles = ScaledSheet.create({
   },
 });
 
-const StageMainHeader = () => {
+const AlarmHeader = () => {
   const { data: notifications } = useNotifications();
   const hasNewNoti = useMemo(
     () =>
@@ -55,4 +55,4 @@ const StageMainHeader = () => {
   );
 };
 
-export default StageMainHeader;
+export default AlarmHeader;
