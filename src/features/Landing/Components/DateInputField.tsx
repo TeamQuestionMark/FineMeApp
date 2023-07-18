@@ -1,6 +1,6 @@
 import Text from '@/common/components/Text';
 import { COLORS, TEXT_COLORS } from '@/themes/colors';
-import { formatDate } from '@/utils/datetime';
+import { getSlashYYYYMMDD } from '@/utils/date';
 import { ScaledSheet } from '@/utils/scale';
 import { useEffect, useState } from 'react';
 import { TextInput, View } from 'react-native';
@@ -50,7 +50,7 @@ const DateInputField = ({ onInput }: DateInputFieldProps) => {
         editable={false}
         placeholderTextColor={TEXT_COLORS.textPlaceholder}
         placeholder="YYYY / MM / DD"
-        value={!touched ? undefined : formatDate(date)}
+        value={!touched ? undefined : getSlashYYYYMMDD(date)}
         style={[styles.input, styles[status]]}
         onPressIn={handlePressInput}
       >
