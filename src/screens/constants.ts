@@ -13,13 +13,12 @@ import {
   LoginScreen,
   UpdateScreen,
 } from './landing';
-import { MyPageScreen } from './myPage';
+import { MyPageScreen, NotificationScreen } from './myPage';
 import {
   StageCustomWritingScreen,
   StageScreen,
   StagePreviewScreen,
 } from './stage';
-import NotificationScreen from './myPage/NotificationScreen';
 
 export const LANDING_STACK_SCREEN_LIST: ScreenList<LandingStackParamList> = [
   {

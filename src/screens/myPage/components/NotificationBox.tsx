@@ -1,7 +1,7 @@
 import { Notification } from '@/api/Notification/types';
 import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
-import { getLocalMDHm } from '@/utils/date';
+import { getLocalMDHmm } from '@/utils/date';
 import { ScaledSheet } from '@/utils/scale';
 import { StyleProp, ViewStyle } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -44,7 +44,7 @@ const NotificationBox: React.FC<NotificationBoxProps> = ({
         {notification.message}
       </Text>
       <Text fontSize="13" color={COLORS.gray300}>
-        {getLocalMDHm(notification.createDate)}
+        {getLocalMDHmm(notification.createDate)}
       </Text>
     </TouchableOpacity>
   );

@@ -19,6 +19,6 @@ export const getSlashYYYYMMDD = (date: Date | string) => {
 /**
  * @returns M월 D일 H:m
  */
-export const getLocalMDHm = (date: Date | string) => {
-  return dayjs(date).format('M월 D일 H:m');
+export const getLocalMDHmm = (date: Date | string) => {
+  return dayjs(date).format('M월 D일 H:mm');
 };

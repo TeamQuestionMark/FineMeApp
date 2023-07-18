@@ -1,3 +1,4 @@
-import MyPageScreen from "./MyPageScreen"
+import MyPageScreen from './MyPageScreen';
+import NotificationScreen from './NotificationScreen';
 
-export { MyPageScreen }
+export { MyPageScreen, NotificationScreen };

@@ -10,6 +10,9 @@ import { ScaledSheet } from '@/utils/scale';
 import Switch from '@/common/components/Switch/Switch';
 import Text from '@/common/components/Text';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import useNotifications from '@/api/Notification/hooks/useNotifications';
+import Spinner from '@/common/components/Spinner/Spinner';
+import globalStyles from '@/themes/globalStyles';
 
 const dummyNotificationLists: Notification[] = [
   {
@@ -55,12 +58,6 @@ const dummyNotificationLists: Notification[] = [
 ];
 
 const styles = ScaledSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    paddingHorizontal: '20@s',
-    backgroundColor: COLORS.white,
-  },
   scrollView: {
     paddingBottom: '200@vs',
     marginTop: '30@vs',
@@ -69,7 +66,6 @@ const styles = ScaledSheet.create({
     marginBottom: '20@vs',
   },
   notiHeader: {
-    marginTop: '15@vs',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -89,35 +85,51 @@ const styles = ScaledSheet.create({
 const NotificationScreen = () => {
   const navigation = useNavigation();
   const [notiOn, setNotiOn] = useState(false);
+  const query = useNotifications();
 
   const toggleNoti = () => {
     setNotiOn(!notiOn);
   };
 
   const readAll = () => {};
-  return (
-    <View style={styles.container}>
-      <Header title="응답 알림" onPressLeadingIcon={navigation.goBack} />
-      <View style={styles.notiHeader}>
-        <View style={styles.notiSwitch}>
-          <Switch isClicked={notiOn} onPress={toggleNoti} />
-          <Text fontSize="13" marginLeft={8}>
-            알림 {notiOn ? '끄기' : '켜기'}
-          </Text>
-        </View>
-        <TouchableOpacity style={styles.readAllButton} onPress={readAll}>
-          <Text fontSize="13">모두 읽음으로 표시</Text>
-        </TouchableOpacity>
+
+  if (!query.data)
+    return (
+      <View style={[globalStyles.center, globalStyles.defaultFlexContainer]}>
+        <Spinner />
       </View>
-      <ScrollView style={styles.scrollView}>
-        {dummyNotificationLists.map(notification => (
-          <NotificationBox
-            style={styles.noti}
-            key={notification.id}
-            notification={notification}
-          />
-        ))}
-      </ScrollView>
+    );
+
+  return (
+    <View
+      style={[
+        globalStyles.defaultFlexContainer,
+        globalStyles.defaultBackgroundColor,
+      ]}
+    >
+      <Header title="응답 알림" onPressLeadingIcon={navigation.goBack} />
+      <View style={globalStyles.defaultPadding}>
+        <View style={styles.notiHeader}>
+          <View style={styles.notiSwitch}>
+            <Switch isClicked={notiOn} onPress={toggleNoti} />
+            <Text fontSize="13" marginLeft={8}>
+              알림 {notiOn ? '끄기' : '켜기'}
+            </Text>
+          </View>
+          <TouchableOpacity style={styles.readAllButton} onPress={readAll}>
+            <Text fontSize="13">모두 읽음으로 표시</Text>
+          </TouchableOpacity>
+        </View>
+        <ScrollView style={styles.scrollView}>
+          {query.data.notificationLists.map(notification => (
+            <NotificationBox
+              style={styles.noti}
+              key={notification.id}
+              notification={notification}
+            />
+          ))}
+        </ScrollView>
+      </View>
     </View>
   );
 };
