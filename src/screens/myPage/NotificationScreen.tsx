@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ScrollView, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { AppState, ScrollView, View } from 'react-native';
 
 import { COLORS } from '@/themes/colors';
 import Header from '@/common/components/Header/Header';
@@ -13,6 +13,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import useNotifications from '@/api/Notification/hooks/useNotifications';
 import Spinner from '@/common/components/Spinner/Spinner';
 import globalStyles from '@/themes/globalStyles';
+import { Linking } from 'react-native';
+import { requestPermission } from '@/utils/fcm/requestPermission';
 
 const dummyNotificationLists: Notification[] = [
   {
@@ -84,16 +86,27 @@ const styles = ScaledSheet.create({
 
 const NotificationScreen = () => {
   const navigation = useNavigation();
-  const [notiOn, setNotiOn] = useState(false);
+  const [notiOn, setNotiOn] = useState<boolean | 'loading'>('loading');
   const query = useNotifications();
 
+  useEffect(() => {
+    function updateNotiOn() {
+      requestPermission().then(isFcmEnabled => {
+        setNotiOn(isFcmEnabled);
+      });
+    }
+    const subscription = AppState.addEventListener('change', updateNotiOn);
+    updateNotiOn();
+    return subscription.remove;
+  }, []);
+
   const toggleNoti = () => {
-    setNotiOn(!notiOn);
+    Linking.openSettings();
   };
 
   const readAll = () => {};
 
-  if (!query.data)
+  if (!query.data || notiOn === 'loading')
     return (
       <View style={[globalStyles.center, globalStyles.defaultFlexContainer]}>
         <Spinner />
