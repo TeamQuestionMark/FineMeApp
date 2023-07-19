@@ -6,7 +6,7 @@ import { ScaledSheet } from '@/utils/scale';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { map } from 'lodash';
 import Tab from './Tab';
-import { COLORS } from '@/themes/colors';
+import { useTabBarStore } from '@/store/tabBar';
 
 const styles = ScaledSheet.create({
   container: {
@@ -18,6 +18,7 @@ const styles = ScaledSheet.create({
 });
 
 const TabBar = ({ state, navigation }: BottomTabBarProps) => {
+  const { isVisible } = useTabBarStore();
   const onPressTabButton = (route: string) => {
     navigation.navigate(route);
   };
@@ -33,11 +34,13 @@ const TabBar = ({ state, navigation }: BottomTabBarProps) => {
     );
   });
 
-  return (
-    <View style={[globalStyles.rowAlignCenterContainer, styles.container]}>
-      {renderTabs}
-    </View>
-  );
+  if (isVisible)
+    return (
+      <View style={[globalStyles.rowAlignCenterContainer, styles.container]}>
+        {renderTabs}
+      </View>
+    );
+  else return <></>;
 };
 
 export default TabBar;
