@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
   ImageBackground,
   StyleSheet,
@@ -32,7 +32,8 @@ const styles = StyleSheet.create({
   nicknameBox: {
     paddingLeft: 20,
     paddingRight: 25,
-    paddingVertical: 40,
+    paddingTop: 35,
+    paddingBottom: 40,
   },
   actionWrapper: {
     marginTop: 'auto',
@@ -42,8 +43,13 @@ const styles = StyleSheet.create({
 
 const AccountScreen = () => {
   const navigation = useNavigation<NavigationProps>();
-  const { user } = useUserStore();
+  const { user, reset } = useUserStore();
   useHideTabBar();
+
+  const logout = useCallback(() => {
+    // TODO: FCM 토큰 삭제
+    reset();
+  }, [reset]);
 
   return (
     <View>
@@ -107,7 +113,7 @@ const AccountScreen = () => {
             variant="outlined"
             title="로그아웃"
             width={'100%'}
-            onPress={() => null}
+            onPress={logout}
           />
           <TouchableOpacity>
             <Text
