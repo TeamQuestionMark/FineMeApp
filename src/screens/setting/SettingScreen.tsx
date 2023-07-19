@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import Header from '@/common/components/Header/Header';
@@ -21,10 +21,6 @@ const styles = ScaledSheet.create({
 const SettingScreen = () => {
   const navigation = useNavigation<StackNavigationProp<SettingParamList>>();
 
-  const handlePressMenu = (screenName: keyof SettingParamList) => {
-    console.log('🔸 → handlePressMenu → screenName:', screenName);
-    navigation.navigate(screenName);
-  };
   return (
     <View>
       <Header title="설정" onPressLeadingIcon={navigation.goBack} />
@@ -40,7 +36,7 @@ const SettingScreen = () => {
             key={menu.screenName}
             style={styles.menu}
             title={menu.title}
-            onPress={() => handlePressMenu(menu.screenName)}
+            onPress={() => navigation.navigate(menu.screenName)}
           />
         ))}
       </View>
