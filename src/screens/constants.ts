@@ -6,7 +6,6 @@ import {
   ScreenList,
   StageParamList,
 } from '@/navigations/types';
-import { CharacterScreen } from './charater';
 import {
   EditProfileScreen,
   LandingScreen,
@@ -19,6 +18,7 @@ import {
   StageScreen,
   StagePreviewScreen,
 } from './stage';
+import { CharacterScreen } from './character';
 
 export const LANDING_STACK_SCREEN_LIST: ScreenList<LandingStackParamList> = [
   {

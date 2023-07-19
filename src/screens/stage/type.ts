@@ -1,11 +1,10 @@
-
 // TOTO: 타입값 수정
 export enum CustomStageQuestionType {
-  OX_ANSWER = "OX_ANSWER",
-  SUBJECTIVE_ANSWER = "SUBJECTIVE" ,
-  CHIP = "CHIP",
-  RADIO = "RADIO",
-  CHECK_BOX = "CHECK_BOX"
+  OX_ANSWER = 'OX_ANSWER',
+  SUBJECTIVE_ANSWER = 'SUBJECTIVE',
+  CHIP = 'CHIP',
+  RADIO = 'RADIO',
+  CHECK_BOX = 'CHECK_BOX',
 }
 export interface MultipleChoiceProp {
   content: string;
