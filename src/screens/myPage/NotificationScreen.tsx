@@ -17,6 +17,7 @@ import { Linking } from 'react-native';
 import { requestPermission } from '@/utils/fcm/requestPermission';
 import { readNotification } from '@/api/Notification/api';
 import useReadNotification from '@/api/Notification/hooks/useReadNotification';
+import { map } from 'lodash';
 
 const dummyNotificationLists: Notification[] = [
   {
@@ -146,7 +147,7 @@ const NotificationScreen = () => {
           </TouchableOpacity>
         </View>
         <ScrollView style={styles.scrollView}>
-          {query.data.notificationLists.map(notification => (
+          {map(query?.data?.notificationLists, notification => (
             <NotificationBox
               style={styles.noti}
               key={notification.id}

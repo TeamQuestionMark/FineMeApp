@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
 import { Divider } from '@/common/components/Divider';
-import { AlarmHeader } from '@/common/components/Header';
+import { LogoHeader } from '@/common/components/Header';
 import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
 import { ScaledSheet } from '@/utils/scale';
@@ -13,6 +13,7 @@ import { ImageBackground } from 'react-native';
 import globalStyles from '@/themes/globalStyles';
 import { Button } from '@/common/components/Button';
 import TooltipImage from '@/assets/images/tooltip/image_character_tooltip.png';
+import useHasNotifications from '@/api/Notification/hooks/useHasNotifications';
 
 const styles = ScaledSheet.create({
   container: {
@@ -46,11 +47,16 @@ const styles = ScaledSheet.create({
 });
 
 const CharacterMain = () => {
+  const hasNewNotifications = useHasNotifications();
+
   return (
     <View style={globalStyles.defaultFlexContainer}>
       <ScrollView>
         <Divider vertical={25} />
-        <AlarmHeader />
+        <LogoHeader
+          icon="Notification"
+          hasNewNotification={hasNewNotifications}
+        />
         <Divider vertical={25} />
         <View style={styles.container}>
           <Text fontSize="24" fontWeight="extraBold" color={COLORS.black}>
