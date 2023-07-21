@@ -20,6 +20,15 @@ export type MyPageParamList = {
   Notification: undefined;
 };
 
+export type SettingParamList = {
+  Setting: undefined;
+  Account: undefined;
+  PrivacyPolicy: undefined;
+  ServiceInfo: undefined;
+  Terms: undefined;
+  Notification: undefined;
+};
+
 export type StageParamList = {
   Stage: undefined;
   StagePreview: { stageId: number; stageName: string };
@@ -41,7 +50,8 @@ export type RootStackParamList = TabStackParamsList &
   LandingStackParamList &
   MyPageParamList &
   StageParamList &
-  CharacterParamList;
+  CharacterParamList &
+  SettingParamList;
 
 export type ScreenList<StackParamList extends ParamListBase> = {
   name: keyof StackParamList;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TouchableOpacity, View } from 'react-native';
+import { StyleProp, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { COLORS } from '@/themes/colors';
 import globalStyles from '@/themes/globalStyles';
@@ -43,11 +43,12 @@ const styles = ScaledSheet.create({
 interface MenuProps {
   title: string;
   onPress: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 
-const Menu = ({ title, onPress }: MenuProps) => {
+const Menu = ({ title, onPress, style }: MenuProps) => {
   return (
-    <View style={[globalStyles.alignCenter, styles.container]}>
+    <View style={[globalStyles.alignCenter, styles.container, style]}>
       <TouchableOpacity
         style={[
           styles.innerContainer,
@@ -57,7 +58,7 @@ const Menu = ({ title, onPress }: MenuProps) => {
         onPress={onPress}
         activeOpacity={0.8}
       >
-        <Text fontSize="20" fontWeight="bold" color={COLORS.black}>
+        <Text fontSize="16" fontWeight="bold" color={COLORS.black}>
           {title}
         </Text>
         <FastImage style={styles.icon} source={CircleArrowRight} />

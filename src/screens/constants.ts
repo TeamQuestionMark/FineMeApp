@@ -4,6 +4,7 @@ import {
   MyPageParamList,
   RootStackParamList,
   ScreenList,
+  SettingParamList,
   StageParamList,
 } from '@/navigations/types';
 import {
@@ -18,6 +19,13 @@ import {
   StageScreen,
   StagePreviewScreen,
 } from './stage';
+import {
+  SettingScreen,
+  AccountScreen,
+  PrivacyPolicyScreen,
+  ServiceInfoScreen,
+  TermsScreen,
+} from './setting';
 import { CharacterScreen } from './character';
 
 export const LANDING_STACK_SCREEN_LIST: ScreenList<LandingStackParamList> = [
@@ -47,6 +55,29 @@ export const MY_PAGE_STACK_SCREEN_LIST: ScreenList<MyPageParamList> = [
   {
     name: 'Notification',
     component: NotificationScreen,
+  },
+];
+
+export const SETTING_STACK_SCREEN_LIST: ScreenList<SettingParamList> = [
+  {
+    name: 'Setting',
+    component: SettingScreen,
+  },
+  {
+    name: 'Account',
+    component: AccountScreen,
+  },
+  {
+    name: 'PrivacyPolicy',
+    component: PrivacyPolicyScreen,
+  },
+  {
+    name: 'ServiceInfo',
+    component: ServiceInfoScreen,
+  },
+  {
+    name: 'Terms',
+    component: TermsScreen,
   },
 ];
 
