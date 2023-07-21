@@ -1,10 +1,5 @@
 import React, { useCallback } from 'react';
-import {
-  ImageBackground,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
 import Header from '@/common/components/Header/Header';
 import { NavigationProps } from '@/navigations/types';
@@ -13,31 +8,34 @@ import { COLORS } from '@/themes/colors';
 import { useUserStore } from '@/store/user';
 import Text from '@/common/components/Text';
 import globalStyles from '@/themes/globalStyles';
-import ImgShadowBox from '@/assets/images/setting/image-shadow-box.png';
 import { Button } from '@/common/components/Button';
 import useHideTabBar from '@/hooks/useHideTabBar';
-import { vs } from '@/utils/scale';
+import { ScaledSheet, vs } from '@/utils/scale';
+import { CustomShadow } from '@/common/components/Shadow';
 
-const styles = StyleSheet.create({
+const styles = ScaledSheet.create({
   container: {
     height: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   accountBox: {
-    padding: 20,
-    paddingBottom: 25,
-    marginBottom: 40,
+    borderWidth: 2,
+    alignSelf: 'stretch',
+    paddingHorizontal: '20@s',
+    paddingTop: '20@vs',
+    paddingBottom: '25@vs',
+    marginBottom: '40@vs',
   },
   nicknameBox: {
-    paddingLeft: 20,
-    paddingRight: 25,
-    paddingTop: 35,
-    paddingBottom: 40,
+    borderWidth: 2,
+    alignSelf: 'stretch',
+    paddingHorizontal: '20@s',
+    paddingVertical: '35@vs',
   },
   actionWrapper: {
     marginTop: 'auto',
-    marginBottom: 30,
+    marginBottom: '30@vs',
   },
 });
 
@@ -65,25 +63,25 @@ const AccountScreen = () => {
           <Text fontSize="16" fontWeight="bold" marginBottom={10}>
             로그인 계정
           </Text>
-          <ImageBackground
-            source={ImgShadowBox}
-            resizeMode="stretch"
-            style={styles.accountBox}
+          <CustomShadow
+            borderRadius={15}
+            style={[styles.accountBox, globalStyles.defaultBackgroundColor]}
           >
-            <Text fontSize="16" fontWeight="bold">
-              {user?.socialType === 'APPLE' ? '애플 로그인' : '카카오 로그인'}
-            </Text>
-            <Text marginTop={2} fontSize="16">
-              {user?.username}
-            </Text>
-          </ImageBackground>
+            <View>
+              <Text fontSize="16" fontWeight="bold">
+                {user?.socialType === 'APPLE' ? '애플 로그인' : '카카오 로그인'}
+              </Text>
+              <Text marginTop={2} fontSize="16">
+                {user?.username}
+              </Text>
+            </View>
+          </CustomShadow>
           <Text fontSize="16" fontWeight="bold" marginBottom={10}>
             닉네임
           </Text>
-          <ImageBackground
-            source={ImgShadowBox}
-            resizeMode="stretch"
-            style={styles.nicknameBox}
+          <CustomShadow
+            borderRadius={15}
+            style={[styles.nicknameBox, globalStyles.defaultBackgroundColor]}
           >
             <View
               style={[
@@ -105,7 +103,7 @@ const AccountScreen = () => {
                 </Text>
               </TouchableOpacity>
             </View>
-          </ImageBackground>
+          </CustomShadow>
         </View>
         <View style={[globalStyles.alignCenter, styles.actionWrapper]}>
           <Button
