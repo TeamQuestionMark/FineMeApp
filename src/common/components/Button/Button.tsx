@@ -30,14 +30,14 @@ const styles = ScaledSheet.create({
 
   solid: {
     borderColor: COLORS.black,
-    backgroundColor: COLORS.brandColor400
+    backgroundColor: COLORS.brandColor400,
   },
   'solid:pressed': {
-    backgroundColor: COLORS.brandColor600
+    backgroundColor: COLORS.brandColor600,
   },
   'solid:disabled': {
     borderColor: COLORS.gray300,
-    backgroundColor: COLORS.gray100
+    backgroundColor: COLORS.gray100,
   },
 
   outlined: {
@@ -49,8 +49,8 @@ const styles = ScaledSheet.create({
   },
   'outlined:disabled': {
     borderColor: COLORS.gray300,
-    backgroundColor: COLORS.gray50
-  }
+    backgroundColor: COLORS.gray50,
+  },
 });
 
 interface ButtonProps {
@@ -59,7 +59,7 @@ interface ButtonProps {
   variant?: 'outlined' | 'solid';
   width: number | string;
   disabled?: boolean;
-  style?: StyleProp<ViewStyle>
+  style?: StyleProp<ViewStyle>;
 }
 
 const Button = ({
@@ -68,10 +68,11 @@ const Button = ({
   variant = 'solid',
   width,
   disabled = false,
-  style
+  style,
 }: ButtonProps) => {
   const isSolid = variant === 'solid';
-  
+  const textColor = isSolid ? COLORS.black : COLORS.brandColor700;
+
   return (
     <Pressable
       style={({ pressed }) => [
@@ -80,7 +81,7 @@ const Button = ({
         styles[variant],
         pressed && styles[`${variant}:pressed`],
         disabled && styles[`${variant}:disabled`],
-        style
+        style,
       ]}
       onPress={onPress}
       disabled={disabled}
@@ -88,7 +89,7 @@ const Button = ({
       <Text
         fontSize="16"
         fontWeight="bold"
-        color={isSolid ? COLORS.black : COLORS.brandColor700}
+        color={disabled ? COLORS.gray300 : textColor}
       >
         {title}
       </Text>

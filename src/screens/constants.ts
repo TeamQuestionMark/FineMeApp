@@ -7,7 +7,6 @@ import {
   SettingParamList,
   StageParamList,
 } from '@/navigations/types';
-import { CharacterScreen } from './charater';
 import {
   EditProfileScreen,
   LandingScreen,
@@ -27,6 +26,7 @@ import {
   ServiceInfoScreen,
   TermsScreen,
 } from './setting';
+import { CharacterScreen } from './character';
 
 export const LANDING_STACK_SCREEN_LIST: ScreenList<LandingStackParamList> = [
   {

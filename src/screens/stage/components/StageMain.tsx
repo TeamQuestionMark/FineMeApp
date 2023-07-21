@@ -2,7 +2,6 @@ import React from 'react';
 import { Divider } from '@/common/components/Divider';
 import { ScrollView, View } from 'react-native';
 
-import StageMainHeader from './StageMain/StageMainHeader';
 import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
 import { ScaledSheet } from '@/utils/scale';
@@ -10,6 +9,7 @@ import StageMainSelector from './StageMain/StageMainSelector';
 import StageMainCustomSection from './StageMain/StageMainCustomSection';
 import StageMainAddButton from './StageMain/StageMainAddButton';
 import { useUserStore } from '@/store/user';
+import { AlarmHeader } from '@/common/components/Header';
 
 const styles = ScaledSheet.create({
   padding: {
@@ -24,7 +24,7 @@ const StageMain = () => {
     <View>
       <ScrollView>
         <Divider vertical={25} />
-        <StageMainHeader />
+        <AlarmHeader />
         <Divider vertical={25} />
         <View style={styles.padding}>
           {user?.nickname && (
