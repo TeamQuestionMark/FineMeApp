@@ -8,11 +8,13 @@ import { StageParamList } from '@/navigations/types';
 import { WebView } from 'react-native-webview';
 import shareStage from '@/utils/shareStage';
 import { STAGE_PREVIEW_URL } from '@/constants/stage';
+import { useUserStore } from '@/store/user';
 
 const StagePreviewScreen = () => {
   const navigation = useNavigation();
   const route = useRoute<RouteProp<StageParamList, 'StagePreview'>>();
   const { stageId, stageName } = route.params;
+  const { user } = useUserStore();
 
   return (
     <View
@@ -21,17 +23,21 @@ const StagePreviewScreen = () => {
         globalStyles.defaultBackgroundColor,
       ]}
     >
-      <Header
-        title={stageName}
-        onPressLeadingIcon={navigation.goBack}
-        trailIcon="Share"
-        onPressTrailingIcon={() => shareStage(stageId)}
-      />
-      <WebView
-        source={{
-          uri: STAGE_PREVIEW_URL(stageId),
-        }}
-      />
+      {user?.userId && (
+        <>
+          <Header
+            title={stageName}
+            onPressLeadingIcon={navigation.goBack}
+            trailIcon="Share"
+            onPressTrailingIcon={() => shareStage(stageId, user.userId)}
+          />
+          <WebView
+            source={{
+              uri: STAGE_PREVIEW_URL(stageId, user.userId),
+            }}
+          />
+        </>
+      )}
     </View>
   );
 };
