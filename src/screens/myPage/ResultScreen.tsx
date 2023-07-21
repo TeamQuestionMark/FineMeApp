@@ -28,6 +28,7 @@ const ResultScreen = () => {
         onPressTrailingIcon={() => shareResult(uuid)}
       />
       <WebView
+        style={{ paddingTop: globalStyles.defaultPadding.paddingVertical }}
         source={{
           uri: STAGE_RESULT_URL(uuid),
         }}
