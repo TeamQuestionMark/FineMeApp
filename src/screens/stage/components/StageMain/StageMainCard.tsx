@@ -17,7 +17,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StageParamList } from '@/navigations/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { STAGE_ID_MAP } from '@/constants/stage';
-import shareStage from '@/utils/shareStage';
+import { shareStage } from '@/utils/share';
 
 const styles = ScaledSheet.create({
   container: {

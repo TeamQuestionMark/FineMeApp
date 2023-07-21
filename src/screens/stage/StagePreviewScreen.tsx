@@ -6,7 +6,7 @@ import Header from '@/common/components/Header/Header';
 import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
 import { StageParamList } from '@/navigations/types';
 import { WebView } from 'react-native-webview';
-import shareStage from '@/utils/shareStage';
+import { shareStage } from '@/utils/share';
 import { STAGE_PREVIEW_URL } from '@/constants/stage';
 import { useUserStore } from '@/store/user';
 

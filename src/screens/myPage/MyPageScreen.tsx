@@ -4,15 +4,17 @@ import { View } from 'react-native';
 import CustomText from '@/common/components/Text/index';
 import { COLORS } from '@/themes/colors';
 import { useNavigation } from '@react-navigation/native';
-import { MyPageParamList } from '@/navigations/types';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { NavigationProps } from '@/navigations/types';
 
 const MyPageScreen = () => {
-  const navigation = useNavigation<StackNavigationProp<MyPageParamList>>();
+  const navigation = useNavigation<NavigationProps>();
   return (
     <View>
-      <CustomText fontSize="28" onPress={() => navigation.navigate('Setting')}>
-        설정으로 이동
+      <CustomText
+        fontSize="28"
+        onPress={() => navigation.navigate('Result', { uuid: 'uuid' })}
+      >
+        결과 페이지로 이동
       </CustomText>
       <CustomText fontSize="28" fontWeight="Regular" color={COLORS.gray800}>
         MyPageScreen
