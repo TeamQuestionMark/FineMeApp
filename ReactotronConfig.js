@@ -2,11 +2,14 @@
 import { NativeModules } from 'react-native';
 import Reactotron, { asyncStorage, networking } from 'reactotron-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import reactotronPluginZustand from 'reactotron-plugin-zustand';
+
+const { zustandStore } = require('./src/store/store');
 
 // First, set some configuration settings on how to connect to the app
 Reactotron.configure({
   name: 'FineMe',
-});
+}).use(reactotronPluginZustand({ stores: zustandStore }));
 
 // add every built-in react native feature.  you also have the ability to pass
 // an object as a parameter to configure each individual react-native plugin
@@ -20,7 +23,6 @@ Reactotron.useReactNative({
 
 // add some more plugins for redux & redux-saga
 Reactotron.use(asyncStorage(), networking());
-
 // for ease of debugging, wrap console.log with reactotron.log
 const goodOldConsoleLog = console.log;
 console.log = (...args) => {
@@ -31,7 +33,7 @@ console.log = (...args) => {
 let scriptHostname;
 if (__DEV__) {
   const { scriptURL } = NativeModules.SourceCode;
-  // eslint-disable-next-line prefer-destructuring
+
   scriptHostname = scriptURL.split('://')[1].split(':')[0];
 }
 
