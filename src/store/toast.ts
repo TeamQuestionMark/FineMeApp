@@ -7,9 +7,9 @@ interface ToastStore {
   close: () => void;
 }
 
-export const useToastStore = create<ToastStore>()((set) => ({
+export const useToastStore = create<ToastStore>()(set => ({
   message: '',
   isVisible: false,
-  setToast: (message) => set(() => ({ message, isVisible: true })),
+  setToast: message => set(() => ({ message, isVisible: true })),
   close: () => set(() => ({ message: '', isVisible: false })),
 }));
