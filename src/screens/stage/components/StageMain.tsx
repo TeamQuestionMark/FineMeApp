@@ -9,7 +9,8 @@ import StageMainSelector from './StageMain/StageMainSelector';
 import StageMainCustomSection from './StageMain/StageMainCustomSection';
 import StageMainAddButton from './StageMain/StageMainAddButton';
 import { useUserStore } from '@/store/user';
-import { AlarmHeader } from '@/common/components/Header';
+import { LogoHeader } from '@/common/components/Header';
+import useHasNotifications from '@/api/Notification/hooks/useHasNotifications';
 
 const styles = ScaledSheet.create({
   padding: {
@@ -19,12 +20,16 @@ const styles = ScaledSheet.create({
 
 const StageMain = () => {
   const { user } = useUserStore();
+  const hasNewNotifications = useHasNotifications();
 
   return (
     <View>
       <ScrollView>
         <Divider vertical={25} />
-        <AlarmHeader />
+        <LogoHeader
+          icon="Notification"
+          hasNewNotification={hasNewNotifications}
+        />
         <Divider vertical={25} />
         <View style={styles.padding}>
           {user?.nickname && (

@@ -18,6 +18,7 @@ export type LandingStackParamList = {
 export type MyPageParamList = {
   MyPage: undefined;
   Notification: undefined;
+  SettingPage: undefined;
 };
 
 export type SettingParamList = {
@@ -34,6 +35,7 @@ export type StageParamList = {
   StagePreview: { stageId: number; stageName: string };
   StageCustomWriting: undefined;
   Notification: undefined;
+  Setting: undefined;
 };
 
 export type CharacterParamList = {
