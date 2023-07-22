@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { devtools } from 'zustand/middleware';
 
 interface ToastStore {
   message: string;
@@ -8,11 +7,9 @@ interface ToastStore {
   close: () => void;
 }
 
-export const useToastStore = create<ToastStore>()(
-  devtools(set => ({
-    message: '',
-    isVisible: false,
-    setToast: message => set(() => ({ message, isVisible: true })),
-    close: () => set(() => ({ message: '', isVisible: false })),
-  })),
-);
+export const useToastStore = create<ToastStore>()(set => ({
+  message: '',
+  isVisible: false,
+  setToast: message => set(() => ({ message, isVisible: true })),
+  close: () => set(() => ({ message: '', isVisible: false })),
+}));
