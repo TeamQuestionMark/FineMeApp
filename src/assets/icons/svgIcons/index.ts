@@ -1,8 +1,9 @@
-export {default as ArrowBack} from "./ArrowBack"
-export {default as Close} from "./Close"
-export {default as Share} from "./Share"
-export {default as NotificationConfirmed} from "./NotificationConfirmed"
-export {default as NotificationUnconfirmed } from "./NotificationUnconfirmed"
-export {default as Add} from "./Add"
-export {default as CardShare} from "./CardShare"
-export {default as Hamburger} from "./Hamburger"
+export { default as ArrowBack } from './ArrowBack';
+export { default as Close } from './Close';
+export { default as Share } from './Share';
+export { default as NotificationConfirmed } from './NotificationConfirmed';
+export { default as NotificationUnconfirmed } from './NotificationUnconfirmed';
+export { default as Add } from './Add';
+export { default as CardShare } from './CardShare';
+export { default as Hamburger } from './Hamburger';
+export { default as Setting } from './Setting';

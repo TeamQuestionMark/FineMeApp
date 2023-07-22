@@ -1,4 +1,4 @@
 import Header from './Header';
-import AlarmHeader from './AlarmHeader';
+import LogoHeader from './LogoHeader';
 
-export { Header, AlarmHeader };
+export { Header, LogoHeader };

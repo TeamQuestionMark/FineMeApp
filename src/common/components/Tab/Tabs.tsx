@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import { COLORS } from '@/themes/colors';
@@ -6,15 +6,12 @@ import { ScaledSheet } from '@/utils/scale';
 import globalStyles from '@/themes/globalStyles';
 import { map } from 'lodash';
 import Text from '../Text';
-
-interface TabItem {
-  name: string;
-  value: string;
-}
+import { TabItem } from './type';
 
 interface TabProps {
   tabList: TabItem[];
-  initialTab?: TabItem;
+  currentTab: TabItem;
+  setTab: Dispatch<SetStateAction<TabItem>>;
 }
 
 const styles = ScaledSheet.create({
@@ -46,9 +43,7 @@ const styles = ScaledSheet.create({
   },
 });
 
-const Tabs = ({ tabList, initialTab = tabList[0] }: TabProps) => {
-  const [currentTab, setCurrentTab] = useState<TabItem>(initialTab);
-
+const Tabs = ({ tabList, currentTab, setTab }: TabProps) => {
   const renderTabs = map(tabList, (item, index) => {
     const isSelectedTab = currentTab.value === item.value;
 
@@ -63,7 +58,7 @@ const Tabs = ({ tabList, initialTab = tabList[0] }: TabProps) => {
           { height: '100%' },
         ]}
         activeOpacity={0.7}
-        onPress={() => setCurrentTab(item)}
+        onPress={() => setTab(item)}
       >
         <Text fontSize="14" fontWeight="bold" color={COLORS.black}>
           {item?.name}
