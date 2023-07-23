@@ -1,6 +1,6 @@
 // TOTO: 타입값 수정
 export enum CustomStageQuestionType {
-  OX_ANSWER = 'OX_ANSWER',
+  OX_ANSWER = 'OX',
   SUBJECTIVE_ANSWER = 'SUBJECTIVE',
   CHIP = 'CHIP',
   RADIO = 'RADIO',
@@ -21,15 +21,31 @@ export interface CustomStageQuestion {
   answerChoice?: string;
 }
 
+export interface CustomStageQuestionPostDataForm {
+  questionType: CustomStageQuestionType;
+  questionTitle?: string;
+  answerText?: string;
+  multipleChoiceList?: MultipleChoiceProp[];
+  answerChoice?: string;
+}
+
 export interface CustomStageQuestionState extends CustomStageQuestion {
   externalKey: string;
 }
 
 export interface CustomStageTitleForm {
-  title: string;
-  category: string;
+  stageName: string;
+  categoryName: string;
 }
 
 export interface CustomStageFormData extends CustomStageTitleForm {
   questions: CustomStageQuestion[];
+}
+
+export interface CustomStagePostData extends CustomStageTitleForm {
+  createQuestion: CustomStageQuestionPostDataForm[];
+}
+
+export interface CustomStageRowData extends CustomStageTitleForm {
+  questions: CustomStageQuestionState[];
 }
