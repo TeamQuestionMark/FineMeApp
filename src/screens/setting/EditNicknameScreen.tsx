@@ -2,13 +2,14 @@ import React, { useCallback, useState } from 'react';
 import { View } from 'react-native';
 
 import Header from '@/common/components/Header/Header';
-import { RouteProp, useNavigation, useRoute } from '@react-navigation/native';
-import { NavigationProps, SettingParamList } from '@/navigations/types';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProps } from '@/navigations/types';
 import { TextField } from '@/common/components/TextField';
 import globalStyles from '@/themes/globalStyles';
 import { Button } from '@/common/components/Button';
 import Validator from '@/utils/Validator';
 import { ScaledSheet } from '@/utils/scale';
+import { useUserStore } from '@/store/user';
 
 const styles = ScaledSheet.create({
   container: {
@@ -20,10 +21,13 @@ const styles = ScaledSheet.create({
 const validator = new Validator().min(2).max(8);
 const EditNicknameScreen = () => {
   const navigation = useNavigation<NavigationProps>();
-  const route = useRoute<RouteProp<SettingParamList, 'EditNickname'>>();
+  const { user, editNickname } = useUserStore();
 
   const [input, setInput] = useState('');
-  const submit = useCallback(() => {}, []);
+  const submit = useCallback(async () => {
+    await editNickname(input);
+    navigation.goBack();
+  }, [editNickname, input, navigation]);
   return (
     <>
       <Header title="" onPressLeadingIcon={navigation.goBack} />
@@ -38,7 +42,7 @@ const EditNicknameScreen = () => {
         <TextField
           label="닉네임"
           placeholder="최소2~8자의 닉네임을 입력해주세요"
-          defaultValue={route.params.nickname}
+          defaultValue={user?.nickname}
           validator={validator}
           maxLength={8}
           onInput={setInput}

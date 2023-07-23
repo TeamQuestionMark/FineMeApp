@@ -51,3 +51,11 @@ export const deleteFCMToken = async () => {
   );
   return data;
 };
+
+export const putNickname = async (nickname: string) => {
+  const { data } = await mainAxios.put<ResponseData<unknown>>(
+    '/api/v1/user/profile/nickname',
+    { nickname: nickname.trim() },
+  );
+  return data;
+};

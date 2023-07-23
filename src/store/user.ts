@@ -1,6 +1,6 @@
 import { postSocialToken, statusToResponseType } from '@/api/Login/api';
 import { SOCIAL_LOGIN_RESPONSE } from '@/api/Login/types';
-import { getProfile } from '@/api/User/api';
+import { getProfile, putNickname } from '@/api/User/api';
 import { UserProfile } from '@/api/User/types';
 import { Token } from '@/api/shared/type';
 import STORAGE_KEY from '@/constants/storageKey';
@@ -17,6 +17,7 @@ interface UserStore {
     socialToken: string,
   ) => Promise<SOCIAL_LOGIN_RESPONSE>;
   getUser: () => Promise<UserProfile | null>;
+  editNickname: (nickname: string) => Promise<UserProfile>;
 }
 
 const initialStore = {
@@ -61,7 +62,15 @@ export const useUserStore = create<UserStore>()(
           }
           return type;
         },
+        editNickname: async (nickname: string) => {
+          await putNickname(nickname);
+          const { user } = get();
+          const updatedUser = { ...(user as UserProfile), nickname };
+          set(prev => ({ ...prev, user: updatedUser }));
+          return updatedUser;
+        },
       }),
+
       {
         name: STORAGE_KEY.token,
         storage: createJSONStorage(() => AsyncStorage),

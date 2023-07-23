@@ -29,7 +29,7 @@ export type SettingParamList = {
   ServiceInfo: undefined;
   Terms: undefined;
   Notification: undefined;
-  EditNickname: { nickname: string };
+  EditNickname: undefined;
 };
 
 export type StageParamList = {

@@ -50,7 +50,7 @@ const AccountScreen = () => {
   }, [reset]);
 
   const handlePressEditNickname = () => {
-    navigation.navigate('EditNickname', { nickname: user?.nickname || '' });
+    navigation.navigate('EditNickname');
   };
 
   return (
