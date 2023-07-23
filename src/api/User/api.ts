@@ -43,3 +43,11 @@ export const putFCMToken = async (payload: PutFCMTokenPayload) => {
   );
   return data;
 };
+
+export const deleteFCMToken = async () => {
+  const { data } = await mainAxios.put<ResponseData<unknown>>(
+    '/api/v1/user/profile/fcm-id',
+    { fcmId: null },
+  );
+  return data;
+};

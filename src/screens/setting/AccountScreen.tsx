@@ -12,6 +12,7 @@ import { Button } from '@/common/components/Button';
 import useHideTabBar from '@/hooks/useHideTabBar';
 import { ScaledSheet, vs } from '@/utils/scale';
 import { CustomShadow } from '@/common/components/Shadow';
+import { deleteFCMToken } from '@/api/User/api';
 
 const styles = ScaledSheet.create({
   container: {
@@ -44,9 +45,8 @@ const AccountScreen = () => {
   const { user, reset } = useUserStore();
   useHideTabBar();
 
-  const logout = useCallback(() => {
-    // TODO: FCM 토큰 삭제
-    reset();
+  const logout = useCallback(async () => {
+    await Promise.all([deleteFCMToken, reset]);
   }, [reset]);
 
   return (
