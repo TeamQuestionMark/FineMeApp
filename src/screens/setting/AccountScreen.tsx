@@ -49,6 +49,10 @@ const AccountScreen = () => {
     await Promise.all([deleteFCMToken, reset]);
   }, [reset]);
 
+  const handlePressEditNickname = () => {
+    navigation.navigate('EditNickname', { nickname: user?.nickname || '' });
+  };
+
   return (
     <View>
       <Header title="계정 정보" onPressLeadingIcon={navigation.goBack} />
@@ -92,7 +96,7 @@ const AccountScreen = () => {
               <Text marginTop={2} fontSize="16">
                 {user?.nickname}
               </Text>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={handlePressEditNickname}>
                 <Text
                   color={COLORS.active100}
                   fontSize="16"

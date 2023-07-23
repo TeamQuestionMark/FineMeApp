@@ -25,6 +25,7 @@ import {
   PrivacyPolicyScreen,
   ServiceInfoScreen,
   TermsScreen,
+  EditNicknameScreen,
 } from './setting';
 import { CharacterScreen } from './character';
 
@@ -82,6 +83,10 @@ export const SETTING_STACK_SCREEN_LIST: ScreenList<SettingParamList> = [
   {
     name: 'Terms',
     component: TermsScreen,
+  },
+  {
+    name: 'EditNickname',
+    component: EditNicknameScreen,
   },
 ];
 
