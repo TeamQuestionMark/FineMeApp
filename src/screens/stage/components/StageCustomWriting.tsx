@@ -23,6 +23,8 @@ import { useToastStore } from '@/store/toast';
 import { ConfirmModal } from '@/common/components/Modal';
 import CustomQuestionCard from './StageCustomWriting/CustomQuestionCard';
 import { find, map } from 'lodash';
+import usePostCustomStageQuestions from '@/api/Question/hooks/usePostCustomStageQuestions';
+import useGetCustomStageQuery from '@/api/Question/hooks/useGetCustomStageQuery';
 
 const styles = ScaledSheet.create({
   paddingContainer: {
@@ -38,6 +40,9 @@ const StageCustomWriting = () => {
   const navigation = useNavigation<NavigationProps>();
 
   const setToast = useToastStore(state => state.setToast);
+
+  const { mutate: createCustomStage } = usePostCustomStageQuestions();
+  const { refetch: refetchCustomStages } = useGetCustomStageQuery();
 
   const [isVisibleCloseConfirmModal, setIsVisibleCloseConfirmModal] =
     useState<boolean>(false);
@@ -89,10 +94,10 @@ const StageCustomWriting = () => {
     [customQuestions],
   );
 
-  const { control, handleSubmit } = useForm<CustomStageTitleForm>({
+  const { control, handleSubmit, getValues } = useForm<CustomStageTitleForm>({
     defaultValues: {
-      title: '',
-      category: '',
+      stageName: '',
+      categoryName: '',
     },
   });
 
@@ -106,17 +111,23 @@ const StageCustomWriting = () => {
   };
 
   const onPressSavaButton = () => {
-    //TODO: 저장 로직
-    navigation.goBack();
+    const formValues = getValues();
+    createCustomStage({
+      stageName: formValues.stageName,
+      categoryName: formValues.categoryName,
+      questions: customQuestions,
+    });
+    refetchCustomStages();
+    setIsVisibleCompleteConfirmModal(false);
   };
 
   const onPressSubmitButton = useCallback(
     (data: CustomStageTitleForm) => {
-      if (!data.category || !data.title) {
+      if (!data.categoryName || !data.stageName) {
         setToast('제목과 카테고리를 모두 입력해주세요.');
         return;
       }
-      if (data.category.length > 8 || data.title.length > 8) {
+      if (data.categoryName.length > 8 || data.stageName.length > 8) {
         setToast('내용은 최대 8글자까지만 입력 가능합니다.');
         return;
       }
@@ -136,6 +147,7 @@ const StageCustomWriting = () => {
       setIsVisibleCompleteConfirmModal(true);
     },
     [
+      setToast,
       customQuestions,
       hasEmptyQuestionTitle,
       hasEmptyMultiChoiceOptionEmpty,
@@ -177,7 +189,7 @@ const StageCustomWriting = () => {
           <Divider vertical={30} />
           <Controller
             control={control}
-            name="category"
+            name="categoryName"
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="카테고리"
@@ -190,7 +202,7 @@ const StageCustomWriting = () => {
           <Divider vertical={30} />
           <Controller
             control={control}
-            name="title"
+            name="stageName"
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="스테이지 제목"

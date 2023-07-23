@@ -26,55 +26,52 @@ const initialStore = {
 };
 
 export const useUserStore = create<UserStore>()(
-  devtools(
-    persist(
-      (set, get) => ({
-        token: null,
-        user: null,
-        reset: () => {
-          set(initialStore);
-        },
-        getUser: async () => {
-          try {
-            const { status, data } = await getProfile();
-            console.log('🔸 → getUser: → data:', data);
-            const user = data.data;
-            set(prev => ({ ...prev, user }));
-            return user;
-          } catch (e) {
-            console.log('🔸 → getUser: → e:', e);
-            set({ token: null, user: null });
-            return null;
-          }
-        },
-        socialLogin: async (social: 'kakao' | 'apple', socialToken: string) => {
-          const { status, data } = await postSocialToken(social, socialToken);
-          const token = data.data;
-          const type = statusToResponseType(status);
-
-          if (
-            type === SOCIAL_LOGIN_RESPONSE.SUCCESS ||
-            type === SOCIAL_LOGIN_RESPONSE.FIRST_LOGIN_SUCCESS
-          ) {
-            set({ token });
-          } else {
-            console.error(`postSocialToken ${status} Error:`, data.message);
-          }
-          return type;
-        },
-        editNickname: async (nickname: string) => {
-          await putNickname(nickname);
-          const { user } = get();
-          const updatedUser = { ...(user as UserProfile), nickname };
-          set(prev => ({ ...prev, user: updatedUser }));
-          return updatedUser;
-        },
-      }),
-
-      {
-        name: STORAGE_KEY.token,
-        storage: createJSONStorage(() => AsyncStorage),
+  persist(
+    (set, get) => ({
+      token: null,
+      user: null,
+      reset: () => {
+        set(initialStore);
       },
-    ),
+      getUser: async () => {
+        try {
+          const { status, data } = await getProfile();
+          console.log('🔸 → getUser: → data:', data);
+          const user = data.data;
+          set(prev => ({ ...prev, user }));
+          return user;
+        } catch (e) {
+          console.log('🔸 → getUser: → e:', e);
+          set({ token: null, user: null });
+          return null;
+        }
+      },
+      socialLogin: async (social: 'kakao' | 'apple', socialToken: string) => {
+        const { status, data } = await postSocialToken(social, socialToken);
+        const token = data.data;
+        const type = statusToResponseType(status);
+
+        if (
+          type === SOCIAL_LOGIN_RESPONSE.SUCCESS ||
+          type === SOCIAL_LOGIN_RESPONSE.FIRST_LOGIN_SUCCESS
+        ) {
+          set({ token });
+        } else {
+          console.error(`postSocialToken ${status} Error:`, data.message);
+        }
+        return type;
+      },
+      editNickname: async (nickname: string) => {
+        await putNickname(nickname);
+        const { user } = get();
+        const updatedUser = { ...(user as UserProfile), nickname };
+        set(prev => ({ ...prev, user: updatedUser }));
+        return updatedUser;
+      },
+    }),
+    {
+      name: STORAGE_KEY.token,
+      storage: createJSONStorage(() => AsyncStorage),
+    },
   ),
 );
