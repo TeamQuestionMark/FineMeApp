@@ -7,7 +7,7 @@ import { ScaledSheet } from '@/utils/scale';
 import globalStyles from '@/themes/globalStyles';
 import Icon from '@/common/components/Icon/Icon';
 import { useNavigation } from '@react-navigation/native';
-import { RootStackParamList, StageParamList } from '@/navigations/types';
+import { StageParamList } from '@/navigations/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import * as Icons from '@/assets/icons/svgIcons/index';
 
@@ -16,7 +16,7 @@ const styles = ScaledSheet.create({
     paddingHorizontal: '20@s',
   },
   logo: {
-    width: '107@s',
+    width: '120@s',
     height: '27@vs',
   },
 });
@@ -57,7 +57,7 @@ const LogoHeader = ({
     } else if (icon === 'Setting') {
       navigation.navigate('Setting');
     }
-  }, [icon]);
+  }, [icon, navigation]);
 
   return (
     <View
@@ -67,7 +67,7 @@ const LogoHeader = ({
         styles.container,
       ]}
     >
-      <FastImage source={Logo} style={styles.logo} />
+      <FastImage source={Logo} style={styles.logo} resizeMode="contain" />
       <Icon
         icon={getIcon.icon as keyof typeof Icons}
         size={31}
