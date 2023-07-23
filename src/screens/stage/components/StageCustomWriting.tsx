@@ -24,6 +24,7 @@ import { ConfirmModal } from '@/common/components/Modal';
 import CustomQuestionCard from './StageCustomWriting/CustomQuestionCard';
 import { find, map } from 'lodash';
 import usePostCustomStageQuestions from '@/api/Question/hooks/usePostCustomStageQuestions';
+import useGetCustomStageQuery from '@/api/Question/hooks/useGetCustomStageQuery';
 
 const styles = ScaledSheet.create({
   paddingContainer: {
@@ -41,6 +42,7 @@ const StageCustomWriting = () => {
   const setToast = useToastStore(state => state.setToast);
 
   const { mutate: createCustomStage } = usePostCustomStageQuestions();
+  const { refetch: refetchCustomStages } = useGetCustomStageQuery();
 
   const [isVisibleCloseConfirmModal, setIsVisibleCloseConfirmModal] =
     useState<boolean>(false);
@@ -115,6 +117,7 @@ const StageCustomWriting = () => {
       categoryName: formValues.categoryName,
       questions: customQuestions,
     });
+    refetchCustomStages();
     setIsVisibleCompleteConfirmModal(false);
   };
 

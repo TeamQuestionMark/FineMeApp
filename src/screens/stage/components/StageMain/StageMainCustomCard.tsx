@@ -12,6 +12,7 @@ import { CustomShadow } from '@/common/components/Shadow';
 import { getDotYYYYMMDDWithWeekDay } from '@/utils/date';
 import { getSlicedText } from '@/utils/text';
 import Icon from '@/common/components/Icon/Icon';
+import shareStage from '@/utils/shareStage';
 
 const styles = ScaledSheet.create({
   container: {
@@ -51,9 +52,8 @@ const StageMainCustomCard = ({
   stageId,
   category,
 }: StageMainCustomCardProps) => {
-  //TOTO: 공유하기 버튼
   const onPressShareButton = () => {
-    console.log('stageId: ', stageId);
+    shareStage(Number(stageId));
   };
 
   return (
@@ -67,7 +67,7 @@ const StageMainCustomCard = ({
       >
         <View style={[globalStyles.rowAlignCenterContainer]}>
           <FastImage
-            source={!!iconUrl ? { uri: iconUrl } : DefaultImage}
+            source={iconUrl ? { uri: iconUrl } : DefaultImage}
             style={styles.icon}
           />
           <Divider horizontal={16} />
