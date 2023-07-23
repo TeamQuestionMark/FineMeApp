@@ -15,3 +15,11 @@ export interface ResponseData<T> {
 export type ApiPostFunction<D, R = Promise<AxiosResponse>> = (
   data: D,
 ) => Promise<R>;
+
+export type ApiFetchFunction<R, Params = object> = ({
+  pageSize,
+  searchQuery,
+}: {
+  pageSize?: number;
+  searchQuery?: string;
+} & Params) => Promise<R>;
