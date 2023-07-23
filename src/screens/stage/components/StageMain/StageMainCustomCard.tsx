@@ -82,7 +82,9 @@ const StageMainCustomCard = ({
             </Text>
             <Divider vertical={4} />
             <Text fontSize="14" fontWeight="Regular" color={COLORS.black}>
-              {getDotYYYYMMDDWithWeekDay(createdAt || new Date())}
+              {createdAt
+                ? `${createdAt}`
+                : getDotYYYYMMDDWithWeekDay(new Date())}
             </Text>
             {category && (
               <>
