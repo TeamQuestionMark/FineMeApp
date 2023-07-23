@@ -13,9 +13,10 @@ import { Divider } from '@/common/components/Divider';
 import ImageWork from '@/assets/images/customCard/image_work_custom.png';
 import ImageCafe from '@/assets/images/customCard/image_cafe_custom.png';
 import ImageHome from '@/assets/images/customCard/image_home_custom.png';
-import { StageParamList } from '@/navigations/types';
+import { NavigationProps, StageParamList } from '@/navigations/types';
 import Icon from '@/common/components/Icon/Icon';
 import WhiteCircleImage from '@/assets/images/circleButton/image_shadow_white_circle.png';
+import { shareResult } from '@/utils/share';
 
 const styles = ScaledSheet.create({
   container: {
@@ -42,7 +43,7 @@ const styles = ScaledSheet.create({
 });
 
 const StageCard = ({ stageType }: StageCardProps) => {
-  const navigation = useNavigation<StackNavigationProp<StageParamList>>();
+  const navigation = useNavigation<NavigationProps>();
   const isStageTypeCustom = stageType === 'CUSTOM';
 
   const renderChip = useCallback(
@@ -68,8 +69,12 @@ const StageCard = ({ stageType }: StageCardProps) => {
     [],
   );
 
-  const onPressMoveToResultPage = () => {};
-  const onPressShare = () => {};
+  const onPressMoveToResultPage = () => {
+    navigation.navigate('Result', { uuid: 'TODO: uuid' });
+  };
+  const onPressShare = () => {
+    shareResult('TODO: uuid');
+  };
 
   return (
     <View

@@ -3,6 +3,7 @@ import AccountScreen from './AccountScreen';
 import PrivacyPolicyScreen from './PrivacyPolicyScreen';
 import ServiceInfoScreen from './ServiceInfoScreen';
 import TermsScreen from './TermsScreen';
+import EditNicknameScreen from './EditNicknameScreen';
 
 export {
   SettingScreen,
@@ -10,4 +11,5 @@ export {
   PrivacyPolicyScreen,
   ServiceInfoScreen,
   TermsScreen,
+  EditNicknameScreen,
 };

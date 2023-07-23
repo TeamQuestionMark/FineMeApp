@@ -17,7 +17,8 @@ import { useNavigation } from '@react-navigation/native';
 import { StageParamList } from '@/navigations/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { STAGE_ID_MAP } from '@/constants/stage';
-import shareStage from '@/utils/shareStage';
+import { shareStage } from '@/utils/share';
+import { useUserStore } from '@/store/user';
 
 const styles = ScaledSheet.create({
   container: {
@@ -45,6 +46,7 @@ const styles = ScaledSheet.create({
 });
 
 const StageMainCard = ({ type }: StageMainCardProps) => {
+  const { user } = useUserStore();
   const navigation = useNavigation<StackNavigationProp<StageParamList>>();
   const contentsObj = useMemo(() => {
     switch (type) {
@@ -83,7 +85,7 @@ const StageMainCard = ({ type }: StageMainCardProps) => {
   };
 
   const onPressShareButton = () => {
-    shareStage(STAGE_ID_MAP[type]);
+    if (user?.userId) shareStage(STAGE_ID_MAP[type], user?.userId);
   };
 
   return (

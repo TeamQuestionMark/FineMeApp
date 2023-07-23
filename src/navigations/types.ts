@@ -18,6 +18,7 @@ export type LandingStackParamList = {
 export type MyPageParamList = {
   MyPage: undefined;
   Notification: undefined;
+  Result: { uuid: string };
   SettingPage: undefined;
 };
 
@@ -28,6 +29,7 @@ export type SettingParamList = {
   ServiceInfo: undefined;
   Terms: undefined;
   Notification: undefined;
+  EditNickname: undefined;
 };
 
 export type StageParamList = {
