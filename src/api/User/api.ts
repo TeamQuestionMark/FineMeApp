@@ -59,3 +59,7 @@ export const putNickname = async (nickname: string) => {
   );
   return data;
 };
+
+export const deleteUser = async () => {
+  return await mainAxios.delete('/api/v1/user/profile');
+};

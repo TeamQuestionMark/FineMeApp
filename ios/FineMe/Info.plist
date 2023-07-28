@@ -34,7 +34,7 @@
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>CodePushDeploymentKey</key>
-	<string>nGzkwsCMm53atVI_YG_DXl6SBPkmeHd1lRmP_</string>
+	<string>gUyORRcm1FYcEX9M-wmRFMdp1CVttyqtNynqc</string>
 	<key>KAKAO_APP_KEY</key>
 	<string>49ca99a901ffab79221b40bee9307f8c</string>
 	<key>LSApplicationQueriesSchemes</key>
@@ -58,11 +58,6 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>processing</string>
-		<string>remote-notification</string>
-	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SUIT-Bold.ttf</string>

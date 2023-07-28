@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import Header from '@/common/components/Header/Header';
@@ -12,7 +12,8 @@ import { Button } from '@/common/components/Button';
 import useHideTabBar from '@/hooks/useHideTabBar';
 import { ScaledSheet, vs } from '@/utils/scale';
 import { CustomShadow } from '@/common/components/Shadow';
-import { deleteFCMToken } from '@/api/User/api';
+import { deleteFCMToken, deleteUser } from '@/api/User/api';
+import { ConfirmModal } from '@/common/components/Modal';
 
 const styles = ScaledSheet.create({
   container: {
@@ -43,6 +44,7 @@ const styles = ScaledSheet.create({
 const AccountScreen = () => {
   const navigation = useNavigation<NavigationProps>();
   const { user, reset } = useUserStore();
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
   useHideTabBar();
 
   const logout = useCallback(async () => {
@@ -53,6 +55,10 @@ const AccountScreen = () => {
     navigation.navigate('EditNickname');
   };
 
+  const quit = async () => {
+    await Promise.all([deleteUser, reset]);
+    setIsVisibleModal(false);
+  };
   return (
     <View>
       <Header title="계정 정보" onPressLeadingIcon={navigation.goBack} />
@@ -117,7 +123,7 @@ const AccountScreen = () => {
             width={'100%'}
             onPress={logout}
           />
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setIsVisibleModal(true)}>
             <Text
               color={COLORS.gray300}
               fontSize="16"
@@ -129,6 +135,22 @@ const AccountScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
+      <ConfirmModal
+        title="탈퇴하시겠습니까?"
+        description="모든 데이터가 삭제됩니다."
+        isVisible={isVisibleModal}
+        firstButton={
+          <Button
+            title="취소"
+            variant="outlined"
+            onPress={() => setIsVisibleModal(false)}
+            width={127}
+          />
+        }
+        secondButton={
+          <Button title="탈퇴하기" variant="solid" onPress={quit} width={127} />
+        }
+      />
     </View>
   );
 };
