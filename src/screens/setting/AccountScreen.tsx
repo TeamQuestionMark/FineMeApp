@@ -37,7 +37,7 @@ const styles = ScaledSheet.create({
   },
   actionWrapper: {
     marginTop: 'auto',
-    marginBottom: '30@vs',
+    marginBottom: '60@vs',
   },
 });
 
@@ -48,7 +48,7 @@ const AccountScreen = () => {
   useHideTabBar();
 
   const logout = useCallback(async () => {
-    await Promise.all([deleteFCMToken, reset]);
+    await deleteFCMToken().then(reset);
   }, [reset]);
 
   const handlePressEditNickname = () => {
@@ -56,7 +56,7 @@ const AccountScreen = () => {
   };
 
   const quit = async () => {
-    await Promise.all([deleteUser, reset]);
+    await deleteUser().then(reset);
     setIsVisibleModal(false);
   };
   return (
@@ -117,13 +117,15 @@ const AccountScreen = () => {
         </View>
         <View style={[globalStyles.alignCenter, styles.actionWrapper]}>
           <Button
-            style={{ marginBottom: vs(30) }}
             variant="outlined"
             title="로그아웃"
             width={'100%'}
             onPress={logout}
           />
-          <TouchableOpacity onPress={() => setIsVisibleModal(true)}>
+          <TouchableOpacity
+            onPress={() => setIsVisibleModal(true)}
+            style={{ marginTop: vs(30) }}
+          >
             <Text
               color={COLORS.gray300}
               fontSize="16"
