@@ -22,7 +22,6 @@ const GENDER_OPTIONS: { label: string; value: Gender }[] = [
   },
   {
     label: '기타',
-    // TODO: api 명세 확인 필요
     value: 'etc',
   },
 ];

@@ -43,10 +43,8 @@ const LoginScreen = () => {
       const user = await getUser();
 
       if (user && user.birth && user.gender) {
-        // TODO: 홈 페이지로 이동
         Alert.alert('로그인 성공');
       } else {
-        // TODO: 추가 정보 기입 페이지로 이동
         Alert.alert('추가 정보를 입력해주세요');
         navigation.replace('EditProfile');
       }
@@ -63,11 +61,6 @@ const LoginScreen = () => {
           fontWeight="bold"
           textAlign="center"
           marginBottom={11}
-          onPress={async () => {
-            //TODO: 테스트 코드 추후 삭제
-            console.info(token);
-            console.info(await AsyncStorage.getItem(STORAGE_KEY.token));
-          }}
         >
           괜찮은 나를 확인하세요!
         </Text>
