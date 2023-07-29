@@ -11,14 +11,14 @@ const usePostCustomStageQuestions = () => {
 
   const { setToast } = useToastStore();
 
-  const { mutate } = useMutation({
+  const { mutate } = useMutation(['postCustomStage'], {
     mutationFn: (customQuestionData: CustomStageRowData) => {
       const convertQuestionData =
         getConvertCustomStagePostData(customQuestionData);
       return postQuestionsStage(convertQuestionData);
     },
     onSuccess: () => navigation.goBack(),
-    onError: () => setToast('서버 전송에 실패했습니다.'),
+    onError: () => setToast('데이터 전송에 실패했습니다.'),
   });
 
   return { mutate };

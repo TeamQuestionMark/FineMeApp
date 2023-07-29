@@ -612,6 +612,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = XQ24HP64B3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = FineMe/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -626,7 +627,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.questionmark.fineme;
 				PRODUCT_NAME = FineMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-DIST";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-ADHOC";
 				SWIFT_OBJC_BRIDGING_HEADER = "FineMe-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -648,6 +649,7 @@
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = XQ24HP64B3;
 				INFOPLIST_FILE = FineMe/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -662,7 +664,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.questionmark.fineme;
 				PRODUCT_NAME = FineMe;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-DIST";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "QUESTIONMARK-FINE-ME-ADHOC";
 				SWIFT_OBJC_BRIDGING_HEADER = "FineMe-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

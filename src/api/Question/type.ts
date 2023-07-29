@@ -23,6 +23,7 @@ export interface CustomStageResult extends BasicStageResult {
 }
 
 export interface QuestionResultData {
-  length: number;
-  stageLists: CustomStageResult[];
+  stageLength: number;
+  basicStageList: BasicStageResult[];
+  customStageList: CustomStageResult[];
 }

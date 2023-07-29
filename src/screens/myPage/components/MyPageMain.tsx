@@ -52,23 +52,17 @@ const MyPageMain = () => {
 
   const {
     listData: { customStageList, basicStageLists },
-    refetchLists: refetchResults,
   } = useGetQuestionResultsQuery();
 
-  useFocusEffect(
-    useCallback(() => {
-      refetchResults();
-    }, []),
-  );
-
   useEffect(() => {
-    if (isMainTab) {
-      setStageLists(basicStageLists);
-    } else {
-      setStageLists(customStageList);
+    if (customStageList || basicStageLists) {
+      if (isMainTab) {
+        setStageLists(basicStageLists || []);
+      } else {
+        setStageLists(customStageList || []);
+      }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMainTab]);
+  }, [isMainTab, customStageList, basicStageLists]);
 
   const renderResultCards = useCallback(
     (type: StageCardType) => {

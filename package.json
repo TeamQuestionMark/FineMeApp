@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
+    "reactotron": "sh ./scripts/connect-reactotron-android.sh",
     "android": "react-native run-android",
     "ios": "ENVFILE=.env react-native run-ios --scheme=FineMe",
     "ios:simulator": "sh ./scripts/ios_simulator.sh",
     "ios:stg": "ENVFILE=.env.staging react-native run-ios --scheme=FineMe-stg",
     "ios:prd": "ENVFILE=.env react-native run-ios --scheme=FineMe",
-    "android:stg": "ENVFILE=.env.staging react-native run-android --variant stagingDebug --appIdSuffix \"dev\"",
+    "android:stg": "ENVFILE=.env.staging react-native run-android --variant stagingDebug --appIdSuffix \"dev\" && npm run reactotron",
     "android:prd": "ENVFILE=.env react-native run-android --variant productionDebug --appIdSuffix \"prd\"",
     "ios-code-push:stg": "plutil -replace CodePushDeploymentKey -string gUyORRcm1FYcEX9M-wmRFMdp1CVttyqtNynqc ios/FineMe/Info.plist",
     "ios-code-push:prd": "plutil -replace CodePushDeploymentKey -string nGzkwsCMm53atVI_YG_DXl6SBPkmeHd1lRmP_ ios/FineMe/Info.plist",
@@ -87,6 +88,7 @@
     "react-native-svg-transformer": "^1.0.0",
     "react-test-renderer": "18.2.0",
     "reactotron-react-native": "^5.0.3",
+    "reactotron-react-query": "^1.0.2",
     "typescript": "4.8.4"
   },
   "jest": {

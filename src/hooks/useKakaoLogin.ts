@@ -7,8 +7,11 @@ export default function useKakaoLogin() {
       const token = await Kakao.loginWithKakaoAccount();
       return token;
     } catch (err) {
-      console.log('🔸 → file: useKakao.ts:12 → login → err:', JSON.stringify(err));
-      throw err
+      console.log(
+        '🔸 → file: useKakao.ts:12 → login → err:',
+        JSON.stringify(err),
+      );
+      throw err;
     }
   };
 
