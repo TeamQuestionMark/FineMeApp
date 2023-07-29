@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
 
 import { Divider } from '@/common/components/Divider';
@@ -9,7 +9,11 @@ import { ScaledSheet } from '@/utils/scale';
 import UserCard from './MyPageMain/UserCard';
 import { Tabs } from '@/common/components/Tab';
 import { TabItem } from '@/common/components/Tab/type';
-import StageCard from './MyPageMain/StageCard';
+import StageCard, { StageCardType } from './MyPageMain/StageCard';
+import useGetQuestionResultsQuery from '@/api/Question/hooks/useGetQuestionResultsQuery';
+import { CustomStageResult } from '@/api/Question/type';
+import { map } from 'lodash';
+import { useFocusEffect } from '@react-navigation/native';
 
 const styles = ScaledSheet.create({
   paddingContainer: {
@@ -29,16 +33,66 @@ const styles = ScaledSheet.create({
 const resultTabList: TabItem[] = [
   {
     name: '스테이지 결과',
-    value: 'Main',
+    value: 'MAIN',
   },
   {
     name: '커스텀 스테이지 결과',
-    value: 'Custom',
+    value: 'CUSTOM',
   },
 ];
 
 const MyPageMain = () => {
   const [currentTab, setCurrentTab] = useState<TabItem>(resultTabList[0]);
+  const [stageLists, setStageLists] = useState<CustomStageResult[]>([]);
+
+  const isMainTab = useMemo(
+    () => currentTab.value === 'MAIN',
+    [currentTab?.value],
+  );
+
+  const {
+    listData: { customStageList, basicStageLists },
+    refetchLists: refetchResults,
+  } = useGetQuestionResultsQuery();
+
+  useFocusEffect(
+    useCallback(() => {
+      refetchResults();
+    }, []),
+  );
+
+  useEffect(() => {
+    if (isMainTab) {
+      setStageLists(basicStageLists);
+    } else {
+      setStageLists(customStageList);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isMainTab]);
+
+  const renderResultCards = useCallback(
+    (type: StageCardType) => {
+      return map(stageLists, (listItem, index) => {
+        return (
+          <View
+            key={
+              `${index}-${listItem?.stageName}-${listItem?.createDate}` || ''
+            }
+          >
+            <StageCard
+              stageType={type}
+              stageName={listItem?.stageName}
+              stageResultCount={listItem?.stageResultCount}
+              stageNo={listItem?.stageNo}
+              categoryName={listItem?.categoryName}
+            />
+            <Divider vertical={8} />
+          </View>
+        );
+      });
+    },
+    [stageLists],
+  );
 
   return (
     <View>
@@ -60,9 +114,7 @@ const MyPageMain = () => {
           setTab={setCurrentTab}
         />
         <Divider vertical={26} />
-        <StageCard stageType="MAIN" />
-        <Divider vertical={8} />
-        <StageCard stageType="CUSTOM" />
+        {renderResultCards(currentTab?.value as StageCardType)}
       </View>
       <Divider vertical={67} />
     </View>
