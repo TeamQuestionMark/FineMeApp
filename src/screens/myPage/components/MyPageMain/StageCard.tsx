@@ -2,21 +2,18 @@ import React, { useCallback } from 'react';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 
 import globalStyles from '@/themes/globalStyles';
 import { ScaledSheet, s } from '@/utils/scale';
 import { COLORS } from '@/themes/colors';
 import Text from '@/common/components/Text';
-import { StageCardProps } from './type';
 import { Divider } from '@/common/components/Divider';
 import ImageWork from '@/assets/images/customCard/image_work_custom.png';
-import ImageCafe from '@/assets/images/customCard/image_cafe_custom.png';
-import ImageHome from '@/assets/images/customCard/image_home_custom.png';
-import { NavigationProps, StageParamList } from '@/navigations/types';
+import { NavigationProps } from '@/navigations/types';
 import Icon from '@/common/components/Icon/Icon';
 import WhiteCircleImage from '@/assets/images/circleButton/image_shadow_white_circle.png';
 import { shareResult } from '@/utils/share';
+import { CustomStageResult } from '@/api/Question/type';
 
 const styles = ScaledSheet.create({
   container: {
@@ -42,7 +39,18 @@ const styles = ScaledSheet.create({
   },
 });
 
-const StageCard = ({ stageType }: StageCardProps) => {
+export type StageCardType = 'MAIN' | 'CUSTOM';
+interface StageCardProps extends CustomStageResult {
+  stageType: StageCardType;
+}
+
+const StageCard = ({
+  stageType,
+  stageName,
+  stageResultCount,
+  categoryName,
+  stageNo,
+}: StageCardProps) => {
   const navigation = useNavigation<NavigationProps>();
   const isStageTypeCustom = stageType === 'CUSTOM';
 
@@ -70,10 +78,10 @@ const StageCard = ({ stageType }: StageCardProps) => {
   );
 
   const onPressMoveToResultPage = () => {
-    navigation.navigate('Result', { uuid: 'TODO: uuid' });
+    navigation.navigate('Result', { uuid: String(stageNo) });
   };
   const onPressShare = () => {
-    shareResult('TODO: uuid');
+    shareResult(String(stageNo));
   };
 
   return (
@@ -90,7 +98,6 @@ const StageCard = ({ stageType }: StageCardProps) => {
           { maxWidth: s(isStageTypeCustom ? 194 : 132) },
         ]}
       >
-        {/* TODO: source 종류에 따라 분기처리 */}
         {!isStageTypeCustom && (
           <View style={globalStyles.rowContainer}>
             <FastImage source={ImageWork} style={styles.image} />
@@ -101,12 +108,14 @@ const StageCard = ({ stageType }: StageCardProps) => {
           <View style={[globalStyles.rowContainer]}>
             {isStageTypeCustom && (
               <View style={globalStyles.rowContainer}>
-                {renderChip({ text: '카테고리 태그', type: 'category' })}
+                {renderChip({ text: categoryName || '', type: 'category' })}
                 <Divider horizontal={8} />
               </View>
             )}
             {renderChip({
-              text: `${isStageTypeCustom ? '응답' : '반응'} 12회`,
+              text: `${isStageTypeCustom ? '응답' : '반응'} ${
+                stageResultCount || 0
+              }회`,
               type: 'response',
             })}
           </View>
@@ -116,7 +125,7 @@ const StageCard = ({ stageType }: StageCardProps) => {
             color={COLORS.black}
             numberOfLines={1}
           >
-            ㄹㅇㄴㅁ리ㅜ마닝러ㅏㅣㅁ어리ㅏㅁ넝라ㅣㅓㅁㅇㄴ라ㅣ
+            {stageName || ''}
           </Text>
           <TouchableOpacity
             activeOpacity={0.7}

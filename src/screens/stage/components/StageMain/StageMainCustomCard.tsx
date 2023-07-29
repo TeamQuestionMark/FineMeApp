@@ -12,7 +12,8 @@ import { CustomShadow } from '@/common/components/Shadow';
 import { getDotYYYYMMDDWithWeekDay } from '@/utils/date';
 import { getSlicedText } from '@/utils/text';
 import Icon from '@/common/components/Icon/Icon';
-import shareStage from '@/utils/shareStage';
+import { shareStage } from '@/utils/share';
+import { useUserStore } from '@/store/user';
 
 const styles = ScaledSheet.create({
   container: {
@@ -52,8 +53,12 @@ const StageMainCustomCard = ({
   stageId,
   category,
 }: StageMainCustomCardProps) => {
+  const {
+    user: { userId },
+  } = useUserStore();
+
   const onPressShareButton = () => {
-    shareStage(Number(stageId));
+    shareStage(Number(stageId), Number(userId));
   };
 
   return (
