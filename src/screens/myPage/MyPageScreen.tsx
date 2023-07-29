@@ -1,11 +1,14 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { RefreshControl, ScrollView, View } from 'react-native';
 
 import { COLORS } from '@/themes/colors';
 import { MyPageMain } from './components';
 import globalStyles from '@/themes/globalStyles';
+import useGetQuestionResultsQuery from '@/api/Question/hooks/useGetQuestionResultsQuery';
 
 const MyPageScreen = () => {
+  const { refetchLists, isLoading } = useGetQuestionResultsQuery();
+
   return (
     <View
       style={[
@@ -13,7 +16,11 @@ const MyPageScreen = () => {
         { backgroundColor: COLORS.white },
       ]}
     >
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={isLoading} onRefresh={refetchLists} />
+        }
+      >
         <MyPageMain />
       </ScrollView>
     </View>
