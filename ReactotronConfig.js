@@ -3,13 +3,28 @@ import { NativeModules } from 'react-native';
 import Reactotron, { asyncStorage, networking } from 'reactotron-react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import reactotronPluginZustand from 'reactotron-plugin-zustand';
+import {
+  QueryClientManager,
+  reactotronReactQuery,
+} from 'reactotron-react-query';
 
 const { zustandStore } = require('./src/store/store');
+const { queryClient } = require('./src/utils/queryClient');
+
+const queryClientManager = new QueryClientManager({
+  queryClient,
+});
 
 // First, set some configuration settings on how to connect to the app
 Reactotron.configure({
   name: 'FineMe',
 }).use(reactotronPluginZustand({ stores: zustandStore }));
+
+Reactotron.use(reactotronReactQuery(queryClientManager)).configure({
+  onDisconnect: () => {
+    queryClientManager.unsubscribe();
+  },
+});
 
 // add every built-in react native feature.  you also have the ability to pass
 // an object as a parameter to configure each individual react-native plugin

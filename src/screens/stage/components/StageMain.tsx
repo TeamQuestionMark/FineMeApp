@@ -1,6 +1,6 @@
 import React from 'react';
 import { Divider } from '@/common/components/Divider';
-import { ScrollView, View } from 'react-native';
+import { RefreshControl, ScrollView, View } from 'react-native';
 
 import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
@@ -11,6 +11,7 @@ import StageMainAddButton from './StageMain/StageMainAddButton';
 import { useUserStore } from '@/store/user';
 import { LogoHeader } from '@/common/components/Header';
 import useHasNotifications from '@/api/Notification/hooks/useHasNotifications';
+import useGetCustomStageQuery from '@/api/Question/hooks/useGetCustomStageQuery';
 
 const styles = ScaledSheet.create({
   padding: {
@@ -21,10 +22,15 @@ const styles = ScaledSheet.create({
 const StageMain = () => {
   const { user } = useUserStore();
   const hasNewNotifications = useHasNotifications();
+  const { refetch, isLoading } = useGetCustomStageQuery();
 
   return (
     <View>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={isLoading} onRefresh={refetch} />
+        }
+      >
         <Divider vertical={25} />
         <LogoHeader
           icon="Notification"

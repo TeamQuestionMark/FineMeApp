@@ -5,7 +5,7 @@ import { getCustomStages } from '../api';
 const useGetCustomStageQuery = () => {
   const { setCustomStageLength, setStageLists } = useCustomStageStore();
 
-  const { data, refetch } = useQuery({
+  const { data, refetch, isLoading } = useQuery(['fetchCustomStage'], {
     queryFn: () => getCustomStages({}),
     onSuccess: data => {
       setCustomStageLength(data?.data?.data?.length || 0);
@@ -13,7 +13,7 @@ const useGetCustomStageQuery = () => {
     },
   });
 
-  return { data, refetch };
+  return { data, refetch, isLoading };
 };
 
 export default useGetCustomStageQuery;

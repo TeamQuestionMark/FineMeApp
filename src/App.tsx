@@ -13,18 +13,7 @@ import RootStack from './navigations/RootStack';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import globalStyles from './themes/globalStyles';
 import useFcmHandler from './hooks/useFcmHandler';
-
-export const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      useErrorBoundary: true,
-      staleTime: Infinity,
-      refetchOnWindowFocus: false,
-      refetchOnMount: true,
-      retry: 0,
-    },
-  },
-});
+import { queryClient } from './utils/queryClient';
 
 export const navigationRef =
   React.createRef<NavigationContainerRef<RootStackParamList>>();
