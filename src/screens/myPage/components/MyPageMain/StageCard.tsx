@@ -52,6 +52,7 @@ const StageCard = ({
   stageResultCount,
   categoryName,
   stageNo,
+  uuid,
 }: StageCardProps) => {
   const navigation = useNavigation<NavigationProps>();
   const isStageTypeCustom = stageType === 'CUSTOM';
@@ -93,7 +94,7 @@ const StageCard = ({
   );
 
   const onPressMoveToResultPage = () => {
-    navigation.navigate('Result', { uuid: String(stageNo) });
+    navigation.navigate('Result', { uuid: uuid });
   };
   const onPressShare = () => {
     shareResult(String(stageNo));
@@ -142,14 +143,16 @@ const StageCard = ({
           >
             {stageName || ''}
           </Text>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={onPressMoveToResultPage}
-          >
-            <Text fontSize="16" fontWeight="bold" color={COLORS.gray600}>
-              {'결과확인 >'}
-            </Text>
-          </TouchableOpacity>
+          {stageResultCount !== undefined && stageResultCount > 0 && (
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={onPressMoveToResultPage}
+            >
+              <Text fontSize="16" fontWeight="bold" color={COLORS.gray600}>
+                {'결과확인 >'}
+              </Text>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
       <ImageBackground
