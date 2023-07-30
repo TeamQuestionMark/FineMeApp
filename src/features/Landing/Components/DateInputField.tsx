@@ -38,7 +38,6 @@ const DateInputField = ({ onInput }: DateInputFieldProps) => {
   }, [open]);
 
   const handlePressInput = () => {
-    console.log('1', 1);
     setOpen(true);
     if (!touched) {
       setTouched(true);
