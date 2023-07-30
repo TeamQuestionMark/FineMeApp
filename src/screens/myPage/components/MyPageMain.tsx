@@ -51,7 +51,7 @@ const MyPageMain = () => {
   );
 
   const {
-    listData: { customStageList, basicStageLists },
+    listData: { customStageList, basicStageLists, totalLength },
   } = useGetQuestionResultsQuery();
 
   useEffect(() => {
@@ -98,7 +98,7 @@ const MyPageMain = () => {
           마이페이지
         </Text>
         <Divider vertical={26} />
-        <UserCard />
+        <UserCard totalLength={totalLength || 0} />
       </View>
       <Divider vertical={18} />
       <View style={styles.resultContainer}>

@@ -27,11 +27,8 @@ const styles = ScaledSheet.create({
   },
 });
 
-const UserCard = () => {
+const UserCard = ({ totalLength }: { totalLength: number }) => {
   const { user } = useUserStore();
-
-  //TODO: list 개수
-  const totalStageLength = 9;
 
   return (
     <View style={[globalStyles.rowAlignCenterContainer, styles.container]}>
@@ -50,7 +47,7 @@ const UserCard = () => {
           ]}
         >
           <Text fontSize="14" fontWeight="bold" color={COLORS.brandColor500}>
-            {`${totalStageLength}개의 스테이지`}
+            {`${totalLength || 0}개의 스테이지`}
           </Text>
         </View>
       </View>
