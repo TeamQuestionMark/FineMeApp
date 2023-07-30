@@ -97,7 +97,7 @@ const StageCard = ({
     navigation.navigate('Result', { uuid: uuid });
   };
   const onPressShare = () => {
-    shareResult(String(stageNo));
+    shareResult(uuid);
   };
 
   return (
