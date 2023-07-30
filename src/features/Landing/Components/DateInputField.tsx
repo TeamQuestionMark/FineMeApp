@@ -38,6 +38,7 @@ const DateInputField = ({ onInput }: DateInputFieldProps) => {
   }, [open]);
 
   const handlePressInput = () => {
+    console.log('1', 1);
     setOpen(true);
     if (!touched) {
       setTouched(true);
@@ -45,7 +46,7 @@ const DateInputField = ({ onInput }: DateInputFieldProps) => {
   };
 
   return (
-    <TouchableOpacity onPress={handlePressInput}>
+    <View>
       <DatePicker
         modal
         open={open}
@@ -65,10 +66,11 @@ const DateInputField = ({ onInput }: DateInputFieldProps) => {
         placeholderTextColor={TEXT_COLORS.textPlaceholder}
         placeholder="YYYY / MM / DD"
         style={[styles.input, styles[status]]}
+        onPressIn={handlePressInput}
       >
         <Text fontSize="16">{!touched ? '' : getSlashYYYYMMDD(date)}</Text>
       </TextInput>
-    </TouchableOpacity>
+    </View>
   );
 };
 
