@@ -53,7 +53,7 @@ const CustomQuestionCard = ({
         }
       });
     },
-    [customQuestions],
+    [customQuestions, externalKey],
   );
 
   const onChangeOXanswer = useCallback(
@@ -64,15 +64,15 @@ const CustomQuestionCard = ({
       );
       setCustomQuestions(modifiedCustomQuestions);
     },
-    [customQuestions, setCustomQuestions],
+    [getModifiedValue, setCustomQuestions],
   );
 
-  const onChangeanswerText = useCallback(
+  const onChangeAnswerText = useCallback(
     (text: string) => {
       const modifiedCustomQuestions = getModifiedValue('answerText', text);
       setCustomQuestions(modifiedCustomQuestions);
     },
-    [customQuestions, setCustomQuestions],
+    [getModifiedValue, setCustomQuestions],
   );
 
   const onChangeQuestionTitle = useCallback(
@@ -80,7 +80,7 @@ const CustomQuestionCard = ({
       const modifiedCustomQuestions = getModifiedValue('questionTitle', text);
       setCustomQuestions(modifiedCustomQuestions);
     },
-    [customQuestions, setCustomQuestions],
+    [getModifiedValue, setCustomQuestions],
   );
 
   const onPressDeleteCard = useCallback(() => {
@@ -90,7 +90,7 @@ const CustomQuestionCard = ({
     );
 
     setCustomQuestions(modifiedCustomQuestions);
-  }, [customQuestions, setCustomQuestions]);
+  }, [customQuestions, externalKey, setCustomQuestions]);
 
   const renderContents = useMemo(() => {
     switch (questionType) {
@@ -99,7 +99,7 @@ const CustomQuestionCard = ({
           <InputMessageField
             value={answerText || ''}
             placeholder="1~100자까지 작성할 수 있습니다."
-            onInput={onChangeanswerText}
+            onInput={onChangeAnswerText}
           />
         );
       case CustomStageQuestionType.RADIO:
@@ -127,7 +127,16 @@ const CustomQuestionCard = ({
       default:
         return <OXButtonGroup onChange={onChangeOXanswer} />;
     }
-  }, [customQuestions, questionType]);
+  }, [
+    answerText,
+    customQuestions,
+    externalKey,
+    multipleChoiceList,
+    onChangeOXanswer,
+    onChangeAnswerText,
+    questionType,
+    setCustomQuestions,
+  ]);
 
   return (
     <View style={styles.container}>

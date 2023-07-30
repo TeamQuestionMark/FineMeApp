@@ -1,4 +1,3 @@
-import useReadNotification from '@/api/Notification/hooks/useReadNotification';
 import { Notification } from '@/api/Notification/types';
 import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
