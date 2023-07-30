@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { ImageBackground, TouchableOpacity, View } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { useNavigation } from '@react-navigation/native';
@@ -9,6 +9,8 @@ import { COLORS } from '@/themes/colors';
 import Text from '@/common/components/Text';
 import { Divider } from '@/common/components/Divider';
 import ImageWork from '@/assets/images/customCard/image_work_custom.png';
+import ImageCaffe from '@/assets/images/customCard/image_cafe_custom.png';
+import ImageHome from '@/assets/images/customCard/image_home_custom.png';
 import { NavigationProps } from '@/navigations/types';
 import Icon from '@/common/components/Icon/Icon';
 import WhiteCircleImage from '@/assets/images/circleButton/image_shadow_white_circle.png';
@@ -53,6 +55,19 @@ const StageCard = ({
 }: StageCardProps) => {
   const navigation = useNavigation<NavigationProps>();
   const isStageTypeCustom = stageType === 'CUSTOM';
+
+  const ImageValue = useMemo(() => {
+    switch (stageName) {
+      case '회사':
+        return ImageWork;
+      case '카페':
+        return ImageCaffe;
+      case '집':
+        return ImageHome;
+      default:
+        return ImageWork;
+    }
+  }, [stageName]);
 
   const renderChip = useCallback(
     ({ text, type }: { text: string; type: 'category' | 'response' }) => {
@@ -100,7 +115,7 @@ const StageCard = ({
       >
         {!isStageTypeCustom && (
           <View style={globalStyles.rowContainer}>
-            <FastImage source={ImageWork} style={styles.image} />
+            <FastImage source={ImageValue} style={styles.image} />
             <Divider horizontal={11} />
           </View>
         )}
