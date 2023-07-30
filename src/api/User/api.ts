@@ -1,6 +1,7 @@
 import { mainAxios } from '../shared/axios';
 import { ResponseData } from '../shared/type';
 import { Gender, UserProfile } from './types';
+import messaging from '@react-native-firebase/messaging';
 
 // {"data": {"birth": "", "gender": "female", "nickname": "공부하는 파이니", "socialType": "KAKAO", "username": "gkdud7873@naver.com"}}
 export const getProfile = () =>
@@ -45,11 +46,9 @@ export const putFCMToken = async (payload: PutFCMTokenPayload) => {
 };
 
 export const deleteFCMToken = async () => {
-  const { data } = await mainAxios.put<ResponseData<unknown>>(
-    '/api/v1/user/profile/fcm-id',
-    { fcmId: null },
-  );
-  return data;
+  return await mainAxios
+    .put<ResponseData<unknown>>('/api/v1/user/profile/fcm-id', { fcmId: null })
+    .then(() => messaging().deleteToken());
 };
 
 export const putNickname = async (nickname: string) => {
@@ -58,4 +57,10 @@ export const putNickname = async (nickname: string) => {
     { nickname: nickname.trim() },
   );
   return data;
+};
+
+export const deleteUser = async () => {
+  return await mainAxios
+    .delete('/api/v1/user/profile')
+    .then(() => messaging().deleteToken());
 };

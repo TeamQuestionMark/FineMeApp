@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { TouchableOpacity, View } from 'react-native';
 
 import Header from '@/common/components/Header/Header';
@@ -12,7 +12,8 @@ import { Button } from '@/common/components/Button';
 import useHideTabBar from '@/hooks/useHideTabBar';
 import { ScaledSheet, vs } from '@/utils/scale';
 import { CustomShadow } from '@/common/components/Shadow';
-import { deleteFCMToken } from '@/api/User/api';
+import { deleteFCMToken, deleteUser } from '@/api/User/api';
+import { ConfirmModal } from '@/common/components/Modal';
 
 const styles = ScaledSheet.create({
   container: {
@@ -36,23 +37,28 @@ const styles = ScaledSheet.create({
   },
   actionWrapper: {
     marginTop: 'auto',
-    marginBottom: '30@vs',
+    marginBottom: '60@vs',
   },
 });
 
 const AccountScreen = () => {
   const navigation = useNavigation<NavigationProps>();
   const { user, reset } = useUserStore();
+  const [isVisibleModal, setIsVisibleModal] = useState(false);
   useHideTabBar();
 
   const logout = useCallback(async () => {
-    await Promise.all([deleteFCMToken, reset]);
+    await deleteFCMToken().then(reset);
   }, [reset]);
 
   const handlePressEditNickname = () => {
     navigation.navigate('EditNickname');
   };
 
+  const quit = async () => {
+    await deleteUser().then(reset);
+    setIsVisibleModal(false);
+  };
   return (
     <View>
       <Header title="계정 정보" onPressLeadingIcon={navigation.goBack} />
@@ -111,13 +117,15 @@ const AccountScreen = () => {
         </View>
         <View style={[globalStyles.alignCenter, styles.actionWrapper]}>
           <Button
-            style={{ marginBottom: vs(30) }}
             variant="outlined"
             title="로그아웃"
             width={'100%'}
             onPress={logout}
           />
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => setIsVisibleModal(true)}
+            style={{ marginTop: vs(30) }}
+          >
             <Text
               color={COLORS.gray300}
               fontSize="16"
@@ -129,6 +137,22 @@ const AccountScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
+      <ConfirmModal
+        title="탈퇴하시겠습니까?"
+        description="모든 데이터가 삭제됩니다."
+        isVisible={isVisibleModal}
+        firstButton={
+          <Button
+            title="취소"
+            variant="outlined"
+            onPress={() => setIsVisibleModal(false)}
+            width={127}
+          />
+        }
+        secondButton={
+          <Button title="탈퇴하기" variant="solid" onPress={quit} width={127} />
+        }
+      />
     </View>
   );
 };

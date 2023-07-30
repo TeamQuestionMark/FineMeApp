@@ -53,12 +53,9 @@ const StageMainCustomCard = ({
   stageId,
   category,
 }: StageMainCustomCardProps) => {
-  const {
-    user: { userId },
-  } = useUserStore();
-
+  const { user } = useUserStore();
   const onPressShareButton = () => {
-    shareStage(Number(stageId), Number(userId));
+    if (user?.userId) shareStage(Number(stageId), user.userId);
   };
 
   return (

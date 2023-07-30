@@ -15,9 +15,9 @@ import Spinner from '@/common/components/Spinner/Spinner';
 import globalStyles from '@/themes/globalStyles';
 import { Linking } from 'react-native';
 import { requestPermission } from '@/utils/fcm/requestPermission';
-import { readNotification } from '@/api/Notification/api';
 import useReadNotification from '@/api/Notification/hooks/useReadNotification';
 import { map } from 'lodash';
+import { NavigationProps } from '@/navigations/types';
 
 const dummyNotificationLists: Notification[] = [
   {
@@ -88,7 +88,7 @@ const styles = ScaledSheet.create({
 });
 
 const NotificationScreen = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProps>();
   const [notiOn, setNotiOn] = useState<boolean | 'loading'>('loading');
   const query = useNotifications();
   const { mutateAsync: readNoti } = useReadNotification();
@@ -116,7 +116,7 @@ const NotificationScreen = () => {
     if (notification.readYn === 'N') {
       readNoti({ target: notification.id }).catch(console.error);
     }
-    // TODO: 마이페이지 결과로 이동
+    navigation.navigate('Result', { uuid: notification.uuid });
   };
 
   if (!query.data || notiOn === 'loading')
