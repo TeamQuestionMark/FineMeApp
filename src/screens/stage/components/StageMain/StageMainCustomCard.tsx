@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { ScaledSheet, s } from '@/utils/scale';
-import DefaultImage from '@/assets/images/customCard/image_work_custom.png';
+import DefaultImage from '@/assets/images/customCard/image_custom_card.png';
 import globalStyles from '@/themes/globalStyles';
 import FastImage from 'react-native-fast-image';
 import { Divider } from '@/common/components/Divider';

@@ -14,7 +14,7 @@ export interface BasicStageResult {
   stageNo?: number;
   stageName: string;
   createDate?: string;
-  uuid?: string;
+  uuid: string;
   stageResultCount?: number;
 }
 

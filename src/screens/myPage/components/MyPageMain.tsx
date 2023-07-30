@@ -79,6 +79,7 @@ const MyPageMain = () => {
               stageResultCount={listItem?.stageResultCount}
               stageNo={listItem?.stageNo}
               categoryName={listItem?.categoryName}
+              uuid={listItem.uuid}
             />
             <Divider vertical={8} />
           </View>
