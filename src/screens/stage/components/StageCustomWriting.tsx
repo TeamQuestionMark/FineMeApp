@@ -193,7 +193,7 @@ const StageCustomWriting = () => {
             render={({ field: { onChange, value } }) => (
               <TextField
                 label="카테고리"
-                placeholder="카테고리를 입력해주세요. ex)회사 속 나의 모습"
+                placeholder="카테고리를 입력해주세요. ex)회사속나의모습"
                 onInput={onChange}
                 value={value}
               />
