@@ -155,18 +155,20 @@ const StageCard = ({
           )}
         </View>
       </View>
-      <ImageBackground
-        source={WhiteCircleImage}
-        style={[
-          globalStyles.alignCenter,
-          globalStyles.justifyCenter,
-          styles.shareContainer,
-        ]}
-      >
-        <TouchableOpacity activeOpacity={0.7} onPress={onPressShare}>
-          <Icon icon="Share" size={24} color={COLORS.black} />
-        </TouchableOpacity>
-      </ImageBackground>
+      {stageResultCount !== undefined && stageResultCount > 0 && (
+        <ImageBackground
+          source={WhiteCircleImage}
+          style={[
+            globalStyles.alignCenter,
+            globalStyles.justifyCenter,
+            styles.shareContainer,
+          ]}
+        >
+          <TouchableOpacity activeOpacity={0.7} onPress={onPressShare}>
+            <Icon icon="Share" size={24} color={COLORS.black} />
+          </TouchableOpacity>
+        </ImageBackground>
+      )}
     </View>
   );
 };
