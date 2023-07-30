@@ -127,8 +127,8 @@ const StageCustomWriting = () => {
         setToast('제목과 카테고리를 모두 입력해주세요.');
         return;
       }
-      if (data.categoryName.length > 8 || data.stageName.length > 8) {
-        setToast('내용은 최대 8글자까지만 입력 가능합니다.');
+      if (data.categoryName.length > 8) {
+        setToast('카테고리는 최대 8글자까지만 입력 가능합니다.');
         return;
       }
       if (hasEmptyQuestionTitle || customQuestions.length === 0) {
