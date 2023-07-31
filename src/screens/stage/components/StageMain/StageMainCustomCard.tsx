@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 
 import { ScaledSheet, s } from '@/utils/scale';
 import DefaultImage from '@/assets/images/customCard/image_custom_card.png';
@@ -14,6 +14,8 @@ import { getSlicedText } from '@/utils/text';
 import Icon from '@/common/components/Icon/Icon';
 import { shareStage } from '@/utils/share';
 import { useUserStore } from '@/store/user';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProps } from '@/navigations/types';
 
 const styles = ScaledSheet.create({
   container: {
@@ -54,8 +56,15 @@ const StageMainCustomCard = ({
   category,
 }: StageMainCustomCardProps) => {
   const { user } = useUserStore();
+  const navigation = useNavigation<NavigationProps>();
   const onPressShareButton = () => {
     if (user?.userId) shareStage(Number(stageId), user.userId);
+  };
+  const onPressCard = () => {
+    navigation.navigate('StagePreview', {
+      stageId: Number(stageId),
+      stageName: title,
+    });
   };
 
   return (
@@ -67,7 +76,10 @@ const StageMainCustomCard = ({
           styles.container,
         ]}
       >
-        <View style={[globalStyles.rowAlignCenterContainer]}>
+        <TouchableOpacity
+          style={[globalStyles.rowAlignCenterContainer]}
+          onPress={onPressCard}
+        >
           <FastImage
             source={iconUrl ? { uri: iconUrl } : DefaultImage}
             style={styles.icon}
@@ -106,7 +118,7 @@ const StageMainCustomCard = ({
               </>
             )}
           </View>
-        </View>
+        </TouchableOpacity>
         <Icon
           icon="CardShare"
           size={24}

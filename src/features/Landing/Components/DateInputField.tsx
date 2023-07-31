@@ -3,7 +3,7 @@ import { COLORS, TEXT_COLORS } from '@/themes/colors';
 import { getSlashYYYYMMDD } from '@/utils/date';
 import { ScaledSheet } from '@/utils/scale';
 import { useEffect, useState } from 'react';
-import { TextInput, TouchableOpacity, View } from 'react-native';
+import { TextInput, TouchableOpacity } from 'react-native';
 import DatePicker from 'react-native-date-picker';
 
 interface DateInputFieldProps {
@@ -45,7 +45,7 @@ const DateInputField = ({ onInput }: DateInputFieldProps) => {
   };
 
   return (
-    <View>
+    <TouchableOpacity onPress={handlePressInput}>
       <DatePicker
         modal
         open={open}
@@ -69,7 +69,7 @@ const DateInputField = ({ onInput }: DateInputFieldProps) => {
       >
         <Text fontSize="16">{!touched ? '' : getSlashYYYYMMDD(date)}</Text>
       </TextInput>
-    </View>
+    </TouchableOpacity>
   );
 };
 

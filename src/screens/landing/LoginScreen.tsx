@@ -1,13 +1,11 @@
 import React from 'react';
 import { Alert, View } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Text from '@/common/components/Text';
 import Logo from '@/common/components/Logo/Logo';
 import { ScaledSheet } from '@/utils/scale';
 import { AppleLoginButton } from '@/features/Landing/Components';
 import KakaoLoginButton from '@/features/Landing/Components/KakaoLoginButton';
 import { SOCIAL_LOGIN_RESPONSE } from '@/api/Login/types';
-import STORAGE_KEY from '@/constants/storageKey';
 import { useUserStore } from '@/store/user';
 import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '@/navigations/types';
@@ -28,7 +26,7 @@ const styles = ScaledSheet.create({
   },
 });
 const LoginScreen = () => {
-  const { socialLogin, token, getUser } = useUserStore();
+  const { socialLogin, getUser } = useUserStore();
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const handleSocialLoginSuccess = async (
     social: 'apple' | 'kakao',
