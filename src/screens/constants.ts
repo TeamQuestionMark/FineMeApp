@@ -107,6 +107,10 @@ export const STAGE_STACK_SCREEN_LIST: ScreenList<StageParamList> = [
     name: 'Notification',
     component: NotificationScreen,
   },
+  {
+    name: 'Result',
+    component: ResultScreen,
+  },
 ];
 
 export const CHARACTER_STACK_SCREEN_LIST: ScreenList<CharacterParamList> = [

@@ -38,6 +38,7 @@ export type StageParamList = {
   StageCustomWriting: undefined;
   Notification: undefined;
   Setting: undefined;
+  Result: { uuid: string };
 };
 
 export type CharacterParamList = {
