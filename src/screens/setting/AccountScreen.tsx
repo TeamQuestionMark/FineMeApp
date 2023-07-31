@@ -36,8 +36,10 @@ const styles = ScaledSheet.create({
     paddingVertical: '35@vs',
   },
   actionWrapper: {
-    marginTop: 'auto',
-    marginBottom: '60@vs',
+    position: 'absolute',
+    bottom: '134@vs',
+    width: '100%',
+    left: '20@s',
   },
 });
 
