@@ -7,5 +7,6 @@ export default function useNotifications(
 ) {
   return useQuery<NotificationListData>(queryKey.lists(), getNotificationList, {
     ...options,
+    staleTime: 1000 * 60 * 10,
   });
 }
