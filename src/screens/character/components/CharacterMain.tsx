@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { View, ScrollView } from 'react-native';
 import FastImage from 'react-native-fast-image';
 
@@ -14,6 +14,9 @@ import globalStyles from '@/themes/globalStyles';
 import { Button } from '@/common/components/Button';
 import TooltipImage from '@/assets/images/tooltip/image_character_tooltip.png';
 import useHasNotifications from '@/api/Notification/hooks/useHasNotifications';
+import ViewShot from 'react-native-view-shot';
+import dayjs from 'dayjs';
+import saveCapture from '../utils/saveCapture';
 
 const styles = ScaledSheet.create({
   container: {
@@ -48,7 +51,12 @@ const styles = ScaledSheet.create({
 });
 
 const CharacterMain = () => {
+  const viewShotRef = useRef<ViewShot>(null);
   const hasNewNotifications = useHasNotifications();
+
+  const onSave = async () => {
+    saveCapture(viewShotRef);
+  };
 
   return (
     <View style={globalStyles.defaultFlexContainer}>
@@ -64,23 +72,33 @@ const CharacterMain = () => {
             캐릭터
           </Text>
           <Divider vertical={20} />
-          <CustomShadow>
-            <View
-              style={[
-                globalStyles.alignFlexStart,
-                globalStyles.justifyCenter,
-                styles.characterContainer,
-              ]}
-            >
-              <ImageBackground
-                source={DefaultCharacterImage}
-                style={styles.characterImage}
-                resizeMode="contain"
+          <ViewShot
+            ref={viewShotRef}
+            options={{
+              fileName: `fineme_character_${dayjs().format('YYYYMMDDHHmmss')}`,
+              format: 'jpg',
+              quality: 1,
+            }}
+          >
+            <CustomShadow>
+              <View
+                style={[
+                  globalStyles.alignFlexStart,
+                  globalStyles.justifyCenter,
+                  styles.characterContainer,
+                ]}
               >
-                {/*  TODO: 안에 아이템 요소 삽입 */}
-              </ImageBackground>
-            </View>
-          </CustomShadow>
+                <ImageBackground
+                  source={DefaultCharacterImage}
+                  style={styles.characterImage}
+                  resizeMode="contain"
+                >
+                  {/*  TODO: 안에 아이템 요소 삽입 */}
+                </ImageBackground>
+              </View>
+            </CustomShadow>
+          </ViewShot>
+
           <Divider vertical={20} />
           <View
             style={[
@@ -95,7 +113,7 @@ const CharacterMain = () => {
               onPress={() => {}}
               width={162}
             />
-            <Button title="캐릭터 저장" onPress={() => {}} width={162} />
+            <Button title="캐릭터 저장" onPress={onSave} width={162} />
             <FastImage style={styles.tooltipImage} source={TooltipImage} />
           </View>
         </View>
