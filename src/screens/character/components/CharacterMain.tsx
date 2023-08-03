@@ -36,13 +36,14 @@ const styles = ScaledSheet.create({
   buttonContainer: {
     position: 'relative',
     width: '100%',
+    marginBottom: '50@vs',
   },
   tooltipImage: {
     position: 'absolute',
     bottom: '-45@vs',
     left: '23.5@s',
     width: '115@s',
-    height: '35@vs',
+    height: '35@s',
   },
 });
 
@@ -66,7 +67,7 @@ const CharacterMain = () => {
           <CustomShadow>
             <View
               style={[
-                globalStyles.alignCenter,
+                globalStyles.alignFlexStart,
                 globalStyles.justifyCenter,
                 styles.characterContainer,
               ]}
