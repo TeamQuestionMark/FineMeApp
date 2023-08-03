@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query';
 import { getQuestionResults } from '../api';
+import { stageQueryKey } from '@/api/shared/queryKey';
 
 const useGetQuestionResultsQuery = () => {
-  const { data, refetch, isLoading } = useQuery(['fetchStageResults'], {
+  const { data, refetch, isLoading } = useQuery(stageQueryKey.resultLists(), {
     queryFn: () => getQuestionResults({}),
   });
 

@@ -1,5 +1,6 @@
 import { UseMutationOptions, useMutation, useQueryClient } from 'react-query';
-import { queryKey, readNotification } from '../api';
+import { readNotification } from '../api';
+import { notificationQueryKey } from '@/api/shared/queryKey';
 
 interface UseReadNotificationParams {
   target: 'all' | number;
@@ -12,7 +13,7 @@ export default function useReadNotification(
     ({ target }) => readNotification(target),
     {
       onSuccess: () => {
-        queryClient.invalidateQueries(queryKey.lists());
+        queryClient.invalidateQueries(notificationQueryKey.lists());
       },
       ...options,
     },
