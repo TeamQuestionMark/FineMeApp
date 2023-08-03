@@ -14,6 +14,7 @@ import { ScaledSheet, vs } from '@/utils/scale';
 import { CustomShadow } from '@/common/components/Shadow';
 import { deleteFCMToken, deleteUser } from '@/api/User/api';
 import { ConfirmModal } from '@/common/components/Modal';
+import { useQueryClient } from 'react-query';
 
 const styles = ScaledSheet.create({
   container: {
@@ -47,11 +48,13 @@ const AccountScreen = () => {
   const navigation = useNavigation<NavigationProps>();
   const { user, reset } = useUserStore();
   const [isVisibleModal, setIsVisibleModal] = useState(false);
+  const queryClient = useQueryClient();
   useHideTabBar();
 
   const logout = useCallback(async () => {
     await deleteFCMToken().then(reset);
-  }, [reset]);
+    queryClient.invalidateQueries();
+  }, [queryClient, reset]);
 
   const handlePressEditNickname = () => {
     navigation.navigate('EditNickname');
@@ -59,6 +62,7 @@ const AccountScreen = () => {
 
   const quit = async () => {
     await deleteUser().then(reset);
+    queryClient.invalidateQueries();
     setIsVisibleModal(false);
   };
   return (
