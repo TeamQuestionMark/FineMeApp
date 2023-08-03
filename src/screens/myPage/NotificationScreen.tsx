@@ -6,7 +6,7 @@ import Header from '@/common/components/Header/Header';
 import { useNavigation } from '@react-navigation/native';
 import { Notification } from '@/api/Notification/types';
 import NotificationBox from './components/NotificationBox';
-import { ScaledSheet } from '@/utils/scale';
+import { ScaledSheet, vs } from '@/utils/scale';
 import Switch from '@/common/components/Switch/Switch';
 import Text from '@/common/components/Text';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -18,6 +18,7 @@ import { requestPermission } from '@/utils/fcm/requestPermission';
 import useReadNotification from '@/api/Notification/hooks/useReadNotification';
 import { map } from 'lodash';
 import { NavigationProps } from '@/navigations/types';
+import useHideTabBar from '@/hooks/useHideTabBar';
 
 const dummyNotificationLists: Notification[] = [
   {
@@ -64,7 +65,6 @@ const dummyNotificationLists: Notification[] = [
 
 const styles = ScaledSheet.create({
   scrollView: {
-    paddingBottom: '200@vs',
     marginTop: '30@vs',
   },
   noti: {
@@ -92,6 +92,7 @@ const NotificationScreen = () => {
   const [notiOn, setNotiOn] = useState<boolean | 'loading'>('loading');
   const query = useNotifications();
   const { mutateAsync: readNoti } = useReadNotification();
+  useHideTabBar();
 
   useEffect(() => {
     function updateNotiOn() {
@@ -147,14 +148,20 @@ const NotificationScreen = () => {
           </TouchableOpacity>
         </View>
         <ScrollView style={styles.scrollView}>
-          {map(query?.data?.notificationLists, notification => (
-            <NotificationBox
-              style={styles.noti}
-              key={notification.id}
-              notification={notification}
-              onPress={() => handlePressNoti(notification)}
-            />
-          ))}
+          {map(
+            query?.data?.notificationLists,
+            (notification, idx, notifications) => (
+              <NotificationBox
+                style={[
+                  styles.noti,
+                  idx === notifications.length - 1 && { marginBottom: vs(100) },
+                ]}
+                key={notification.id}
+                notification={notification}
+                onPress={() => handlePressNoti(notification)}
+              />
+            ),
+          )}
         </ScrollView>
       </View>
     </View>
