@@ -39,6 +39,7 @@ export type StageParamList = {
   Notification: undefined;
   Setting: undefined;
   Result: { uuid: string };
+  Update: undefined;
 };
 
 export type CharacterParamList = {

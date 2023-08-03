@@ -5,10 +5,10 @@ import { map } from 'lodash';
 import { LANDING_STACK_SCREEN_LIST } from '@/screens/constants';
 
 import { Stack } from './RootStack';
+import { useCodePushVersionStore } from '@/store/codePushVersionStore';
 
 const LandingStack = () => {
-  //TODO: 추후 코드푸시 업데이트 적용
-  const isUpdateAvailable = false;
+  const { isUpdateAvailable } = useCodePushVersionStore();
 
   return (
     <Stack.Navigator initialRouteName={isUpdateAvailable ? 'Update' : 'Login'}>
