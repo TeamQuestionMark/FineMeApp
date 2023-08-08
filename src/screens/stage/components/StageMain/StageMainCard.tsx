@@ -53,25 +53,21 @@ const StageMainCard = ({ type }: StageMainCardProps) => {
       case '회사':
         return {
           title: '회사에서 일하는',
-          url: '',
           image: work,
         };
       case '카페':
         return {
-          title: '카페에서 일하는',
-          url: '',
+          title: '친구와 있는?',
           image: cafe,
         };
       case '집':
         return {
-          title: '집에서 일하는',
-          url: '',
+          title: '진짜',
           image: home,
         };
       default:
         return {
           title: '회사에서 일하는',
-          url: '',
           image: work,
         };
     }
