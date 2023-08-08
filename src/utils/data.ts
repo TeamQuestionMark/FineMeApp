@@ -1,7 +1,5 @@
 import {
-  CustomStageFormData,
   CustomStageQuestionPostDataForm,
-  CustomStageQuestionState,
   CustomStageQuestionType,
   CustomStageRowData,
 } from '@/screens/stage/type';
