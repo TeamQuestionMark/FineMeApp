@@ -5,6 +5,7 @@ import { getConvertCustomStagePostData } from '@/utils/data';
 import { CustomStageRowData } from '@/screens/stage/type';
 import { useMutation, useQueryClient } from 'react-query';
 import { useToastStore } from '@/store/toast';
+import { stageQueryKey } from '@/api/shared/queryKey';
 
 const usePostCustomStageQuestions = () => {
   const navigation = useNavigation<NavigationProps>();
@@ -12,14 +13,14 @@ const usePostCustomStageQuestions = () => {
 
   const { setToast } = useToastStore();
 
-  const { mutate } = useMutation(['postCustomStage'], {
+  const { mutate } = useMutation({
     mutationFn: (customQuestionData: CustomStageRowData) => {
       const convertQuestionData =
         getConvertCustomStagePostData(customQuestionData);
       return postQuestionsStage(convertQuestionData);
     },
     onSuccess: () => {
-      queryClient.invalidateQueries(['fetchCustomStage']);
+      queryClient.invalidateQueries(stageQueryKey.customLists());
       navigation.goBack();
     },
     onError: () => setToast('데이터 전송에 실패했습니다.'),
