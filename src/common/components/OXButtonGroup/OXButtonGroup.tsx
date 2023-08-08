@@ -5,7 +5,8 @@ import IconOX from '@/assets/icons/OXButton/IconOX';
 import { ScaledSheet } from '@/utils/scale';
 
 interface OXButtonGroupProps {
-  onChange: (value: boolean) => void;
+  onChange?: (value: boolean) => void;
+  disabled?: boolean;
 }
 
 const styles = ScaledSheet.create({
@@ -31,14 +32,15 @@ const styles = ScaledSheet.create({
   },
 });
 
-const OXButtonGroup = ({ onChange }: OXButtonGroupProps) => {
+const OXButtonGroup = ({ onChange, disabled }: OXButtonGroupProps) => {
   const [checkedValue, setCheckedValue] = useState<'o' | 'x'>();
   const handlePress = useCallback(
     (value: 'o' | 'x') => {
+      if (disabled) return;
       setCheckedValue(value);
-      onChange(value === 'o');
+      onChange && onChange(value === 'o');
     },
-    [checkedValue, onChange],
+    [disabled, onChange],
   );
 
   return (

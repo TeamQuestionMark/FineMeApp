@@ -56,17 +56,6 @@ const CustomQuestionCard = ({
     [customQuestions, externalKey],
   );
 
-  const onChangeOXanswer = useCallback(
-    (value: boolean) => {
-      const modifiedCustomQuestions = getModifiedValue(
-        'answerChoice',
-        value ? 'o' : 'x',
-      );
-      setCustomQuestions(modifiedCustomQuestions);
-    },
-    [getModifiedValue, setCustomQuestions],
-  );
-
   const onChangeAnswerText = useCallback(
     (text: string) => {
       const modifiedCustomQuestions = getModifiedValue('answerText', text);
@@ -123,16 +112,15 @@ const CustomQuestionCard = ({
           />
         );
       case CustomStageQuestionType.OX_ANSWER:
-        return <OXButtonGroup onChange={onChangeOXanswer} />;
+        return <OXButtonGroup disabled />;
       default:
-        return <OXButtonGroup onChange={onChangeOXanswer} />;
+        return <OXButtonGroup disabled />;
     }
   }, [
     answerText,
     customQuestions,
     externalKey,
     multipleChoiceList,
-    onChangeOXanswer,
     onChangeAnswerText,
     questionType,
     setCustomQuestions,
