@@ -11,6 +11,8 @@ import { useNavigation } from '@react-navigation/native';
 import { RootStackParamList } from '@/navigations/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { isIOS } from '@/utils/device';
+import { COLORS } from '@/themes/colors';
+import globalStyles from '@/themes/globalStyles';
 
 const styles = ScaledSheet.create({
   titleWrapper: {
@@ -52,7 +54,12 @@ const LoginScreen = () => {
   };
 
   return (
-    <View>
+    <View
+      style={{
+        ...globalStyles.defaultFlexContainer,
+        backgroundColor: COLORS.brandColor50,
+      }}
+    >
       <View style={styles.titleWrapper}>
         <Text
           fontSize="16"
