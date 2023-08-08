@@ -1,5 +1,6 @@
 import { Divider } from '@/common/components/Divider';
 import Icon from '@/common/components/Icon/Icon';
+import { CustomShadow } from '@/common/components/Shadow';
 import Text from '@/common/components/Text';
 import { COLORS } from '@/themes/colors';
 import globalStyles from '@/themes/globalStyles';
@@ -9,28 +10,33 @@ import { View } from 'react-native';
 
 const styles = ScaledSheet.create({
   container: {
-    width: '100%',
-    paddingVertical: '20@vs',
-    borderWidth: 1,
+    paddingHorizontal: '55@s',
+    paddingVertical: '41@vs',
+    borderWidth: 2,
+    borderColor: COLORS.black,
     borderRadius: 20,
+    backgroundColor: COLORS.white,
   },
 });
 
 const StageMainEmptyCustomCard = () => {
   return (
-    <View
-      style={[
-        globalStyles.alignCenter,
-        globalStyles.justifyCenter,
-        styles.container,
-      ]}
-    >
-      <Text fontSize="20" fontWeight="Regular" color={COLORS.black}>
-        나만의 질문지를 직접 만들어보세요!
-      </Text>
-      <Divider vertical={9} />
-      <Icon icon="Add" size={24} />
-    </View>
+    <CustomShadow>
+      <View
+        style={[
+          globalStyles.alignCenter,
+          globalStyles.justifyCenter,
+          styles.container,
+        ]}
+      >
+        <Text fontSize="14" fontWeight="Regular" color={COLORS.gray500}>
+          커스텀 스테이지가 없습니다.
+        </Text>
+        <Text fontSize="14" fontWeight="Regular" color={COLORS.gray500}>
+          새로운 커스텀 스테이지를 만들어 보세요
+        </Text>
+      </View>
+    </CustomShadow>
   );
 };
 
