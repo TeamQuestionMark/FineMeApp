@@ -48,12 +48,14 @@ const OXButtonGroup = ({ onChange, disabled }: OXButtonGroupProps) => {
       <TouchableOpacity
         style={[styles.button, checkedValue === 'o' && styles.checked]}
         onPress={() => handlePress('o')}
+        disabled={disabled}
       >
         <IconOX ox="o" checked={checkedValue === 'o'} />
       </TouchableOpacity>
       <TouchableOpacity
         style={[styles.button, checkedValue === 'x' && styles.checked]}
         onPress={() => handlePress('x')}
+        disabled={disabled}
       >
         <IconOX ox="x" checked={checkedValue === 'x'} />
       </TouchableOpacity>

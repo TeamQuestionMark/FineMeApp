@@ -110,12 +110,14 @@ const InputMessageField = forwardRef<TextInput, InputMessageFieldProps>(
     const textColor = disabled || !editable ? COLORS.gray400 : COLORS.gray900;
 
     const borderColor = useMemo(() => {
-      if (isFocused) {
+      if (disabled) {
+        return styles.disabled;
+      } else if (isFocused) {
         return styles.active;
       } else {
         return styles.default;
       }
-    }, [isFocused]);
+    }, [disabled, isFocused]);
 
     const valueLength = value?.length || 0;
 
@@ -179,13 +181,13 @@ const InputMessageField = forwardRef<TextInput, InputMessageFieldProps>(
             <Divider vertical={4} />
           </>
         )}
-        <View style={[styles.container, borderColor, ,]}>
+        <View style={[styles.container, borderColor]}>
           <View style={styles.inner}>
             {!editable || disabled || disableAccent ? (
               <ScrollView style={styles.input}>
                 <View onStartShouldSetResponder={onStartShouldSetResponder}>
                   <Text fontSize="14" fontWeight="bold" color={textColor}>
-                    {value}
+                    {value || props.placeholder}
                   </Text>
                 </View>
               </ScrollView>

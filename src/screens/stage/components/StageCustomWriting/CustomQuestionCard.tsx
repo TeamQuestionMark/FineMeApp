@@ -33,7 +33,6 @@ const styles = ScaledSheet.create({
 const CustomQuestionCard = ({
   questionType,
   questionTitle,
-  answerText,
   order,
   customQuestions,
   setCustomQuestions,
@@ -54,14 +53,6 @@ const CustomQuestionCard = ({
       });
     },
     [customQuestions, externalKey],
-  );
-
-  const onChangeAnswerText = useCallback(
-    (text: string) => {
-      const modifiedCustomQuestions = getModifiedValue('answerText', text);
-      setCustomQuestions(modifiedCustomQuestions);
-    },
-    [getModifiedValue, setCustomQuestions],
   );
 
   const onChangeQuestionTitle = useCallback(
@@ -86,9 +77,10 @@ const CustomQuestionCard = ({
       case CustomStageQuestionType.SUBJECTIVE_ANSWER:
         return (
           <InputMessageField
-            value={answerText || ''}
+            value={''}
             placeholder="1~100자까지 작성할 수 있습니다."
-            onInput={onChangeAnswerText}
+            onInput={() => null}
+            disabled
           />
         );
       case CustomStageQuestionType.RADIO:
@@ -117,11 +109,9 @@ const CustomQuestionCard = ({
         return <OXButtonGroup disabled />;
     }
   }, [
-    answerText,
     customQuestions,
     externalKey,
     multipleChoiceList,
-    onChangeAnswerText,
     questionType,
     setCustomQuestions,
   ]);
