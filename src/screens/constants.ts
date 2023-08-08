@@ -96,6 +96,10 @@ export const STAGE_STACK_SCREEN_LIST: ScreenList<StageParamList> = [
     component: StageScreen,
   },
   {
+    name: 'Update',
+    component: UpdateScreen,
+  },
+  {
     name: 'StagePreview',
     component: StagePreviewScreen,
   },

@@ -45,7 +45,7 @@ const styles = ScaledSheet.create({
 
 const Tabs = ({ tabList, currentTab, setTab }: TabProps) => {
   const renderTabs = map(tabList, (item, index) => {
-    const isSelectedTab = currentTab.value === item.value;
+    const isSelectedTab = currentTab?.value === item?.value;
 
     return (
       <TouchableOpacity
