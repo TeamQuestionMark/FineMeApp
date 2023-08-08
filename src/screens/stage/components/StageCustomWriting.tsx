@@ -164,7 +164,6 @@ const StageCustomWriting = () => {
               questionType={customQuestion?.questionType}
               externalKey={customQuestion?.externalKey}
               questionTitle={customQuestion?.questionTitle}
-              answerText={customQuestion?.answerText}
               multipleChoiceList={customQuestion?.multipleChoiceList}
               order={index + 1}
               customQuestions={customQuestions}
