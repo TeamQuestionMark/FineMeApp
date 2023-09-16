@@ -36,8 +36,6 @@ const styles = ScaledSheet.create({
 const UpdateScreen = () => {
   const navigation = useNavigation<NavigationProps>();
 
-  const { user } = useUserStore();
-
   const [progress, setProgress] = useState<number>(10);
   const [shouldRender, setShouldRender] = useState<boolean>(false);
 
@@ -103,7 +101,7 @@ const UpdateScreen = () => {
 
   useEffect(() => {
     if (!isUpdateAvailable) {
-      navigation.navigate(user ? 'Stage' : 'Login');
+      navigation.navigate('Login');
     }
   }, [isUpdateAvailable, navigation]);
 
