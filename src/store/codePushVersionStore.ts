@@ -47,7 +47,7 @@ export const useCodePushVersionStore = create<CodePushVersionStore>()(
         await get().checkCodePushUpdate();
         await get().getCodePushMetaData();
       } catch (error) {
-        console.log('init Codepush error:', error.message);
+        console.log('init Codepush error');
       }
     },
   }),
