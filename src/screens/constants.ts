@@ -7,12 +7,7 @@ import {
   SettingParamList,
   StageParamList,
 } from '@/navigations/types';
-import {
-  EditProfileScreen,
-  LandingScreen,
-  LoginScreen,
-  UpdateScreen,
-} from './landing';
+import { EditProfileScreen, LoginScreen, UpdateScreen } from './landing';
 import { MyPageScreen, NotificationScreen, ResultScreen } from './myPage';
 import {
   StageCustomWritingScreen,
@@ -34,10 +29,7 @@ export const LANDING_STACK_SCREEN_LIST: ScreenList<LandingStackParamList> = [
     name: 'Update',
     component: UpdateScreen,
   },
-  {
-    name: 'Landing',
-    component: LandingScreen,
-  },
+
   {
     name: 'Login',
     component: LoginScreen,

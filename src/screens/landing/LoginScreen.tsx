@@ -36,18 +36,11 @@ const LoginScreen = () => {
   ) => {
     const responseType = await socialLogin(social, socialToken);
     console.log('🔸 → LoginScreen → socialToken:', socialToken);
-    if (
-      responseType === SOCIAL_LOGIN_RESPONSE.FIRST_LOGIN_SUCCESS ||
-      responseType === SOCIAL_LOGIN_RESPONSE.SUCCESS
-    ) {
-      const user = await getUser();
-
-      if (user && user.birth && user.gender) {
-        Alert.alert('로그인 성공');
-      } else {
-        Alert.alert('추가 정보를 입력해주세요');
-        navigation.replace('EditProfile');
-      }
+    if (responseType === SOCIAL_LOGIN_RESPONSE.FIRST_LOGIN_SUCCESS) {
+      Alert.alert('추가 정보를 입력해주세요');
+      navigation.replace('EditProfile');
+    } else if (responseType === SOCIAL_LOGIN_RESPONSE.SUCCESS) {
+      getUser().then(() => Alert.alert('로그인 성공'));
     } else {
       Alert.alert('로그인 실패', '다시 시도해주세요.');
     }

@@ -3,13 +3,10 @@ import React from 'react';
 import { map } from 'lodash';
 import { STAGE_STACK_SCREEN_LIST } from '@/screens/constants';
 import { Stack } from './RootStack';
-import { useCodePushVersionStore } from '@/store/codePushVersionStore';
 
 const StageStack = () => {
-  const { isUpdateAvailable } = useCodePushVersionStore();
-
   return (
-    <Stack.Navigator initialRouteName={isUpdateAvailable ? 'Update' : 'Stage'}>
+    <Stack.Navigator initialRouteName={'Stage'}>
       {map(STAGE_STACK_SCREEN_LIST, screen => {
         return (
           <Stack.Screen

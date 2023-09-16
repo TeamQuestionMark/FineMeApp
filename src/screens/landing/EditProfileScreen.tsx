@@ -6,10 +6,12 @@ import ChipGroup from '@/common/components/Chip/ChipGroup';
 import Text from '@/common/components/Text';
 import DateInputField from '@/features/Landing/Components/DateInputField';
 import { useUserStore } from '@/store/user';
+import { COLORS } from '@/themes/colors';
 import globalStyles, { GLOBAL_HORIZONTAL_PADDING } from '@/themes/globalStyles';
 import { ScaledSheet } from '@/utils/scale';
 import { useState } from 'react';
 import { View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const GENDER_OPTIONS: { label: string; value: Gender }[] = [
   {
@@ -32,6 +34,10 @@ const styles = ScaledSheet.create({
   },
   label: {
     marginBottom: '20@vs',
+  },
+  skip: {
+    alignSelf: 'center',
+    marginTop: '10@vs',
   },
   button: {
     position: 'absolute',
@@ -56,8 +62,22 @@ const EditProfileScreen = () => {
     }
   };
 
+  const handleSkip = async () => {
+    await putProfile({
+      gender: null,
+      birth: null,
+    });
+    getUser();
+  };
+
   return (
-    <View style={[globalStyles.defaultPadding, { height: '100%' }]}>
+    <View
+      style={[
+        globalStyles.defaultPadding,
+        globalStyles.defaultBackgroundColor,
+        { height: '100%' },
+      ]}
+    >
       <View style={styles.inputContainer}>
         <Text style={styles.label} fontWeight="bold" fontSize="16">
           성별
@@ -81,13 +101,24 @@ const EditProfileScreen = () => {
         </Text>
         <DateInputField onInput={setBirth} />
       </View>
-      <Button
-        style={styles.button}
-        title={'완료'}
-        onPress={handleSubmit}
-        width={'100%'}
-        disabled={!(gender && birth)}
-      />
+      <View style={styles.button}>
+        <Button
+          title={'완료'}
+          onPress={handleSubmit}
+          width={'100%'}
+          disabled={!(gender && birth)}
+        />
+        <TouchableOpacity style={styles.skip} onPress={handleSkip}>
+          <Text
+            fontSize="16"
+            fontWeight="bold"
+            color={COLORS.gray300}
+            textDecorationLine="underline"
+          >
+            Skip
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

@@ -35,7 +35,7 @@ export const useUserStore = create<UserStore>()(
       },
       getUser: async () => {
         try {
-          const { status, data } = await getProfile();
+          const { data } = await getProfile();
           console.log('🔸 → getUser: → data:', data);
           const user = data.data;
           set(prev => ({ ...prev, user }));
