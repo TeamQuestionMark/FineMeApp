@@ -8,8 +8,8 @@ export const getProfile = () =>
   mainAxios.get<ResponseData<UserProfile>>('/api/v1/user/profile');
 
 type PutProfilePayload = {
-  gender: Gender;
-  birth: Date; //19900101
+  gender: Gender | null;
+  birth: Date | null; //19900101
 };
 
 const formatBirth = (birthDate: Date) => {
@@ -28,7 +28,7 @@ export const putProfile = async (payload: PutProfilePayload) => {
     '/api/v1/user/profile/info',
     {
       ...payload,
-      birth: formatBirth(payload.birth),
+      birth: payload.birth ? formatBirth(payload.birth) : payload.birth,
     },
   );
   return data;

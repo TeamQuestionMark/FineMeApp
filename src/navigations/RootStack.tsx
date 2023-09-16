@@ -14,13 +14,13 @@ import SplashScreen from 'react-native-splash-screen';
 import { registerFcmToken } from '@/utils/fcm/requests';
 import { useToastStore } from '@/store/toast';
 import { SnackBar } from '@/common/components/SnackBar';
+import { useCodePushVersionStore } from '@/store/codePushVersionStore';
 
 export const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
-  const { getUser, user, reset } = useUserStore();
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [isUserLogin, setIsUserLogin] = useState(false);
+  const { user } = useUserStore();
+  const { isUpdateAvailable } = useCodePushVersionStore();
 
   const { toastMessage, isToastVisible, onCloseSnackbar } = useToastStore(
     state => ({
@@ -30,13 +30,6 @@ const RootStack = () => {
       setToast: state.setToast,
     }),
   );
-
-  useEffect(() => {
-    getUser()
-      .then(() => setIsUserLogin(true))
-      .catch(reset)
-      .finally(() => setIsSuccess(true));
-  }, [getUser, reset]);
 
   useEffect(() => {
     if (user) registerFcmToken();
@@ -55,16 +48,13 @@ const RootStack = () => {
         globalStyles.defaultBackgroundColor,
       ]}
     >
-      {!isSuccess && <Spinner />}
-      {isSuccess && (
-        <Suspense fallback={<Spinner />}>
-          {isUserLogin && user?.birth && user?.gender ? (
-            <TabNavigation />
-          ) : (
-            <LandingStack />
-          )}
-        </Suspense>
-      )}
+      <Suspense fallback={<Spinner />}>
+        {user === null || isUpdateAvailable ? (
+          <LandingStack />
+        ) : (
+          <TabNavigation />
+        )}
+      </Suspense>
       {isToastVisible && (
         <SnackBar message={toastMessage} onClose={onCloseSnackbar} />
       )}

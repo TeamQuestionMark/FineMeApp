@@ -6,7 +6,7 @@ import {
   NavigationContainerRef,
 } from '@react-navigation/native';
 
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClientProvider } from 'react-query';
 import { RootStackParamList } from './navigations/types';
 import Spinner from './common/components/Spinner/Spinner';
 import RootStack from './navigations/RootStack';
