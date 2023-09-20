@@ -112,7 +112,7 @@ android {
         applicationId "com.questionmark.fineme"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 3
+        versionCode 5
         versionName "1.0.0"
         resValue "string", "build_config_package", "com.questionmark.fineme"
     }

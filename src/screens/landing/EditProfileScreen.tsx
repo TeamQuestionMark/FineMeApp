@@ -41,7 +41,7 @@ const styles = ScaledSheet.create({
   },
   button: {
     position: 'absolute',
-    bottom: '50@vs',
+    bottom: '100@vs',
     left: GLOBAL_HORIZONTAL_PADDING,
     right: GLOBAL_HORIZONTAL_PADDING,
     width: '100%',
