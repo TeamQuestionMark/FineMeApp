@@ -6,6 +6,9 @@
 )
 > 괜찮은 나를 찾기 위한 소셜 퀴즈 모바일 앱
 
+- 🤖 [플레이스토어](https://play.google.com/store/apps/details?id=com.questionmark.fineme&pli=1)
+- 🍎 [앱스토어](https://apps.apple.com/us/app/%ED%8C%8C%EC%9D%B8%EB%AF%B8-fineme/id6452394286)
+
 ## 🪄 Getting Start
 ### Android
 ```shell
