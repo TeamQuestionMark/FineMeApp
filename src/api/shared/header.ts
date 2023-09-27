@@ -20,16 +20,21 @@ export const setTokenToAsyncStorage = async (token: Token) => {
 };
 
 export const getTokenFromAsyncStorage = async () => {
-  const item = await AsyncStorage.getItem(STORAGE_KEY.token);
-  if (item) {
-    const {
-      state: { token },
-    } = JSON.parse(item) as {
-      state: { token: Token | null };
-    };
-    return token;
+  try {
+    const item = await AsyncStorage.getItem(STORAGE_KEY.token);
+    if (item) {
+      const {
+        state: { token },
+      } = JSON.parse(item) as {
+        state: { token: Token | null };
+      };
+      return token;
+    } else {
+      return null;
+    }
+  } catch {
+    return null;
   }
-  return null;
 };
 
 export const setHeaderAuthorization = async (

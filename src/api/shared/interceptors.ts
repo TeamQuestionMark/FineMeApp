@@ -1,42 +1,21 @@
-import { AxiosError, AxiosInstance } from 'axios';
+import { AxiosInstance } from 'axios';
 
-import { Token } from './type';
-import { includes } from 'lodash';
-import {
-  getTokenFromAsyncStorage,
-  setHeaderAuthorization,
-  setTokenToAsyncStorage,
-} from './header';
+import { getTokenFromAsyncStorage, setTokenToAsyncStorage } from './header';
 import { postTokenReIssue } from '../Login/api';
+import { Token } from './type';
 
-let isRefreshing = false;
-let failedQueue: {
-  resolve: (token: Token | null) => void;
-  reject: (error: Error) => void;
-}[] = [];
+let lock = false;
+let subscribers: ((accessToken: string) => void)[] = [];
 
-const processQueue = (error: Error | null, token: Token | null = null) => {
-  failedQueue.forEach(prom => {
-    if (error) {
-      prom.reject(error);
-    } else {
-      prom.resolve(token);
-    }
-  });
-
-  failedQueue = [];
-};
+async function onRrefreshed(token: Token) {
+  await setTokenToAsyncStorage(token);
+  subscribers.forEach(cb => cb(token.accessToken));
+}
 
 export const setDefaultInterceptors = (axios: AxiosInstance) => {
   axios.interceptors.request.use(
     async config => {
       const newConfig = { ...config };
-      if (config.params) {
-        newConfig.params = config.params;
-      }
-      if (config.data) {
-        newConfig.data = config.data;
-      }
 
       const token = await getTokenFromAsyncStorage();
       if (token) {
@@ -51,60 +30,42 @@ export const setDefaultInterceptors = (axios: AxiosInstance) => {
   axios.interceptors.response.use(
     response => response,
     async error => {
-      const originalRequest = error.config;
-      const status = error?.response?.status || error?.status;
-      if (includes(originalRequest?.url, '/auth/reissue')) {
-        return Promise.reject(error.response || error);
+      const {
+        config,
+        response: { status },
+      } = error;
+      const originalRequest = config;
+
+      if (config.url.includes('/auth/') || status !== 401 || config._retry)
+        return Promise.reject(error);
+
+      console.log('[interceptors]', config.url, 'refresh token...');
+
+      const token = await getTokenFromAsyncStorage();
+      if (token) {
+        if (lock) {
+          return new Promise(resolve => {
+            subscribers.push((accessToken: string) => {
+              originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+              originalRequest._retry = true;
+              resolve(axios(originalRequest));
+            });
+          });
+        }
+        lock = true;
+        const reissued = await postTokenReIssue(token);
+        onRrefreshed(reissued).then(() => {
+          lock = false;
+          subscribers = [];
+        });
+
+        config.headers.Authorization = `Bearer ${reissued.accessToken}`;
+        console.log('[interceptors]', 'succeed to refresh token');
+
+        return axios(config);
       }
 
-      if (status === 401 && !originalRequest._retry) {
-        if (isRefreshing) {
-          return new Promise(
-            (
-              resolve: (token: Token | null) => void,
-              reject: (error: Error) => void,
-            ) => {
-              failedQueue.push({ resolve, reject });
-            },
-          )
-            .then(token => {
-              originalRequest.headers.authorization = `Bearer ${token?.accessToken}`;
-              return axios(originalRequest);
-            })
-            .catch(err => Promise.reject(err));
-        }
-
-        originalRequest._retry = true;
-        isRefreshing = true;
-
-        const token = await getTokenFromAsyncStorage();
-        setHeaderAuthorization(axios, token);
-
-        try {
-          if (token) {
-            const response = await postTokenReIssue(token);
-            const newToken = response?.data?.data;
-            if (newToken) {
-              setTokenToAsyncStorage(newToken);
-              setHeaderAuthorization(axios, newToken);
-              originalRequest.headers.authorization = `Bearer ${newToken.accessToken}`;
-              processQueue(null, newToken);
-              return await axios(originalRequest);
-            }
-          }
-        } catch (reIssueError) {
-          if (reIssueError instanceof AxiosError) {
-            // 센트리 에러 부여
-            processQueue(reIssueError, null);
-          }
-          //TOTO: response 값에 따라 변경
-          console.error(`unable to refresh access token`);
-          return Promise.reject(error.response);
-        } finally {
-          isRefreshing = false;
-        }
-      }
-      return Promise.reject(error.response || error);
+      return Promise.reject(error);
     },
   );
 };

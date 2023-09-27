@@ -22,17 +22,21 @@ const styles = ScaledSheet.create({
 const StageMainEmptyCustomCard = () => {
   return (
     <CustomShadow>
-      <View
-        style={[
-          globalStyles.alignCenter,
-          globalStyles.justifyCenter,
-          styles.container,
-        ]}
-      >
-        <Text fontSize="14" fontWeight="Regular" color={COLORS.gray500}>
+      <View style={[globalStyles.alignCenter, styles.container]}>
+        <Text
+          textAlign="center"
+          fontSize="14"
+          fontWeight="Regular"
+          color={COLORS.gray500}
+        >
           커스텀 스테이지가 없습니다.
         </Text>
-        <Text fontSize="14" fontWeight="Regular" color={COLORS.gray500}>
+        <Text
+          textAlign="center"
+          fontSize="14"
+          fontWeight="Regular"
+          color={COLORS.gray500}
+        >
           새로운 커스텀 스테이지를 만들어 보세요
         </Text>
       </View>

@@ -13,16 +13,21 @@ export const statusToResponseType = (status: number) => {
     case 404:
       return SOCIAL_LOGIN_RESPONSE.FAILED;
     default:
-      return SOCIAL_LOGIN_RESPONSE.UNKNOWN_ERROR
+      return SOCIAL_LOGIN_RESPONSE.UNKNOWN_ERROR;
   }
-}
-export const postTokenReIssue = (params: Token) =>
-  mainAxios.post<ResponseData<Token>>('/api/v1/auth/reissue', { params });
+};
+export const postTokenReIssue = async (params: Token) => {
+  const response = await mainAxios.post<ResponseData<Token>>(
+    '/api/v1/auth/reissue',
+    params,
+  );
+  return response.data.data;
+};
 
 export const postSocialToken = async (social: Social, socialToken: string) => {
   return await mainAxios.post<ResponseData<Token>>(
     `/api/v1/auth/${social}?socialToken=${socialToken}`,
     undefined,
-    { validateStatus: (status) => status < 500 },
+    { validateStatus: status => status < 500 },
   );
 };
