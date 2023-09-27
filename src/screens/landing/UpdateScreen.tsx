@@ -35,6 +35,7 @@ const styles = ScaledSheet.create({
 
 const UpdateScreen = () => {
   const navigation = useNavigation<NavigationProps>();
+  const { checkCodePushUpdate } = useCodePushVersionStore();
 
   const [progress, setProgress] = useState<number>(10);
   const [shouldRender, setShouldRender] = useState<boolean>(false);
@@ -57,26 +58,29 @@ const UpdateScreen = () => {
     [],
   );
 
-  const codePushStatusDidChange = useCallback((status: CodePush.SyncStatus) => {
-    switch (status) {
-      case CodePush.SyncStatus.CHECKING_FOR_UPDATE:
-        break;
-      case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-        setShouldRender(true);
-        SplashScreen.hide();
-        break;
-      case CodePush.SyncStatus.INSTALLING_UPDATE:
-        break;
-      case CodePush.SyncStatus.UPDATE_INSTALLED:
-        useCodePushVersionStore.setState({ isUpdateAvailable: false });
-        break;
-      case CodePush.SyncStatus.UP_TO_DATE:
-        useCodePushVersionStore.setState({ isUpdateAvailable: false });
-        break;
-      default:
-        break;
-    }
-  }, []);
+  const codePushStatusDidChange = useCallback(
+    (status: CodePush.SyncStatus) => {
+      switch (status) {
+        case CodePush.SyncStatus.CHECKING_FOR_UPDATE:
+          break;
+        case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
+          setShouldRender(true);
+          SplashScreen.hide();
+          break;
+        case CodePush.SyncStatus.INSTALLING_UPDATE:
+          break;
+        case CodePush.SyncStatus.UPDATE_INSTALLED:
+          checkCodePushUpdate();
+          break;
+        case CodePush.SyncStatus.UP_TO_DATE:
+          checkCodePushUpdate();
+          break;
+        default:
+          break;
+      }
+    },
+    [checkCodePushUpdate],
+  );
 
   useEffect(() => {
     try {
@@ -126,9 +130,9 @@ const UpdateScreen = () => {
           backgroundColor={COLORS.error100}
         />
       </View>
-      <View style={styles.button}>
+      {/* <View style={styles.button}>
         <Button title="건너뛰기" width={320} onPress={handlePressSkipUpdate} />
-      </View>
+      </View> */}
     </View>
   ) : (
     <View />

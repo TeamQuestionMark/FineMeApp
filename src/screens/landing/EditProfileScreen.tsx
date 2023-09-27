@@ -53,13 +53,11 @@ const EditProfileScreen = () => {
   const [birth, setBirth] = useState<Date>();
   const { getUser } = useUserStore();
   const handleSubmit = async () => {
-    if (gender && birth) {
-      await putProfile({
-        gender: gender as Gender,
-        birth,
-      });
-      getUser();
-    }
+    await putProfile({
+      gender: (gender as Gender) || null,
+      birth: birth || null,
+    });
+    getUser();
   };
 
   const handleSkip = async () => {
@@ -102,12 +100,7 @@ const EditProfileScreen = () => {
         <DateInputField onInput={setBirth} />
       </View>
       <View style={styles.button}>
-        <Button
-          title={'완료'}
-          onPress={handleSubmit}
-          width={'100%'}
-          disabled={!(gender && birth)}
-        />
+        <Button title={'완료'} onPress={handleSubmit} width={'100%'} />
         <TouchableOpacity style={styles.skip} onPress={handleSkip}>
           <Text
             fontSize="16"

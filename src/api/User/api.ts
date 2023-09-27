@@ -27,8 +27,8 @@ export const putProfile = async (payload: PutProfilePayload) => {
   const { data } = await mainAxios.put<ResponseData<unknown>>(
     '/api/v1/user/profile/info',
     {
-      ...payload,
-      birth: payload.birth ? formatBirth(payload.birth) : payload.birth,
+      gender: payload.gender,
+      birth: payload.birth ? formatBirth(payload.birth) : null,
     },
   );
   return data;
